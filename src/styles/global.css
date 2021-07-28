@@ -38,7 +38,7 @@
   }
 
   h5 {
-    @apply font-graphik tracking-wide md:text-lg text-lg;
+    @apply font-graphik tracking-wide md:text-lg text-base;
   }
 
   h6 {
@@ -134,6 +134,14 @@
     @apply absolute left-1/2 transform -translate-x-1/2;
   }
 
+  .height-26 {
+    height: 26rem;
+  }
+
+  .height-30 {
+    height: 30rem;
+  }
+
   .h-subpage-hero {
     height: 32rem;
   }
@@ -162,7 +170,7 @@
   }
 
   .br-frame {
-    border-width: 0.24rem;
+    border-width: 0.2rem;
     border-style: solid;
   }
 

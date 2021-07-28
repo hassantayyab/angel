@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Frame from '../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-const ContactCard = ({ carImage }) => {
+const ContactCard = ({ carImage, isForHome = false }) => {
   const [startDate, setStartDate] = useState(new Date())
 
   return (
@@ -17,7 +17,9 @@ const ContactCard = ({ carImage }) => {
         <GatsbyImage
           image={getImage(carImage?.localFile)}
           alt={carImage?.altText}
-          className='absolute left-0 z-20 w-80 lg:w-5/12 -top-12 lg:top-auto lg:-bottom-12 lg:-left-16 2xl:-left-40 lg:translate-x-0'
+          className={`absolute left-0 z-20 w-80 lg:w-5/12 lg:top-auto lg:-bottom-12 lg:-left-16 2xl:-left-40 lg:translate-x-0 ${
+            isForHome ? '-bottom-28' : '-top-12'
+          }`}
         />
         <div className='relative'>
           <img
@@ -33,7 +35,7 @@ const ContactCard = ({ carImage }) => {
             }}
           ></div>
         </div>
-        <div className='relative pt-24 lg:pt-0'>
+        <div className={`relative lg:pt-0 ${!isForHome && 'pt-24'}`}>
           <img
             src={ImgContactCardBg}
             alt='card bg'
@@ -61,7 +63,7 @@ const ContactCard = ({ carImage }) => {
             </div>
           </div>
         </div>
-        <div className='relative'>
+        <div className={`relative lg:pb-0 ${isForHome && 'pb-8'}`}>
           <img
             src={ImgContactCardBg}
             alt='card bg'

@@ -13,11 +13,17 @@ import Footer from '../components/footer'
 import { graphql } from 'gatsby'
 import ContactCard from '../components/common/contact-card'
 import Layout from '../components/utils/layout'
+import Welcome from '../components/home/welcome'
+import Video from '../components/home/video'
+import CardContact from '../components/home/cardContact'
+import CouponAndDiscount from '../components/home/couponAndDiscount'
 
 const IndexPage = ({ data }) => {
   const servicesData = useServicesQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
+
+  console.log('data', data)
 
   return (
     <>
@@ -34,17 +40,35 @@ const IndexPage = ({ data }) => {
 
       <div className='-mt-24'>
         <Layout>
-          <ContactCard carImage={generalData._generalData.carImage} />
+          <ContactCard
+            isForHome='true'
+            carImage={generalData._generalData.carImage}
+          />
         </Layout>
       </div>
 
-      <div className='mt-12'>
+      <div className='mt-24 sm:mt-28'>
+        <Layout>
+          <Welcome data={data.wpPage._welcomeSection} />
+        </Layout>
+      </div>
+
+      <div className='mt-16 sm:mt-24'>
+        <Video data={data.wpPage._videoSection} />
+      </div>
+
+      <div className='mt-40 sm:mt-64 md:mt-56 lg:mt-20'>
         <WhyChoose />
       </div>
 
-      <div className='my-12'>
-        <ServiceAreas />
-      </div>
+      <CardContact data={data.wpPage._cardContact} />
+
+      <CouponAndDiscount
+        data={data.wpPage._couponsSection}
+        logo={generalData._generalData.logo}
+      />
+
+      <ServiceAreas />
 
       <div className='mt-6'>
         <Contact />
@@ -63,6 +87,10 @@ export const query = graphql`
   {
     wpPage(slug: { eq: "home" }) {
       # ...SEOPageFragment
+      ...WelcomeFragment
+      ...VideoFragment
+      ...CardContactFragment
+      ...CouponAndDiscountFragment
       _heroSection {
         heroTitle
         heroSubtitle

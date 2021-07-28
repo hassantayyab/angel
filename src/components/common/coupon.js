@@ -14,8 +14,8 @@ const Coupon = ({ data, logo }) => (
         />
       </div>
 
-      <div className='relative px-6 py-10 border border-white border-dashed font-graphikMedium bg-blue bg-opacity-90'>
-        <div className='flex justify-center mb-8 ml-6 gap-2'>
+      <div className='relative px-6 py-6 border border-white border-dashed font-graphikMedium bg-blue bg-opacity-90'>
+        <div className='flex justify-center mb-6 ml-6 gap-2'>
           <h2 className='mt-2 font-graphikBold'>$</h2>
           <h1 className='text-8xl'>{data.title}</h1>
           <div className='mt-5 mr-2.5 h-0.5 w-9 bg-yellow transform rotate-90'></div>
