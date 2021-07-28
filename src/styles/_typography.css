@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'Perfetto';
+  src: url('@fonts/Perfetto.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('@fonts/BarlowCondensed-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('@fonts/Graphik-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Italic';
+  src: url('@fonts/Graphik-RegularItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Graphik Medium';
+  src: url('@fonts/Graphik-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Medium Italic';
+  src: url('@fonts/Graphik-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Graphik Semibold';
+  src: url('@fonts/Graphik-Semibold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Semibold Italic';
+  src: url('@fonts/Graphik-SemiboldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Graphik Bold';
+  src: url('@fonts/Graphik-Bold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Bold Italic';
+  src: url('@fonts/Graphik-BoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Graphik Black';
+  src: url('@fonts/Graphik-Black.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Black Italic';
+  src: url('@fonts/Graphik-BlackItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
