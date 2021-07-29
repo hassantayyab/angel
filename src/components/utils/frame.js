@@ -1,5 +1,7 @@
 import React from 'react'
 
-const Frame = () => <div className='w-full h-full border-yellow br-frame'></div>
+const Frame = ({ borderColor = 'border-yellow' }) => (
+  <div className={`w-full h-full br-frame ${borderColor}`}></div>
+)
 
 export default Frame

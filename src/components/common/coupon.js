@@ -3,7 +3,7 @@ import React from 'react'
 import Frame from '../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-const Coupon = ({ data, logo }) => (
+const Coupon = ({ data, logo, borderColor }) => (
   <div className='relative max-w-sm pb-5'>
     <div className='relative z-10 p-3 mr-5 text-white bg-blue'>
       <div className='w-5/6 absolute-center'>
@@ -43,7 +43,7 @@ const Coupon = ({ data, logo }) => (
     </div>
 
     <div className='absolute bottom-0 right-0 z-0 w-92 h-92'>
-      <Frame />
+      <Frame borderColor='border-yellow-dark' />
     </div>
   </div>
 )

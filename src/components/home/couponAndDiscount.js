@@ -19,23 +19,25 @@ const CouponAndDiscount = ({ data, logo }) => {
         />
       </div>
       <Layout>
-        <div className='relative flex flex-col justify-center pt-12 md:pt-40 md:flex-row gap-12'>
-          <div className='text-center text-black uppercase md:w-2/5 md:text-left'>
+        <div className='relative flex flex-col justify-center pt-12 lg:pt-40 lg:flex-row gap-12'>
+          <div className='text-center text-black uppercase lg:w-2/5 lg:text-left'>
             <h5 className='mb-2 tracking-wider font-graphikMedium'>
               Limited Time
             </h5>
             <h2>{data.couponsHeading}</h2>
             {/* Separator */}
-            <div className='mx-auto mt-8 w-36 md:ml-0'>
+            <div className='mx-auto mt-8 w-36 lg:ml-0'>
               <Separator />
             </div>
           </div>
           <div className='flex-1'>
-            <div className='flex pb-6 overflow-x-scroll overflow-y-hidden gap-6'>
-              {coupons.length > 0 &&
-                coupons.map((coupon, i) => (
-                  <Coupon key={i} data={coupon} logo={logo} />
-                ))}
+            <div className='flex pb-6 overflow-x-scroll overflow-y-hidden'>
+              <div className='flex justify-center lg:justify-start gap-6'>
+                {coupons.length > 0 &&
+                  coupons.map((coupon, i) => (
+                    <Coupon key={i} data={coupon} logo={logo} />
+                  ))}
+              </div>
             </div>
           </div>
         </div>
