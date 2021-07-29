@@ -11,7 +11,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
     <footer className='pt-16 mt-4'>
       <Layout>
         <div className='relative justify-between pb-6 border-b grid lg:grid-cols-4 grid-cols-2 sm:gap-x-0 md:gap-x-4 gap-y-10 lg:gap-6 xl:gap-24 border-gray-light'>
-          <section className='lg:col-span-1 col-span-2'>
+          <section className='text-center lg:col-span-1 col-span-2'>
             <GatsbyImage
               image={getImage(generalInfoData._generalData.logo?.localFile)}
               alt={generalInfoData._generalData.logo?.altText}
@@ -154,11 +154,10 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
           <div className='mt-6 lg:mt-0'>
             {generalInfoData._generalData.footerImages.length > 0 &&
               generalInfoData._generalData.footerImages.map(({ image }, i) => (
-                <div key={i}>
+                <div key={i} className='mx-auto text-center lg:ml-auto'>
                   <GatsbyImage
                     image={getImage(image?.localFile)}
                     alt={image?.altText}
-                    className='mx-auto lg:ml-auto'
                   />
                 </div>
               ))}

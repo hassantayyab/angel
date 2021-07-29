@@ -7,6 +7,7 @@ module.exports = {
         xs: '400px',
       },
       fontFamily: {
+        perfetto: ['Perfetto', 'serif'],
         graphik: ['Graphik', 'serif'],
         graphikMedium: ['Graphik Medium', 'serif'],
         graphikBold: ['Graphik Bold', 'serif'],

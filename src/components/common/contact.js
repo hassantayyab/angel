@@ -53,7 +53,7 @@ const Contact = () => {
       <Layout>
         <section className='relative md:grid grid-cols-2 gap-12'>
           <div className='relative mb-0 xl:-mb-40 mw-sub-page'>
-            <div className='relative z-10 object-cover w-full h-64 pl-6 mr-6 -ml-6 -top-6 md:top-8 md:w-auto md:pr-0 md:h-auto'>
+            <div className='relative z-10 object-cover w-full h-64 pl-6 mr-6 -ml-6 overflow-hidden -top-6 md:top-8 md:w-auto md:pr-0 md:h-auto'>
               <GatsbyImage
                 image={getImage(data.formImage?.localFile)}
                 alt={data.formImage?.altText}

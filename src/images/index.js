@@ -2,6 +2,10 @@ import ImgInfo from './info.svg'
 import ImgLogo from './logo.svg'
 import ImgCall from './call.svg'
 import ImgMenu from './menu.svg'
+import ImgPlay from './play.svg'
+import ImgPlayArrow from './play-arrow.svg'
+import ImageVideoBg from './video-bg.svg'
+import ImageCouponBg from './coupon-bg.svg'
 import ImgCallCard from './call-card.svg'
 import ImgCar from './car.svg'
 import ImgTick from './tick.svg'
@@ -32,6 +36,10 @@ export {
   ImgLogo,
   ImgCall,
   ImgMenu,
+  ImgPlay,
+  ImgPlayArrow,
+  ImageVideoBg,
+  ImageCouponBg,
   ImgCallCard,
   ImgCar,
   ImgTick,
