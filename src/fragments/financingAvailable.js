@@ -1,11 +1,11 @@
 import { graphql } from 'gatsby'
 
 export const query = graphql`
-  fragment HeroPostFragment on WpPost {
-    _heroSection {
-      heroTitle
-      heroSubtitle
-      heroBgImage {
+  fragment FinancingFragment on WpPage {
+    _financing {
+      financingHeading
+      financingSubheading
+      financingBgImage {
         altText
         localFile {
           childImageSharp {
