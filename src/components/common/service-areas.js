@@ -114,7 +114,7 @@ const ServiceAreas = () => {
 
         <div className='block text-center md:hidden'>
           <Accordian>
-            <span className='px-6 py-4 text-white'>Bucks County</span>
+            <span className='text-white'>Bucks County</span>
             <ul>
               <li className='flex justify-center p-4 cursor-pointer gap-3 default-transition'>
                 <img src={ImgAddress} alt='address icon' />
