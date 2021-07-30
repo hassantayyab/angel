@@ -8,7 +8,7 @@ const CardContact = ({ data }) => (
   <section className='relative py-8 md:py-20 lg:px-12 xl:px-52'>
     <BackgroundImage
       image={getImage(data.cardContactBg?.localFile)}
-      alt='bg contact card'
+      alt={getImage(data.cardContactBg?.altText)}
     />
     <div
       className='absolute inset-0 w-full h-full'

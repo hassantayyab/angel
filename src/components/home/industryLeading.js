@@ -10,7 +10,6 @@ const IndustryLeading = ({ data, carImage }) => {
       <BackgroundImage
         image={getImage(data.industryLeadingBgImage?.localFile)}
         alt={data.industryLeadingBgImage?.altText}
-        loading='lazy'
       />
       <div
         className='absolute inset-0'

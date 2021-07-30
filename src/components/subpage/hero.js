@@ -7,7 +7,6 @@ const Hero = ({ data }) => (
     <BackgroundImage
       image={getImage(data.heroBgImage?.localFile)}
       alt={data.heroBgImage?.altText}
-      loading='lazy'
     />
     <div className='relative px-6 pt-20 sm:px-16'>
       <div className='w-full px-8 py-12 border-2 sm:w-4/5 md:w-3/5 lg:w-1/2 xl:w-2/5 top-20 h-3/5 border-yellow'>

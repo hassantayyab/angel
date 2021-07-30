@@ -40,8 +40,6 @@ const Contact = () => {
       <BackgroundImage
         image={getImage(data.formBgImage?.localFile)}
         alt={data.formBgImage?.altText}
-        loading='lazy'
-        className='absolute inset-0 object-cover w-full h-full'
       />
       <div
         className='absolute inset-0'

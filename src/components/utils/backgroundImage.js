@@ -3,11 +3,11 @@ import React from 'react'
 
 const BackgroundImage = ({ image, alt, loading = 'lazy', className }) => {
   return (
-    <div className='absolute top-0 bottom-0 left-0 right-0'>
+    <div className='absolute inset-0 w-full h-full'>
       {image && (
         <GatsbyImage
           image={image}
-          alt={alt}
+          alt={alt || 'bg'}
           loading={loading}
           style={{ height: '100%' }}
           className={className}

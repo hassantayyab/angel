@@ -4,7 +4,13 @@ import React from 'react'
 // This accordian accepts two children templates.
 // First as the toggle button text
 // Second as the hidden content
-const Accordian = ({ children, btnIcon, btnText = '+', setOpenItem }) => (
+const Accordian = ({
+  isOpen,
+  children,
+  btnIcon,
+  btnText = '+',
+  setOpenItem,
+}) => (
   <Disclosure>
     {({ open }) => (
       <>

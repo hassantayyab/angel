@@ -80,7 +80,10 @@ const IndexPage = ({ data }) => {
       <CardContact data={data.wpPage._cardContact} />
 
       <div>
-        <Specialties logo={generalData._generalData.logo} />
+        <Specialties
+          data={data.wpPage._specialtiesSection}
+          logo={generalData._generalData.logo}
+        />
       </div>
 
       <CouponAndDiscount
@@ -142,6 +145,7 @@ export const query = graphql`
       ...FinancingFragment
       ...InudstryLeadingFragment
       ...BlogFragment
+      ...SpecialtiesFragment
       _heroSection {
         heroTitle
         heroSubtitle
