@@ -21,11 +21,14 @@ import Services from '../components/home/services'
 import IndustryLeading from '../components/home/industryLeading'
 import Blog from '../components/home/blog'
 import Specialties from '../components/home/specialties'
+import { useRef } from 'react'
 
 const IndexPage = ({ data }) => {
   const servicesData = useServicesQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
+
+  const contactFormRef = useRef(null)
 
   const heroData = {
     title: data.wpPage._heroSection.heroTitle,
@@ -48,7 +51,7 @@ const IndexPage = ({ data }) => {
 
       <div className='mt-1.5'>
         <LayoutSecondary>
-          <Hero data={heroData} isMain='true' />
+          <Hero data={heroData} isMain='true' contactFormRef={contactFormRef} />
         </LayoutSecondary>
       </div>
 
@@ -111,7 +114,7 @@ const IndexPage = ({ data }) => {
         <ServiceAreas />
       </div>
 
-      <div className='mt-20'>
+      <div className='mt-20' ref={contactFormRef}>
         <Contact />
       </div>
 

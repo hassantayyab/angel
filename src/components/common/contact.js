@@ -36,7 +36,7 @@ const Contact = () => {
   }
 
   return (
-    <div className='relative py-20 xl:mb-20'>
+    <section className='relative py-20 xl:mb-20' id='contactForm'>
       <BackgroundImage
         image={getImage(data.formBgImage?.localFile)}
         alt={data.formBgImage?.altText}
@@ -157,7 +157,7 @@ const Contact = () => {
           </div>
         </section>
       </Layout>
-    </div>
+    </section>
   )
 }
 

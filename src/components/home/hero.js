@@ -2,7 +2,7 @@ import { getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import BackgroundImage from '../utils/backgroundImage'
 
-const Hero = ({ data, isMain = false }) => (
+const Hero = ({ data, isMain = false, contactFormRef }) => (
   <div className='relative bg-black h-home-hero'>
     <BackgroundImage
       image={getImage(data.bgImage?.localFile)}
@@ -24,7 +24,13 @@ const Hero = ({ data, isMain = false }) => (
           {data.title}
         </h1>
         <h6 className='uppercase font-graphikMedium'>{data.subtitle}</h6>
-        <button type='button' className='mt-6 btn btn-primary'>
+        <button
+          type='button'
+          className='mt-6 btn btn-primary'
+          onClick={() =>
+            contactFormRef.current.scrollIntoView({ behavior: 'smooth' })
+          }
+        >
           Schedule Service Now
         </button>
       </div>

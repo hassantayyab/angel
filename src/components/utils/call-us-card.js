@@ -4,7 +4,7 @@ import React from 'react'
 const CallUsCard = ({ data }) => (
   <a
     href='tel:610.379.3993'
-    className='relative block sm:grid grid-cols-5 hover:shadow-xl default-transition mw-sub-page'
+    className='relative block w-full sm:grid grid-cols-5 hover:shadow-xl default-transition'
   >
     <div className='z-10 p-1 mb-20 rounded-full bg-white-light sm:inline-block call-card-icon sm:mb-0'>
       <div className='relative z-20 p-2 rounded-full sm:p-4 bg-blue'>

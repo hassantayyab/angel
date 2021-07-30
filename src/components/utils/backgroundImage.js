@@ -3,7 +3,7 @@ import React from 'react'
 
 const BackgroundImage = ({ image, alt, loading = 'lazy', className }) => {
   return (
-    <div className='absolute inset-0 w-full h-full'>
+    <div className='absolute inset-0 w-full h-full -z-10'>
       {image && (
         <GatsbyImage
           image={image}
