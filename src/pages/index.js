@@ -27,8 +27,6 @@ const IndexPage = ({ data }) => {
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
 
-  console.log('data', data)
-
   const heroData = {
     title: data.wpPage._heroSection.heroTitle,
     subtitle: data.wpPage._heroSection.heroSubtitle,
