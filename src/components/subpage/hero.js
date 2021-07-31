@@ -17,9 +17,9 @@ const Hero = ({ data }) => (
     ></div>
     <div className='relative z-20 px-6 pt-20 sm:px-16'>
       <div className='w-full px-8 py-12 border-2 sm:w-4/5 md:w-3/5 lg:w-1/2 xl:w-2/5 top-20 h-3/5 border-yellow'>
-        <h3 className='mb-4 uppercase text-orange font-graphik'>
+        <h4 className='mb-3 uppercase text-orange font-graphikMedium'>
           {data.heroSubtitle}
-        </h3>
+        </h4>
         <h1 className='text-5xl text-white uppercase xl:text-7xl'>
           {data.heroTitle}
         </h1>

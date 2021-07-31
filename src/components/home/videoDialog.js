@@ -42,7 +42,7 @@ const VideoDialog = ({ isOpen, setIsOpen, videoUrl }) => (
           leaveTo='opacity-0 scale-95'
         >
           <div className='inline-block w-full h-full p-6 my-12 overflow-hidden text-center align-middle transition-all transform'>
-            <div style={{ paddingBottom: '56.25%' }} className='relative'>
+            <div className='relative aspect-w-16 aspect-h-9'>
               <iframe
                 title='video'
                 className='absolute inset-0 w-full h-full'
