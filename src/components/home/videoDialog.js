@@ -41,7 +41,7 @@ const VideoDialog = ({ isOpen, setIsOpen, videoUrl }) => (
           leaveFrom='opacity-100 scale-100'
           leaveTo='opacity-0 scale-95'
         >
-          <div className='inline-block w-full h-full p-6 my-12 overflow-hidden text-center align-middle transition-all transform'>
+          <div className='inline-block w-full h-full p-6 my-12 overflow-hidden text-center align-middle md:w-3/4 transition-all transform'>
             <div className='relative aspect-w-16 aspect-h-9'>
               <iframe
                 title='video'

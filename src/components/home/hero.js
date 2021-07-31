@@ -28,7 +28,10 @@ const Hero = ({ data, isMain = false, contactFormRef }) => (
           type='button'
           className='mt-6 btn btn-primary'
           onClick={() =>
-            contactFormRef.current.scrollIntoView({ behavior: 'smooth' })
+            contactFormRef.current.scrollIntoView({
+              block: 'end',
+              behavior: 'smooth',
+            })
           }
         >
           Schedule Service Now
