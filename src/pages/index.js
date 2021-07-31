@@ -17,13 +17,30 @@ import Welcome from '../components/home/welcome'
 import Video from '../components/home/video'
 import CardContact from '../components/home/cardContact'
 import CouponAndDiscount from '../components/home/couponAndDiscount'
+import Services from '../components/home/services'
+import IndustryLeading from '../components/home/industryLeading'
+import Blog from '../components/home/blog'
+import Specialties from '../components/home/specialties'
+import { useRef } from 'react'
 
 const IndexPage = ({ data }) => {
   const servicesData = useServicesQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
 
-  console.log('data', data)
+  const contactFormRef = useRef(null)
+
+  const heroData = {
+    title: data.wpPage._heroSection.heroTitle,
+    subtitle: data.wpPage._heroSection.heroSubtitle,
+    bgImage: data.wpPage._heroSection.heroBgImage,
+  }
+
+  const financingData = {
+    title: data.wpPage._financing.financingHeading,
+    subtitle: data.wpPage._financing.financingSubheading,
+    bgImage: data.wpPage._financing.financingBgImage,
+  }
 
   return (
     <>
@@ -34,14 +51,14 @@ const IndexPage = ({ data }) => {
 
       <div className='mt-1.5'>
         <LayoutSecondary>
-          <Hero data={data.wpPage._heroSection} />
+          <Hero data={heroData} isMain='true' contactFormRef={contactFormRef} />
         </LayoutSecondary>
       </div>
 
       <div className='-mt-24'>
         <Layout>
           <ContactCard
-            isForHome='true'
+            isCarAtBottom='true'
             carImage={generalData._generalData.carImage}
           />
         </Layout>
@@ -63,15 +80,49 @@ const IndexPage = ({ data }) => {
 
       <CardContact data={data.wpPage._cardContact} />
 
+      <div>
+        <Specialties
+          data={data.wpPage._specialtiesSection}
+          logo={generalData._generalData.logo}
+        />
+      </div>
+
       <CouponAndDiscount
         data={data.wpPage._couponsSection}
         logo={generalData._generalData.logo}
       />
 
-      <ServiceAreas />
+      <Services data={data.wpPage._serviceSection} />
 
-      <div className='mt-6'>
+      <div className='mt-20'>
+        <LayoutSecondary>
+          <Hero data={financingData} />
+        </LayoutSecondary>
+      </div>
+
+      <div className='-mt-20'>
+        <Layout>
+          <ContactCard carImage={generalData._generalData.carImage} />
+        </Layout>
+      </div>
+
+      <div className='mt-20'>
+        <Blog data={data.wpPage._blogSection} />
+      </div>
+
+      <div className='mt-20'>
+        <ServiceAreas />
+      </div>
+
+      <div className='mt-20' ref={contactFormRef}>
         <Contact />
+      </div>
+
+      <div className='xl:-mt-20'>
+        <IndustryLeading
+          data={data.wpPage._industryLeading}
+          carImage={generalData._generalData.carImage}
+        />
       </div>
 
       <Footer
@@ -91,6 +142,11 @@ export const query = graphql`
       ...VideoFragment
       ...CardContactFragment
       ...CouponAndDiscountFragment
+      ...ServiceFragment
+      ...FinancingFragment
+      ...InudstryLeadingFragment
+      ...BlogFragment
+      ...SpecialtiesFragment
       _heroSection {
         heroTitle
         heroSubtitle

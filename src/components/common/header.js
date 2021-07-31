@@ -21,7 +21,7 @@ const Header = ({ headerData, menuData }) => (
         </div>
       </div>
     </div>
-    <div className='order-1 w-full md:order-2 sm:w-auto'>
+    <div className='order-1 w-full md:order-2 md:w-auto'>
       <TopContactBar data={headerData.contactNumbers} />
       <div className='hidden md:block'>
         <Menu data={menuData} />

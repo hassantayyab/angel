@@ -1,98 +1,82 @@
-import {
-  ImgAddress,
-  ImgAddressBlue,
-  ImgAddressYellow,
-  ImgMap,
-} from '../../images'
-import React from 'react'
+import { ImgAddress, ImgAddressBlue, ImgMap } from '../../images'
+import React, { useState } from 'react'
 import Layout from '../utils/layout'
 import Separator from '../utils/separator'
 import ButtonPrimary from '../utils/button-primary'
 import Frame from '../utils/frame'
 import Accordian from '../utils/accordian'
+import { useServiceAreasQuery } from '../../hooks/serviceAreasQuery'
 
 const ServiceAreas = () => {
+  const data = useServiceAreasQuery()
+  const [selected, setselected] = useState(0)
+
   return (
     <Layout>
       <section className='items-center grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-2 md:gap-16'>
         <div className='xl:ml-20 col-span-1 md:col-span-2 lg:col-span-1'>
           <div className='mb-4 text-center text-black uppercase md:text-left'>
             <h5 className='mb-1 tracking-wider font-graphikMedium'>Map</h5>
-            <h2>Service Areas</h2>
+            <h2>{data.areaHeading}</h2>
           </div>
           <div className='w-1/2 mx-auto mt-8 mb-4 sm:w-1/3 md:ml-0'>
             <Separator />
           </div>
 
-          <div className='hidden mt-10 text-base uppercase gap-4 text-gray-dark font-graphikMedium md:flex'>
-            <a
-              href='javascript;'
-              className='hover:text-orange default-transition active-link-secondary'
-            >
-              Bucks County
-            </a>
-            <div className='self-center h-4 w-0.5 bg-gray'></div>
-            <a
-              href='javascript;'
-              className='hover:text-orange default-transition'
-            >
-              Montgomery County
-            </a>
-            <div className='self-center h-4 w-0.5 bg-gray'></div>
-            <a
-              href='javascript;'
-              className='hover:text-orange default-transition'
-            >
-              Philadelphia
-            </a>
-          </div>
+          {/* TODO: Extract this into a separate component */}
+          <ul className='hidden mt-10 md:flex gap-4'>
+            {data.areaLocations.length > 0 &&
+              data.areaLocations.map(({ title }, i) => {
+                let template = []
 
-          <div className='hidden mt-5 mb-8 overflow-y-scroll h-44 md:grid grid-cols-3 gap-x-4'>
-            <ul>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition bg-blue-light'>
-                <img src={ImgAddressYellow} alt='address icon' />
-                <span className='text-white font-graphik'>Durham</span>
-              </li>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-            </ul>
-            <ul>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-            </ul>
-            <ul>
-              <li className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
+                if (i > 0 && i < data.areaLocations.length) {
+                  template.push(
+                    <div
+                      key={`border${i}`}
+                      className='self-center h-4 w-0.5 bg-gray'
+                    ></div>
+                  )
+                }
+
+                template.push(
+                  <div
+                    key={`location${i}`}
+                    className={`hover:text-orange default-transition cursor-pointer ${
+                      selected === i && 'active-link-secondary'
+                    }`}
+                  >
+                    {title}
+                  </div>
+                )
+
+                return (
+                  <li
+                    key={i}
+                    className='flex text-base uppercase gap-4 text-gray-dark font-graphikMedium'
+                    onClick={() => setselected(i)}
+                  >
+                    {template}
+                  </li>
+                )
+              })}
+          </ul>
+
+          <div className='hidden mt-5 mb-8 overflow-y-scroll h-44 md:grid gap-x-4'>
+            <ul className='items-start grid grid-cols-3 grid-rows-3'>
+              {data.areaLocations[selected].places.length > 0 &&
+                data.areaLocations[selected].places.map(({ name }, i) => (
+                  <li
+                    className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'
+                    key={i}
+                  >
+                    <img
+                      src={ImgAddressBlue}
+                      alt='address icon'
+                      className='max-w-4'
+                    />
+                    <span className='text-gray font-graphik'>{name}</span>
+                  </li>
+                ))}
             </ul>
           </div>
 
@@ -112,26 +96,30 @@ const ServiceAreas = () => {
           </div>
         </div>
 
+        {/* TODO: Extract this into a separate component */}
         <div className='block text-center md:hidden'>
-          <Accordian>
-            <span className='text-white'>Bucks County</span>
-            <ul>
-              <li className='flex justify-center p-4 cursor-pointer gap-3 default-transition'>
-                <img src={ImgAddress} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-              <li className='flex justify-center p-4 cursor-pointer gap-3 default-transition'>
-                <img src={ImgAddressBlue} alt='address icon' />
-                <span className='text-blue-light font-graphik'>
-                  Blooming Glen
-                </span>
-              </li>
-              <li className='flex justify-center p-4 cursor-pointer gap-3 default-transition'>
-                <img src={ImgAddress} alt='address icon' />
-                <span className='text-gray font-graphik'>Durham</span>
-              </li>
-            </ul>
-          </Accordian>
+          {data.areaLocations.length > 0 &&
+            data.areaLocations.map(({ title, places }, i) => (
+              <div key={i} className='mb-2'>
+                <Accordian>
+                  <span className='text-white'>{title}</span>
+                  <ul className='py-2'>
+                    {places.length > 0 &&
+                      places.map(({ name }, j) => (
+                        <li
+                          className='flex justify-center px-4 py-3 cursor-pointer gap-3 default-transition'
+                          key={j}
+                        >
+                          <img src={ImgAddress} alt='address icon' />
+                          <span className='text-gray font-graphikMedium'>
+                            {name}
+                          </span>
+                        </li>
+                      ))}
+                  </ul>
+                </Accordian>
+              </div>
+            ))}
           <div className='block mt-8 md:hidden'>
             <ButtonPrimary>View All Cities Areas</ButtonPrimary>
           </div>
