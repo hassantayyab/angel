@@ -13,15 +13,18 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
       <div className='absolute top-14 left-6 -right-3 -bottom-3 sm:-right-6 sm:-bottom-6 -z-10'>
         <Frame />
       </div>
-      <div className='relative z-0 mt-4 grid lg:grid-cols-3 grid-cols-1 bg-blue'>
-        <GatsbyImage
-          image={getImage(carImage?.localFile)}
-          alt={carImage?.altText}
+      <div className='relative z-0 flex flex-col justify-end mt-4 lg:flex-row bg-blue'>
+        <div
           className={`absolute left-0 z-20 w-80 lg:w-5/12 lg:top-auto lg:-bottom-12 lg:-left-16 2xl:-left-40 lg:translate-x-0 ${
             isCarAtBottom ? '-bottom-28' : '-top-12'
           }`}
-        />
-        <div className='relative'>
+        >
+          <GatsbyImage
+            image={getImage(carImage?.localFile)}
+            alt={carImage?.altText}
+          />
+        </div>
+        <div className='relative w-full lg:w-1/3'>
           <img
             src={ImgContactCardBg}
             alt='card bg'
@@ -35,7 +38,11 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
             }}
           ></div>
         </div>
-        <div className={`relative lg:pt-0 ${!isCarAtBottom && 'pt-24'}`}>
+        <div
+          className={`relative w-full lg:w-1/3 lg:pt-0 ${
+            !isCarAtBottom && 'pt-24'
+          }`}
+        >
           <img
             src={ImgContactCardBg}
             alt='card bg'
@@ -81,15 +88,15 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
               Virtual Estimates
             </h5>
             <div className='relative flex w-full'>
-              <img
-                src={ImgCalendar}
-                alt='input address'
-                className='z-10 left-4 absolute-y-center'
-              />
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-              />
+              <div className='z-10 left-4 absolute-y-center'>
+                <img src={ImgCalendar} alt='input address' />
+              </div>
+              <div>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                />
+              </div>
               <button className='px-5 py-3 btn bg-yellow'>Go</button>
             </div>
           </div>

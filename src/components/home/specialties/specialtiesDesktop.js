@@ -50,11 +50,12 @@ const SpecialtiesDesktop = ({ data, logo }) => {
 
           {/* Description */}
           <div className='relative z-20 w-full -mb-40 lg:w-2/3'>
-            <GatsbyImage
-              image={getImage(logo?.localFile)}
-              alt={logo?.altText}
-              className='z-20 w-64 absolute-x-center -top-9'
-            />
+            <div className='z-20 w-64 absolute-x-center -top-9'>
+              <GatsbyImage
+                image={getImage(logo?.localFile)}
+                alt={logo?.altText}
+              />
+            </div>
             <div className='absolute top-0 bottom-0 left-0 z-0 right-8'>
               <Frame />
             </div>

@@ -1,4 +1,4 @@
-import { ImgBackground, ImgForm, ImgSubmit } from '../../images'
+import { ImgSubmit } from '../../images'
 import React, { useState } from 'react'
 import Layout from '../utils/layout'
 import Frame from '../utils/frame'
