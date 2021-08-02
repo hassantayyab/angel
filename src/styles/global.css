@@ -72,6 +72,10 @@
     max-width: 65ch;
   }
 
+  .mw-blog-page {
+    max-width: 80ch;
+  }
+
   .truncate-3 {
     overflow: hidden;
     text-overflow: ellipsis;
