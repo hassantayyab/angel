@@ -6,6 +6,7 @@ export const useBlogsList = () => {
       allWpPost {
         nodes {
           ...HeroPostFragment
+          title
           excerpt
           date(formatString: "D MMM, Y")
           uri
