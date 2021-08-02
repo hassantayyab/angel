@@ -7,7 +7,7 @@ import { Link } from 'gatsby'
 
 const Header = ({ headerData, menuData }) => (
   <header className='flex flex-col items-center justify-between sm:mt-1 md:flex-row gap-x-4 gap-y-5 xl:container xl:mx-auto xl:px-6'>
-    <div className='relative z-10 flex items-center justify-center order-2 w-full px-5 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 gap-4'>
+    <div className='relative z-20 flex items-center justify-center order-2 w-full px-5 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 gap-4'>
       <Link to='/'>
         <GatsbyImage
           image={getImage(headerData.logo?.localFile)}
@@ -21,7 +21,7 @@ const Header = ({ headerData, menuData }) => (
         </div>
       </div>
     </div>
-    <div className='order-1 w-full md:order-2 sm:w-auto'>
+    <div className='order-1 w-full md:order-2 md:w-auto'>
       <TopContactBar data={headerData.contactNumbers} />
       <div className='hidden md:block'>
         <Menu data={menuData} />

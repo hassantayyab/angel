@@ -7,6 +7,7 @@ module.exports = {
         xs: '400px',
       },
       fontFamily: {
+        perfetto: ['Perfetto', 'serif'],
         graphik: ['Graphik', 'serif'],
         graphikMedium: ['Graphik Medium', 'serif'],
         graphikBold: ['Graphik Bold', 'serif'],
@@ -21,9 +22,11 @@ module.exports = {
         yellow: {
           DEFAULT: '#fec724',
           dark: '#D7A100',
+          darker: '#FEB119',
         },
         orange: {
           DEFAULT: '#E65A1C',
+          dark: '#D8370F',
         },
         gray: {
           DEFAULT: '#5F5F5F',

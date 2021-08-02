@@ -1,4 +1,4 @@
-import { ImgBackground, ImgForm, ImgSubmit } from '../../images'
+import { ImgSubmit } from '../../images'
 import React, { useState } from 'react'
 import Layout from '../utils/layout'
 import Frame from '../utils/frame'
@@ -36,12 +36,10 @@ const Contact = () => {
   }
 
   return (
-    <div className='relative py-20 xl:mb-20'>
+    <section className='relative py-20 xl:mb-20' id='contactForm'>
       <BackgroundImage
         image={getImage(data.formBgImage?.localFile)}
         alt={data.formBgImage?.altText}
-        loading='lazy'
-        className='absolute inset-0 object-cover w-full h-full'
       />
       <div
         className='absolute inset-0'
@@ -53,7 +51,7 @@ const Contact = () => {
       <Layout>
         <section className='relative md:grid grid-cols-2 gap-12'>
           <div className='relative mb-0 xl:-mb-40 mw-sub-page'>
-            <div className='relative z-10 object-cover w-full h-64 pl-6 mr-6 -ml-6 -top-6 md:top-8 md:w-auto md:pr-0 md:h-auto'>
+            <div className='relative z-10 object-cover w-full h-64 pl-6 mr-6 -ml-6 overflow-hidden -top-6 md:top-8 md:w-auto md:pr-0 md:h-auto'>
               <GatsbyImage
                 image={getImage(data.formImage?.localFile)}
                 alt={data.formImage?.altText}
@@ -159,7 +157,7 @@ const Contact = () => {
           </div>
         </section>
       </Layout>
-    </div>
+    </section>
   )
 }
 

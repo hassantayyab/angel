@@ -27,7 +27,7 @@ const Article = ({ data, title, generalInfoData }) => {
 
       if (i === 2) {
         data.push(
-          <div className='mt-10' key={i}>
+          <div className='mt-10 mw-sub-page' key={i}>
             <CallUsCard data={generalInfoData} />
           </div>
         )
