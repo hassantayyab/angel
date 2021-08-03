@@ -7,7 +7,7 @@ import BlogCard from './blogCard'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const Blog = ({ data }) => {
-  const blogs = useBlogsList()
+  const blogs = useBlogsList().splice(0, 3)
 
   return (
     <section className='relative pb-40 md:pb-80'>
