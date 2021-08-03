@@ -2,9 +2,14 @@ import { ImgArrow } from '../../images'
 import React from 'react'
 import Frame from '../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { navigate } from 'gatsby'
 
 const BlogCard = ({ data }) => (
-  <div className='relative cursor-pointer w-80'>
+  <div
+    className='relative cursor-pointer w-80'
+    onClick={() => navigate(`/blog${data.uri}`)}
+    onKeyPress={() => navigate(`/blog${data.uri}`)}
+  >
     <div className='relative z-10 flex flex-col mb-6 mr-6 bg-white shadow-lg default-transition hover:shadow-xl'>
       <section className='relative overflow-hidden h-52'>
         <GatsbyImage
