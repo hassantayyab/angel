@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/utils/layout'
@@ -25,6 +25,8 @@ const SubPage = ({ data }) => {
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsQuery()[0]
+
+  const contactFormRef = useRef(null)
 
   return (
     <>
@@ -67,14 +69,14 @@ const SubPage = ({ data }) => {
       </Layout>
 
       <div className='mt-6'>
-        <WhyChoose />
+        <WhyChoose contactFormRef={contactFormRef} />
       </div>
 
       <div className='my-12'>
         <ServiceAreas />
       </div>
 
-      <div className='mt-6'>
+      <div className='mt-6' ref={contactFormRef}>
         <Contact />
       </div>
 
