@@ -268,3 +268,25 @@
   height: 100%;
   padding-left: 3rem;
 }
+
+@media print {
+  #coupon-print {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 75%) scale(1.75);
+  }
+
+  #coupon-print > .relative:first-child {
+    margin-right: 0;
+  }
+
+  /* For logo bg */
+  #coupon-print .logo {
+    left: 55%;
+  }
+
+  #coupon-print .btn-primary,
+  .frame {
+    display: none;
+  }
+}
