@@ -25,7 +25,7 @@ const BlogCard = ({ data }) => (
       <section className='flex flex-col items-start pt-5 pb-9 h-52 px-7'>
         <h5 className='mb-2 font-graphikBold line-clamp-2'>{data.title}</h5>
         <div
-          className='text-sm text-gray truncate-3'
+          className='text-sm text-gray line-clamp-3'
           dangerouslySetInnerHTML={{ __html: data.excerpt }}
         />
         {/* <p className='text-sm text-gray'>{data.excerpt}</p> */}
