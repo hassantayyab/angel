@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
 
-// use title/subtitle for the hero section and heading/subheading for the rest
 export const query = graphql`
   fragment HeroPageFragment on WpPage {
     _heroSection {

@@ -33,6 +33,14 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
 
+      blogListPage: allWpPost(sort: { fields: date, order: DESC }) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+
       blogpost: allWpPost(sort: { fields: date, order: DESC }) {
         edges {
           node {
@@ -43,11 +51,16 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+
+  // Check for any errors
   if (result.errors) {
     throw new Error(result.errors)
   }
 
-  const { subpage, blogpost } = result.data
+  // Constants
+  const postsPerPage = 9
+
+  const { subpage, blogpost, blogListPage } = result.data
 
   const subpageTemplate = require.resolve(`./src/templates/sub-page.js`)
   subpage.edges.forEach(({ node }) => {
@@ -55,6 +68,22 @@ exports.createPages = async ({ graphql, actions }) => {
       path: node.uri,
       component: subpageTemplate,
       context: { id: node.id },
+    })
+  })
+
+  const blogListPageTemplate = require.resolve('./src/templates/blog-list.js')
+  Array.from({
+    length: Math.ceil(blogListPage.edges.length / postsPerPage),
+  }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/blogs/` : `/blogs/${i + 1}`,
+      component: blogListPageTemplate,
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages: Math.ceil(blogListPage.edges.length / postsPerPage),
+        currentPage: i + 1,
+      },
     })
   })
 
