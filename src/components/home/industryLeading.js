@@ -4,7 +4,7 @@ import React from 'react'
 import BackgroundImage from '../utils/backgroundImage'
 import Layout from '../utils/layout'
 
-const IndustryLeading = ({ data, carImage }) => {
+const IndustryLeading = ({ data, carImage, contactFormRef }) => {
   return (
     <section className='relative py-12 md:py-20 xl:pb-20 xl:pt-36'>
       <BackgroundImage
@@ -27,7 +27,15 @@ const IndustryLeading = ({ data, carImage }) => {
             <h2 className='uppercase'>{data.industryLeadingHeading}</h2>
             <p className='mt-4 text-sm mb-7'>{data.industryLeadingText}</p>
 
-            <button className='btn btn-secondary bg-blue hover:bg-blue-light'>
+            <button
+              className='btn btn-secondary bg-blue hover:bg-blue-light'
+              onClick={() =>
+                contactFormRef.current.scrollIntoView({
+                  block: 'end',
+                  behavior: 'smooth',
+                })
+              }
+            >
               Request Service Today
             </button>
           </div>

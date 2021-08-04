@@ -3,7 +3,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import Separator from '../utils/separator'
 
-const Welcome = ({ data }) => (
+const Welcome = ({ data, contactFormRef }) => (
   <section className='container px-0 pt-16 xl:px-40 lg:pt-0'>
     <div className='flex flex-col gap-6 lg:gap-12 lg:flex-row'>
       <div className='flex justify-center lg:mb-0 lg:flex-col gap-3 lg:gap-4'>
@@ -31,7 +31,17 @@ const Welcome = ({ data }) => (
           {data.welcomeSubheading}
         </h6>
         <p className='text-sm text-gray'>{data.welcomeText}</p>
-        <button className='mt-8 btn btn-primary'>Schedule Service Now</button>
+        <button
+          className='mt-8 btn btn-primary'
+          onClick={() =>
+            contactFormRef.current.scrollIntoView({
+              block: 'end',
+              behavior: 'smooth',
+            })
+          }
+        >
+          Schedule Service Now
+        </button>
       </div>
     </div>
   </section>

@@ -37,7 +37,12 @@ const Coupon = ({ data, logo, borderColor }) => (
         </ul>
 
         <div className='w-full mt-8 text-center'>
-          <button className='w-5/6 btn btn-primary'>Get Started</button>
+          <button
+            className='w-5/6 btn btn-primary'
+            onClick={() => window.print()}
+          >
+            Get Started
+          </button>
         </div>
       </div>
     </div>
