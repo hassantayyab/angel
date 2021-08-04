@@ -49,7 +49,7 @@ const BlogPost = ({ data }) => {
           <button
             type='button'
             className='flex items-center btn btn-primary gap-4'
-            onClick={() => navigate('/blogs')}
+            onClick={() => navigate('/blogs/')}
           >
             <img src={ImgBackArrow} alt='go back' className='w-8' />
             <span>Back to Blogs</span>

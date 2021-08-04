@@ -5,6 +5,7 @@ import ImgMenu from './menu.svg'
 import ImgPlay from './play.svg'
 import ImgArrow from './arrow.svg'
 import ImgBackArrow from './back-arrow.svg'
+import ImgPaginationArrow from './pagination-arrow.svg'
 import ImgHeating from './heating.svg'
 import ImgHeatingFan from './heating-fan.svg'
 import ImgPlayArrow from './play-arrow.svg'
@@ -44,6 +45,7 @@ export {
   ImgPlay,
   ImgArrow,
   ImgBackArrow,
+  ImgPaginationArrow,
   ImgHeating,
   ImgHeatingFan,
   ImgPlayArrow,
