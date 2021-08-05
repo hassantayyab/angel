@@ -35,7 +35,7 @@ const BlogList = ({ data, location }) => {
   return (
     <>
       <TopInfoBar data={generalData._generalData} />
-      <div className='container px-0 mx-auto sm:px-6 xl:px-0 space-y-10'>
+      <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
         <Header headerData={generalData._generalData} menuData={menuData} />
       </div>
 
