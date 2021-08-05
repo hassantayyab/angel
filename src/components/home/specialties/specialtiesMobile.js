@@ -3,7 +3,7 @@ import Accordian from './accordian'
 import BackgroundImage from '../../../components/utils/backgroundImage'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-const SpecialtiesMobile = ({ data }) => {
+const SpecialtiesMobile = ({ data, contactFormRef }) => {
   const [openItems, setOpenItems] = useState([])
 
   const handleOpenItem = (item) => {
@@ -95,10 +95,28 @@ const SpecialtiesMobile = ({ data }) => {
       </div>
 
       <div className='flex flex-col items-center justify-center px-12 my-12 gap-4'>
-        <button type='button' className='w-full px-0 btn btn-primary'>
+        <button
+          type='button'
+          className='w-full px-0 btn btn-primary'
+          onClick={() =>
+            contactFormRef.current.scrollIntoView({
+              block: 'end',
+              behavior: 'smooth',
+            })
+          }
+        >
           Schedule Service Now
         </button>
-        <button type='button' className='w-full px-0 btn btn-secondary'>
+        <button
+          type='button'
+          className='w-full px-0 btn btn-secondary'
+          onClick={() =>
+            contactFormRef.current.scrollIntoView({
+              block: 'end',
+              behavior: 'smooth',
+            })
+          }
+        >
           Virtual Estimate
         </button>
       </div>

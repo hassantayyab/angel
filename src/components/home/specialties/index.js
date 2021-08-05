@@ -3,15 +3,19 @@ import React from 'react'
 import SpecialtiesDesktop from './specialtiesDesktop'
 import SpecialtiesMobile from './specialtiesMobile'
 
-const Specialties = ({ data, logo }) => {
+const Specialties = ({ data, logo, contactFormRef }) => {
   return (
     <>
       <div className='hidden lg:block'>
-        <SpecialtiesDesktop data={data} logo={logo} />
+        <SpecialtiesDesktop
+          data={data}
+          logo={logo}
+          contactFormRef={contactFormRef}
+        />
       </div>
 
       <div className='lg:hidden'>
-        <SpecialtiesMobile data={data} />
+        <SpecialtiesMobile data={data} contactFormRef={contactFormRef} />
       </div>
     </>
   )

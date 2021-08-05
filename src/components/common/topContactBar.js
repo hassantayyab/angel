@@ -1,7 +1,7 @@
 import { ImgCall, ImgMenu } from '../../images'
 import React from 'react'
 
-const TopContactBar = ({ data }) => (
+const TopContactBar = ({ data, contactFormRef }) => (
   <div className='flex justify-center md:justify-between'>
     <div className='items-center hidden px-6 py-3 text-base font-medium text-white xl:px-12 xl:py-4 lg:flex btn font-graphikMedium bg-blue transform -skew-x-12'>
       {data.length > 0 &&
@@ -19,7 +19,15 @@ const TopContactBar = ({ data }) => (
           </div>
         ))}
     </div>
-    <button className='hidden px-8 py-3 mr-2 border-l-8 btn bg-yellow border-yellow-dark transform -skew-x-12 lg:block'>
+    <button
+      className='hidden px-8 py-3 mr-2 border-l-8 btn bg-yellow border-yellow-dark transform -skew-x-12 lg:block'
+      onClick={() =>
+        contactFormRef.current.scrollIntoView({
+          block: 'end',
+          behavior: 'smooth',
+        })
+      }
+    >
       <div className='transform skew-x-12'>Schedule Service Now</div>
     </button>
 
@@ -29,7 +37,15 @@ const TopContactBar = ({ data }) => (
           <img src={ImgMenu} alt='menu' className='w-6 transform skew-x-12' />
           <div className='transform skew-x-12'>Menu</div>
         </button>
-        <button className='w-full border-l-8 btn btn-primary border-yellow-dark '>
+        <button
+          className='w-full border-l-8 btn btn-primary border-yellow-dark'
+          onClick={() =>
+            contactFormRef.current.scrollIntoView({
+              block: 'end',
+              behavior: 'smooth',
+            })
+          }
+        >
           <div className='transform skew-x-12'>Schedule Service Now</div>
         </button>
       </div>

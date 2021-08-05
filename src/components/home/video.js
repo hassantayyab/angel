@@ -8,7 +8,7 @@ import Frame from '../utils/frame'
 import PlayButton from '../utils/playButton'
 import VideoDialog from './videoDialog'
 
-const Video = ({ data }) => {
+const Video = ({ data, contactFormRef }) => {
   let [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -38,12 +38,24 @@ const Video = ({ data }) => {
                     <button
                       type='button'
                       className='px-0 w-60 md:w-64 btn btn-primary'
+                      onClick={() =>
+                        contactFormRef.current.scrollIntoView({
+                          block: 'end',
+                          behavior: 'smooth',
+                        })
+                      }
                     >
                       Schedule Service Now
                     </button>
                     <button
                       type='button'
                       className='w-60 md:w-64 btn btn-secondary'
+                      onClick={() =>
+                        contactFormRef.current.scrollIntoView({
+                          block: 'end',
+                          behavior: 'smooth',
+                        })
+                      }
                     >
                       Virtual Estimate
                     </button>

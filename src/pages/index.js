@@ -46,7 +46,11 @@ const IndexPage = ({ data }) => {
     <>
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto sm:px-6 xl:px-0 space-y-10'>
-        <Header headerData={generalData._generalData} menuData={menuData} />
+        <Header
+          headerData={generalData._generalData}
+          menuData={menuData}
+          contactFormRef={contactFormRef}
+        />
       </div>
 
       <div className='mt-1.5'>
@@ -66,24 +70,34 @@ const IndexPage = ({ data }) => {
 
       <div className='mt-24 sm:mt-28'>
         <Layout>
-          <Welcome data={data.wpPage._welcomeSection} />
+          <Welcome
+            data={data.wpPage._welcomeSection}
+            contactFormRef={contactFormRef}
+          />
         </Layout>
       </div>
 
       <div className='mt-16 sm:mt-24'>
-        <Video data={data.wpPage._videoSection} />
+        <Video
+          data={data.wpPage._videoSection}
+          contactFormRef={contactFormRef}
+        />
       </div>
 
       <div className='mt-40 sm:mt-64 md:mt-56 lg:mt-20'>
-        <WhyChoose />
+        <WhyChoose contactFormRef={contactFormRef} />
       </div>
 
-      <CardContact data={data.wpPage._cardContact} />
+      <CardContact
+        data={data.wpPage._cardContact}
+        contactFormRef={contactFormRef}
+      />
 
       <div>
         <Specialties
           data={data.wpPage._specialtiesSection}
           logo={generalData._generalData.logo}
+          contactFormRef={contactFormRef}
         />
       </div>
 
@@ -96,7 +110,7 @@ const IndexPage = ({ data }) => {
 
       <div className='mt-20'>
         <LayoutSecondary>
-          <Hero data={financingData} />
+          <Hero data={financingData} contactFormRef={contactFormRef} />
         </LayoutSecondary>
       </div>
 
@@ -122,6 +136,7 @@ const IndexPage = ({ data }) => {
         <IndustryLeading
           data={data.wpPage._industryLeading}
           carImage={generalData._generalData.carImage}
+          contactFormRef={contactFormRef}
         />
       </div>
 

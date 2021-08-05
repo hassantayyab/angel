@@ -4,7 +4,7 @@ import React from 'react'
 import BackgroundImage from '../utils/backgroundImage'
 import Layout from '../utils/layout'
 
-const CardContact = ({ data }) => (
+const CardContact = ({ data, contactFormRef }) => (
   <section className='relative py-8 md:py-20 lg:px-12 xl:px-52'>
     <BackgroundImage
       image={getImage(data.cardContactBg?.localFile)}
@@ -23,7 +23,15 @@ const CardContact = ({ data }) => (
           <div className='text-center md:w-3/5 md:text-left'>
             <h6 className='mb-2 text-yellow font-graphik'>Reason To</h6>
             <h2>{data.cardContactHeading}</h2>
-            <button className='mt-8 btn btn-secondary'>
+            <button
+              className='mt-8 btn btn-secondary'
+              onClick={() =>
+                contactFormRef.current.scrollIntoView({
+                  block: 'end',
+                  behavior: 'smooth',
+                })
+              }
+            >
               Schedule Service Now
             </button>
           </div>
