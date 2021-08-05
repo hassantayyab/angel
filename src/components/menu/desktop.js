@@ -13,6 +13,15 @@ const DesktopMenu = ({ list = [] }) => {
     return list[index].childItems.nodes
   }
 
+  function initSetExpand(index) {
+    if (getChildren(index).length <= 0) {
+      setExpanded(false)
+      return
+    }
+
+    setExpanded(index)
+  }
+
   useEffect(() => {
     window.onscroll = () => {
       setExpanded(false)
@@ -22,11 +31,14 @@ const DesktopMenu = ({ list = [] }) => {
   return (
     <Layout>
       {' '}
-      <nav className='relative z-30 hidden my-5 lg:block'>
+      <nav
+        className='relative z-30 hidden py-5 lg:block'
+        onMouseLeave={() => setExpanded(false)}
+      >
         <div className='flex content-center justify-between py-2 font-graphikBold'>
           {list.map((item, index) => (
             <Popover key={item.id} className='relative'>
-              <Popover.Button onMouseEnter={() => setExpanded(index)}>
+              <Popover.Button onMouseEnter={() => initSetExpand(index)}>
                 <Link
                   to={item.path}
                   className='py-2 uppercase hover:text-yellow default-transition'
