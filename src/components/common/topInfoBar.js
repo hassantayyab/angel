@@ -3,7 +3,7 @@ import React from 'react'
 import Layout from '../utils/layout'
 
 const TopInfoBar = ({ data }) => (
-  <div className='bg-blue-light'>
+  <div className='relative z-50 bg-blue-light'>
     <Layout>
       <div className='flex items-center justify-center py-3 text-white uppercase'>
         <img src={ImgInfo} alt='information icon' className='w-4 md:w-6'></img>

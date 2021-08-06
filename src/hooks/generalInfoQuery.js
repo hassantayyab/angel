@@ -29,6 +29,7 @@ export const useGeneralInfoQuery = () => {
             infoLink
             contactNumbers {
               number
+              location
             }
             socialLinks {
               url
