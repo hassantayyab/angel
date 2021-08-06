@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/utils/layout'
@@ -26,10 +26,12 @@ const SubPage = ({ data }) => {
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsQuery()[0]
 
+  const contactFormRef = useRef(null)
+
   return (
     <>
       <TopInfoBar data={generalData._generalData} />
-      <div className='container px-0 mx-auto sm:px-6 xl:px-0 space-y-10'>
+      <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
         <Header headerData={generalData._generalData} menuData={menuData} />
       </div>
 
@@ -67,14 +69,14 @@ const SubPage = ({ data }) => {
       </Layout>
 
       <div className='mt-6'>
-        <WhyChoose />
+        <WhyChoose contactFormRef={contactFormRef} />
       </div>
 
       <div className='my-12'>
         <ServiceAreas />
       </div>
 
-      <div className='mt-6'>
+      <div className='mt-6' ref={contactFormRef}>
         <Contact />
       </div>
 

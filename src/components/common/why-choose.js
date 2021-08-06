@@ -7,7 +7,7 @@ import { useWhyChooseQuery } from '../../hooks/whyChooseQuery'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useReasonsQuery } from '../../hooks/reasonsQuery'
 
-const WhyChoose = () => {
+const WhyChoose = ({ contactFormRef }) => {
   const data = useWhyChooseQuery()
   const reasonsData = useReasonsQuery()
 
@@ -76,10 +76,28 @@ const WhyChoose = () => {
         </Layout>
 
         <div className='flex flex-col items-center justify-center mt-12 gap-6 sm:flex-row'>
-          <button type='button' className='w-4/5 sm:w-72 btn btn-primary'>
+          <button
+            type='button'
+            className='w-4/5 sm:w-72 btn btn-primary'
+            onClick={() =>
+              contactFormRef.current.scrollIntoView({
+                block: 'end',
+                behavior: 'smooth',
+              })
+            }
+          >
             Schedule Service Now
           </button>
-          <button type='button' className='w-4/5 sm:w-72 btn btn-secondary'>
+          <button
+            type='button'
+            className='w-4/5 sm:w-72 btn btn-secondary'
+            onClick={() =>
+              contactFormRef.current.scrollIntoView({
+                block: 'end',
+                behavior: 'smooth',
+              })
+            }
+          >
             Virtual Estimate
           </button>
         </div>

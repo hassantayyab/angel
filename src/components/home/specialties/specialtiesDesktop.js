@@ -5,7 +5,7 @@ import Frame from '../../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import BackgroundImage from '../../../components/utils/backgroundImage'
 
-const SpecialtiesDesktop = ({ data, logo }) => {
+const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
   const [selected, setSelected] = useState(0)
 
   return (
@@ -101,12 +101,27 @@ const SpecialtiesDesktop = ({ data, logo }) => {
                   {data.specialtiesItems[selected].description}
                 </p>
                 <div className='flex flex-col items-center justify-center px-5 mt-12 gap-4 sm:flex-row'>
-                  <button type='button' className='flex-1 px-0 btn btn-primary'>
+                  <button
+                    type='button'
+                    className='flex-1 px-0 btn btn-primary'
+                    onClick={() =>
+                      contactFormRef.current.scrollIntoView({
+                        block: 'end',
+                        behavior: 'smooth',
+                      })
+                    }
+                  >
                     Schedule Service Now
                   </button>
                   <button
                     type='button'
                     className='flex-1 px-0 btn btn-secondary'
+                    onClick={() =>
+                      contactFormRef.current.scrollIntoView({
+                        block: 'end',
+                        behavior: 'smooth',
+                      })
+                    }
                   >
                     Virtual Estimate
                   </button>
