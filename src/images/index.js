@@ -3,6 +3,7 @@ import ImgLogo from './logo.svg'
 import ImgCall from './call.svg'
 import ImgMenu from './menu.svg'
 import ImgPlay from './play.svg'
+import ImgDropdown from './dropdown.svg'
 import ImgArrow from './arrow.svg'
 import ImgBackArrow from './back-arrow.svg'
 import ImgPaginationArrow from './pagination-arrow.svg'
@@ -43,6 +44,7 @@ export {
   ImgCall,
   ImgMenu,
   ImgPlay,
+  ImgDropdown,
   ImgArrow,
   ImgBackArrow,
   ImgPaginationArrow,
