@@ -1,10 +1,10 @@
 import { ImgInfo } from '../../images'
 import React from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 
 const TopInfoBar = ({ data }) => (
-  <div className='relative z-50 bg-blue-light'>
-    <Layout>
+  <section className='relative z-50 bg-blue-light'>
+    <Container>
       <div className='flex items-center justify-center py-3 text-white uppercase'>
         <img src={ImgInfo} alt='information icon' className='w-4 md:w-6'></img>
         <span className='ml-2 mr-1 text-xs md:ml-3 md:text-sm'>
@@ -19,8 +19,8 @@ const TopInfoBar = ({ data }) => (
           Click here...
         </a>
       </div>
-    </Layout>
-  </div>
+    </Container>
+  </section>
 )
 
 export default TopInfoBar

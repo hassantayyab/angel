@@ -2,9 +2,9 @@ import { graphql } from 'gatsby'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 import React from 'react'
 import BackgroundImage from '../utils/backgroundImage'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 
-const CardContact = ({ data, contactFormRef }) => (
+const ContactCard = ({ data, contactFormRef }) => (
   <section className='relative py-8 md:py-20 lg:px-12 xl:px-52'>
     <BackgroundImage
       image={getImage(data.cardContactBg?.localFile)}
@@ -17,7 +17,7 @@ const CardContact = ({ data, contactFormRef }) => (
           'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.9) 100%)',
       }}
     ></div>
-    <Layout>
+    <Container>
       <div className='relative flex flex-col md:flex-row'>
         <div className='px-4 pt-8 pb-10 mx-4 -mb-2 uppercase md:mb-8 md:px-12 md:py-20 md:w-3/4 br-frame border-yellow md:mx-0'>
           <div className='text-center md:w-3/5 md:text-left'>
@@ -44,7 +44,7 @@ const CardContact = ({ data, contactFormRef }) => (
           />
         </div>
       </div>
-    </Layout>
+    </Container>
   </section>
 )
 
@@ -82,4 +82,4 @@ export const query = graphql`
   }
 `
 
-export default CardContact
+export default ContactCard

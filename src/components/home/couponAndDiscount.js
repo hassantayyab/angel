@@ -1,7 +1,7 @@
 import { useCouponsQuery } from '../../hooks/couponsQuery'
 import { graphql } from 'gatsby'
 import React from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import Separator from '../utils/separator'
 import Coupon from '../common/coupon'
 import { ImageCouponBg } from '../../images'
@@ -18,7 +18,7 @@ const CouponAndDiscount = ({ data, logo }) => {
           className='object-cover w-full h-full'
         />
       </div>
-      <Layout>
+      <Container>
         <div className='relative flex flex-col justify-center pt-12 lg:pt-40 lg:flex-row gap-12'>
           <div className='text-center text-black uppercase lg:w-2/5 lg:text-left'>
             <h5 className='mb-2 tracking-wider font-graphikMedium'>
@@ -41,7 +41,7 @@ const CouponAndDiscount = ({ data, logo }) => {
             </div>
           </div>
         </div>
-      </Layout>
+      </Container>
     </section>
   )
 }

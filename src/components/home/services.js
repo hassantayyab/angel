@@ -1,13 +1,13 @@
 import { graphql } from 'gatsby'
 import React from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import Separator from '../utils/separator'
 import ServiceCard from './serviceCard'
 
 const Services = ({ data }) => {
   return (
     <section className='max-w-4xl mx-auto'>
-      <Layout>
+      <Container>
         <div className='text-center uppercase'>
           <h5 className='mb-2 tracking-wider font-graphikMedium'>
             {data.serviceSubheading}
@@ -23,7 +23,7 @@ const Services = ({ data }) => {
           <ServiceCard />
           <ServiceCard />
         </div>
-      </Layout>
+      </Container>
     </section>
   )
 }

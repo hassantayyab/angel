@@ -1,6 +1,6 @@
 import { ImgSubmit } from '../../images'
 import React, { useState } from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import Frame from '../utils/frame'
 import FormInput from './form-input'
 import { Form, Formik } from 'formik'
@@ -48,7 +48,7 @@ const Contact = () => {
             'linear-gradient(90deg, rgba(0,74,143,1) 0%, rgba(0,74,143,0.9) 0%)',
         }}
       ></div>
-      <Layout>
+      <Container>
         <section className='relative md:grid grid-cols-2 gap-12'>
           <div className='relative mb-0 xl:-mb-40 mw-sub-page'>
             <div className='relative z-10 object-cover w-full h-64 pl-6 mr-6 -ml-6 overflow-hidden -top-6 md:top-8 md:w-auto md:pr-0 md:h-auto'>
@@ -156,7 +156,7 @@ const Contact = () => {
             </Formik>
           </div>
         </section>
-      </Layout>
+      </Container>
     </section>
   )
 }

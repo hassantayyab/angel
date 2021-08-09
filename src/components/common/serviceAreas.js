@@ -1,6 +1,6 @@
 import { ImgAddress, ImgAddressBlue, ImgMap } from '../../images'
 import React, { useState } from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import Separator from '../utils/separator'
 import ButtonPrimary from '../utils/button-primary'
 import Frame from '../utils/frame'
@@ -12,7 +12,7 @@ const ServiceAreas = () => {
   const [selected, setselected] = useState(0)
 
   return (
-    <Layout>
+    <Container>
       <section className='items-center grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-2 md:gap-16'>
         <div className='xl:ml-20 col-span-1 md:col-span-2 lg:col-span-1'>
           <div className='mb-4 text-center text-black uppercase md:text-left'>
@@ -125,7 +125,7 @@ const ServiceAreas = () => {
           </div>
         </div>
       </section>
-    </Layout>
+    </Container>
   )
 }
 

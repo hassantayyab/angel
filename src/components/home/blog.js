@@ -1,13 +1,13 @@
 import { useBlogsList } from '../../hooks/blogsListQuery'
 import { graphql } from 'gatsby'
 import React from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import Separator from '../utils/separator'
 import BlogCard from './blogCard'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const Blog = ({ data }) => {
-  const blogs = useBlogsList().splice(0, 3)
+  const blogs = useBlogsList().slice(0, 3)
 
   return (
     <section className='relative pb-40 md:pb-80'>
@@ -28,7 +28,7 @@ const Blog = ({ data }) => {
         </div>
       </div>
 
-      <Layout>
+      <Container>
         <div className='text-center text-black uppercase'>
           <h5 className='mb-2 tracking-wider font-graphikMedium'>
             {data.blogSubheading}
@@ -46,7 +46,7 @@ const Blog = ({ data }) => {
               blogs.map((blog, i) => <BlogCard key={i} data={blog} />)}
           </div>
         </div>
-      </Layout>
+      </Container>
     </section>
   )
 }

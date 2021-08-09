@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import BenefitCard from '../subpage/benefitCard'
 import SectionHeader from '../utils/section-header'
 import Separator from '../utils/separator'
@@ -66,14 +66,14 @@ const WhyChoose = ({ contactFormRef }) => {
         </div>
 
         {/* Step Cards */}
-        <Layout>
+        <Container>
           <div className='flex flex-wrap items-center justify-center mt-16 gap-5'>
             {reasonsData[Object.keys(reasonsData)[selectedReason]].length > 0 &&
               reasonsData[Object.keys(reasonsData)[selectedReason]].map(
                 (reason, i) => <BenefitCard data={reason} key={i} />
               )}
           </div>
-        </Layout>
+        </Container>
 
         <div className='flex flex-col items-center justify-center mt-12 gap-6 sm:flex-row'>
           <button

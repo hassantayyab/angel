@@ -3,7 +3,7 @@ import React from 'react'
 import BackgroundImage from '../utils/backgroundImage'
 
 const Hero = ({ data, isMain = false, contactFormRef }) => (
-  <div className='relative bg-black h-home-hero'>
+  <section className='relative bg-black h-home-hero'>
     <BackgroundImage
       image={getImage(data.bgImage?.localFile)}
       alt={data.bgImage?.altText}
@@ -38,7 +38,7 @@ const Hero = ({ data, isMain = false, contactFormRef }) => (
         </button>
       </div>
     </div>
-  </div>
+  </section>
 )
 
 export default Hero

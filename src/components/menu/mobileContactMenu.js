@@ -1,14 +1,14 @@
 import { ImgCall } from '../../images'
 import React from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 
 const MobileContactMenu = ({ data }) => (
-  <div
+  <section
     className='absolute inset-x-0 top-0 bottom-0 z-30 w-full h-screen text-white pt-52 md:-top-1 lg:hidden'
     style={{ backgroundColor: '#004284' }}
   >
     <div className='h-full border-t border-white bg-blue border-opacity-10'>
-      <Layout>
+      <Container>
         <div className='px-6 pt-12'>
           {data.length > 0 &&
             data.map(({ number, location }, i) => (
@@ -28,9 +28,9 @@ const MobileContactMenu = ({ data }) => (
               </div>
             ))}
         </div>
-      </Layout>
+      </Container>
     </div>
-  </div>
+  </section>
 )
 
 export default MobileContactMenu
