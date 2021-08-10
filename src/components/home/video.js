@@ -1,7 +1,7 @@
 import { ImageVideoBg, ImgPlayArrow } from '../../images'
 import { graphql } from 'gatsby'
 import React, { useState } from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import Separator from '../utils/separator'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Frame from '../utils/frame'
@@ -22,7 +22,7 @@ const Video = ({ data, contactFormRef }) => {
       </div>
       <div className='absolute inset-0 z-20 h-full'>
         <div className='flex flex-col justify-center lg:h-full'>
-          <Layout>
+          <Container>
             <div className='h-full py-12 text-white lg:py-20'>
               <div className='flex flex-col items-center justify-between lg:flex-row gap-10 sm:gap-8 lg:gap-20'>
                 <div className='flex-1 text-center uppercase lg:text-left'>
@@ -101,7 +101,7 @@ const Video = ({ data, contactFormRef }) => {
                 </div>
               </div>
             </div>
-          </Layout>
+          </Container>
         </div>
       </div>
 

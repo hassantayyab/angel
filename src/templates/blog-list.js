@@ -6,10 +6,10 @@ import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
 import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useServicesQuery } from '../hooks/servicesQuery'
 import Header from '../components/common/header'
-import Layout from '../components/utils/layout'
+import Container from '../components/utils/container'
 import BlogCard from '../components/home/blogCard'
 import Footer from '../components/footer'
-import LayoutSecondary from '../components/utils/layout-secondary'
+import ContainerSecondary from '../components/utils/containerSecondary'
 import Hero from '../components/subpage/hero'
 import { useBlogs } from '../hooks/blogsQuery'
 import Pagination from '../components/utils/pagination'
@@ -40,12 +40,12 @@ const BlogList = ({ data, location }) => {
       </div>
 
       <div className='mt-1.5'>
-        <LayoutSecondary>
+        <ContainerSecondary>
           <Hero data={heroData._heroSection} />
-        </LayoutSecondary>
+        </ContainerSecondary>
       </div>
 
-      <Layout>
+      <Container>
         <section className='justify-between my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10'>
           {blogs.slice(0, pageSize).map((blog, i) => (
             <div className='flex justify-center' key={i}>
@@ -60,7 +60,7 @@ const BlogList = ({ data, location }) => {
           perPageData={pageSize}
           pageChange={handlePageChange}
         />
-      </Layout>
+      </Container>
 
       <Footer
         generalInfoData={generalData}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LayoutSecondary = ({ children }) => {
+const ContainerSecondary = ({ children }) => {
   return (
     <div className='ml-auto sm:pl-6 container-secondary space-y-10'>
       {children}
@@ -8,4 +8,4 @@ const LayoutSecondary = ({ children }) => {
   )
 }
 
-export default LayoutSecondary
+export default ContainerSecondary

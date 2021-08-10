@@ -2,7 +2,7 @@ import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import BackgroundImage from '../utils/backgroundImage'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 
 const IndustryLeading = ({ data, carImage, contactFormRef }) => {
   return (
@@ -18,7 +18,7 @@ const IndustryLeading = ({ data, carImage, contactFormRef }) => {
             'linear-gradient(180deg, rgba(254,199,36,0.9) 0%, rgba(254,199,36,0.9) 100%)',
         }}
       ></div>
-      <Layout>
+      <Container>
         <div className='relative z-10 flex flex-col items-center text-center lg:text-left lg:flex-row'>
           <div className='px-0 text-black sm:w-3/5 lg:w-1/2 xl:px-20 lg:pr-20'>
             <h5 className='mb-2 tracking-wider uppercase font-graphikBold'>
@@ -47,7 +47,7 @@ const IndustryLeading = ({ data, carImage, contactFormRef }) => {
             />
           </div>
         </div>
-      </Layout>
+      </Container>
     </section>
   )
 }

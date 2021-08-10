@@ -4,6 +4,7 @@ export const useWhyChooseQuery = () => {
   const data = useStaticQuery(graphql`
     query WhyChooseQuery {
       wpPage(slug: { eq: "home" }) {
+        ...SeoPageFragment
         _whyChoose {
           whyChooseHeading
           whyChooseBgImage {

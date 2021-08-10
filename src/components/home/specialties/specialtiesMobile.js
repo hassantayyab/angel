@@ -55,10 +55,12 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
                       }`}
                     >
                       <GatsbyImage
-                        image={getImage(specialty.titleIcon?.localFile)}
-                        alt={specialty.titleIcon?.altText}
-                        className={`w-8 ${
-                          openItems.includes(i) && 'filter brightness-0'
+                        image={getImage(specialty.image?.localFile)}
+                        alt={specialty.image?.altText}
+                        className={`w-8 filter ${
+                          openItems.includes(i)
+                            ? 'brightness-0'
+                            : 'brightness-0 invert'
                         }`}
                       />
                       <div

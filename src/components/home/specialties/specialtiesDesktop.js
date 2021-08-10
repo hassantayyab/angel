@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import LayoutSecondary from '../../utils/layout-secondary'
+import ContainerSecondary from '../../utils/containerSecondary'
 import Separator from '../../utils/separator'
 import Frame from '../../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
@@ -21,7 +21,7 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
             'linear-gradient(90deg, rgba(0,74,143,1) 0%, rgba(0,74,143,0.9) 0%)',
         }}
       ></div>
-      <LayoutSecondary>
+      <ContainerSecondary>
         <div className='relative flex flex-col lg:flex-row gap-8 xl:gap-20'>
           <div className='flex-1'>
             <h3 className='text-white uppercase'>{data.specialtiesHeading}</h3>
@@ -36,10 +36,10 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                     onClick={() => setSelected(i)}
                   >
                     <GatsbyImage
-                      image={getImage(specialty.titleIcon?.localFile)}
-                      alt={specialty.titleIcon?.altText}
-                      className={`w-10 ${
-                        selected === i && 'filter brightness-0'
+                      image={getImage(specialty.image?.localFile)}
+                      alt={specialty.image?.altText}
+                      className={`w-10 filter ${
+                        selected === i ? 'brightness-0' : 'brightness-0 invert'
                       }`}
                     />
                     <div className='font-graphikMedium'>{specialty.title}</div>
@@ -130,7 +130,7 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
             </div>
           </div>
         </div>
-      </LayoutSecondary>
+      </ContainerSecondary>
     </section>
   )
 }

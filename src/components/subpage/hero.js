@@ -3,7 +3,7 @@ import React from 'react'
 import BackgroundImage from '../utils/backgroundImage'
 
 const Hero = ({ data, heightClassName = 'h-subpage-hero' }) => (
-  <div className={`relative bg-black ${heightClassName}`}>
+  <section className={`relative bg-black ${heightClassName}`}>
     <BackgroundImage
       image={getImage(data.heroBgImage?.localFile)}
       alt={data.heroBgImage?.altText}
@@ -27,7 +27,7 @@ const Hero = ({ data, heightClassName = 'h-subpage-hero' }) => (
         </div>
       </div>
     )}
-  </div>
+  </section>
 )
 
 export default Hero

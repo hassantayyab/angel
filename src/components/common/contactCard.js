@@ -91,7 +91,7 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
               <div className='z-10 left-4 absolute-y-center'>
                 <img src={ImgCalendar} alt='input address' />
               </div>
-              <div>
+              <div className='w-full'>
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}

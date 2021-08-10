@@ -1,12 +1,12 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import Accordian from './accordianMobile'
 
 const MobileMenu = ({ list = [] }) => (
-  <div className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white md:-top-1 lg:hidden bg-blue'>
+  <section className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white md:-top-1 lg:hidden bg-blue'>
     <div className='h-full pb-24 mt-4 overflow-scroll'>
-      <Layout>
+      <Container>
         {list.length > 0 &&
           list.map((item) => (
             <Accordian
@@ -52,9 +52,9 @@ const MobileMenu = ({ list = [] }) => (
             Virtual Estimate
           </button>
         </div>
-      </Layout>
+      </Container>
     </div>
-  </div>
+  </section>
 )
 
 export default MobileMenu

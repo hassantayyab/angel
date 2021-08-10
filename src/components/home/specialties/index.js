@@ -41,19 +41,6 @@ export const query = graphql`
       specialtiesItems {
         title
         description
-        titleIcon {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                quality: 100
-                layout: FULL_WIDTH
-                placeholder: BLURRED
-                formats: [WEBP]
-              )
-            }
-          }
-        }
         image {
           altText
           localFile {

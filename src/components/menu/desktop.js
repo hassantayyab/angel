@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import React, { useEffect, useState } from 'react'
 import { Popover } from '@headlessui/react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import { ImgDropdown } from '../../images'
 import Frame from '../utils/frame'
 import Accordian from './accordian'
@@ -29,8 +29,7 @@ const DesktopMenu = ({ list = [] }) => {
   }, [])
 
   return (
-    <Layout>
-      {' '}
+    <Container>
       <nav
         className='relative z-30 hidden py-5 lg:block'
         onMouseLeave={() => setExpanded(false)}
@@ -54,7 +53,7 @@ const DesktopMenu = ({ list = [] }) => {
                   onMouseLeave={() => setExpanded(false)}
                   static
                 >
-                  <Layout>
+                  <Container>
                     <div className='flex gap-x-8'>
                       <div className='relative col-span-1 h-80'>
                         <img
@@ -96,14 +95,14 @@ const DesktopMenu = ({ list = [] }) => {
                         </button>
                       </div>
                     </div>
-                  </Layout>
+                  </Container>
                 </Popover.Panel>
               )}
             </Popover>
           ))}
         </div>
       </nav>
-    </Layout>
+    </Container>
   )
 }
 

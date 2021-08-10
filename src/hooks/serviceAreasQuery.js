@@ -4,6 +4,7 @@ export const useServiceAreasQuery = () => {
   const data = useStaticQuery(graphql`
     query ServiceAreasQuery {
       wpPage(slug: { eq: "home" }) {
+        ...SeoPageFragment
         _areasSection {
           areaHeading
           areaLocations {

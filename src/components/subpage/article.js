@@ -49,13 +49,13 @@ const Article = ({ data, title, generalInfoData }) => {
   }
 
   return (
-    <div>
+    <section>
       <h2 className='w-5/6 uppercase'>{title}</h2>
       <div className='w-1/2 mt-8 mb-4 sm:w-1/5'>
         <Separator />
       </div>
       {renderArticleContent()}
-    </div>
+    </section>
   )
 }
 

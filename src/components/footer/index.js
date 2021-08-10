@@ -1,6 +1,6 @@
-import { ImgAddress, ImgEmail, ImgPayments, ImgPhone } from '../../images'
+import { ImgAddress, ImgEmail, ImgPhone } from '../../images'
 import * as React from 'react'
-import Layout from '../utils/layout'
+import Container from '../utils/container'
 import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
@@ -9,7 +9,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
 
   return (
     <footer className='pt-16 mt-4'>
-      <Layout>
+      <Container>
         <div className='relative justify-between pb-6 border-b grid lg:grid-cols-4 grid-cols-2 sm:gap-x-0 md:gap-x-4 gap-y-10 lg:gap-6 xl:gap-24 border-gray-light'>
           <section className='text-center lg:col-span-1 col-span-2'>
             <GatsbyImage
@@ -163,7 +163,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
               ))}
           </div>
         </div>
-      </Layout>
+      </Container>
     </footer>
   )
 }
