@@ -11,6 +11,7 @@ import {
   View,
 } from '../../animations'
 import Button from '../utils/button'
+import Badge from '../utils/badge'
 
 const Hero = ({ data, isMain = false, contactFormRef }) => {
   const [ref, inView] = useInView(View)
@@ -33,6 +34,9 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
 
   return (
     <section className='relative bg-black h-home-hero' ref={ref}>
+      <div className='absolute z-20 w-full text-center sm:w-auto lg:z-50 sm:right-20 lg:right-32 bottom-24 sm:bottom-auto'>
+        <Badge />
+      </div>
       <BackgroundImage
         image={getImage(data.bgImage?.localFile)}
         alt={data.bgImage?.altText}
@@ -67,7 +71,7 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
           </motion.h6>
           <Button
             type='button'
-            className='mt-6 btn btn-primary'
+            className='mt-3 sm:mt-6 btn btn-primary'
             onClick={() =>
               contactFormRef.current.scrollIntoView({
                 block: 'end',

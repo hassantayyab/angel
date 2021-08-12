@@ -280,3 +280,10 @@
     display: none;
   }
 }
+
+.ribbon {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+  clip-path: polygon(100% 0, 100% 100%, 50% 85%, 0 100%, 0 0);
+}
