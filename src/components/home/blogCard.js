@@ -3,12 +3,16 @@ import React from 'react'
 import Frame from '../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { navigate } from 'gatsby'
+import { motion } from 'framer-motion'
+import { hoverScale, scale } from '../../animations'
 
 const BlogCard = ({ data }) => (
-  <div
-    className='relative cursor-pointer w-80'
+  <motion.div
+    className='relative cursor-pointer w-80 transition-all'
     onClick={() => navigate(`/blog${data.uri}`)}
     onKeyPress={() => navigate(`/blog${data.uri}`)}
+    variants={scale}
+    whileHover={hoverScale}
   >
     <div className='relative z-10 flex flex-col mb-6 mr-6 bg-white shadow-lg default-transition hover:shadow-xl'>
       <section className='relative overflow-hidden h-52'>
@@ -37,7 +41,7 @@ const BlogCard = ({ data }) => (
     <div className='absolute bottom-2 right-2 -z-10 w-92 h-92'>
       <Frame />
     </div>
-  </div>
+  </motion.div>
 )
 
 export default BlogCard

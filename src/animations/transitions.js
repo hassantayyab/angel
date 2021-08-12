@@ -1,4 +1,17 @@
-const primaryTransition = { transition: { duration: 0.75, ease: 'easeInOut' } }
-const secondaryTransition = { transition: { duration: 1, ease: 'easeInOut' } }
+const defaultTransition = {
+  transition: { delay: 0.1, duration: 1, ease: 'easeInOut' },
+}
 
-export { primaryTransition, secondaryTransition }
+const carTransition = {
+  transition: { delay: 0.1, duration: 1, ease: 'easeOut' },
+}
+
+const springTransition = {
+  transition: { delay: 0.1, duration: 1.5, type: 'spring', bounce: 0.3 },
+}
+
+const staggerTransition = {
+  transition: { delayChildren: 0.5, staggerChildren: 0.3 },
+}
+
+export { defaultTransition, carTransition, springTransition, staggerTransition }

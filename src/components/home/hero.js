@@ -4,12 +4,13 @@ import BackgroundImage from '../utils/backgroundImage'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import {
-  primaryTransition,
+  defaultTransition,
   scale,
-  secondaryTransition,
+  springTransition,
   slideUp,
   View,
 } from '../../animations'
+import Button from '../utils/button'
 
 const Hero = ({ data, isMain = false, contactFormRef }) => {
   const [ref, inView] = useInView(View)
@@ -19,13 +20,13 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
   useEffect(() => {
     if (inView) {
       animateTitle.start({
-        ...scale.animate,
-        ...primaryTransition,
+        ...scale.visible,
+        ...springTransition,
       })
 
       animateSubtitle.start({
-        ...slideUp.animate,
-        ...secondaryTransition,
+        ...slideUp.visible,
+        ...defaultTransition,
       })
     }
   }, [inView, animateTitle, animateSubtitle])
@@ -50,19 +51,21 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
 
           <motion.h1
             className='mb-2 font-graphikBold md:mb-0 lg:text-7xl'
-            initial={scale.initial}
+            variants={scale}
+            initial='hidden'
             animate={animateTitle}
           >
             {data.title}
           </motion.h1>
           <motion.h6
             className='uppercase font-graphikMedium'
-            initial={slideUp.initial}
+            variants={slideUp}
+            initial='hidden'
             animate={animateSubtitle}
           >
             {data.subtitle}
           </motion.h6>
-          <button
+          <Button
             type='button'
             className='mt-6 btn btn-primary'
             onClick={() =>
@@ -73,7 +76,7 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
             }
           >
             Schedule Service Now
-          </button>
+          </Button>
         </div>
       </div>
     </section>

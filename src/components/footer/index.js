@@ -3,6 +3,8 @@ import * as React from 'react'
 import Container from '../utils/container'
 import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { hoverScale, scale } from '../../animations'
+import { motion } from 'framer-motion'
 
 const Footer = ({ generalInfoData, servicesData, menuData }) => {
   const services = Object.values(servicesData).flat()
@@ -21,7 +23,12 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
             <ul className='absolute bottom-0 right-0 flex flex-col items-center justify-center mt-16 mb-6 lg:justify-between md:flex-row gap-4 md:static sm:bottom-2 sm:right-2'>
               {generalInfoData._generalData.socialLinks.length > 0 &&
                 generalInfoData._generalData.socialLinks.map((link, i) => (
-                  <li key={i}>
+                  <motion.li
+                    className='rounded-full hover:shadow-md default-transition'
+                    key={i}
+                    variants={scale}
+                    whileHover={hoverScale}
+                  >
                     {i === 1 ? (
                       <a
                         className='flex items-center justify-center leading-none rounded-full w-14 h-14 bg-yellow'
@@ -49,7 +56,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                         />
                       </a>
                     )}
-                  </li>
+                  </motion.li>
                 ))}
             </ul>
           </section>
