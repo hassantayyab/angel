@@ -5,6 +5,7 @@ import Container from '../utils/container'
 import { ImgDropdown } from '../../images'
 import Frame from '../utils/frame'
 import Accordian from './accordian'
+import Button from '../utils/button'
 
 const DesktopMenu = ({ list = [] }) => {
   const [expanded, setExpanded] = useState(false)
@@ -87,12 +88,12 @@ const DesktopMenu = ({ list = [] }) => {
                           ))}
                         </div>
                         <div className='flex flex-col justify-end pb-12 pl-12 border-l border-white border-opacity-10 transform scale-90'>
-                          <button className='px-2 mb-3 w-72 btn btn-primary'>
+                          <Button className='px-2 mb-3 w-72 btn btn-primary transition-all'>
                             Schedule Service Now
-                          </button>
-                          <button className='px-2 w-72 btn btn-secondary'>
+                          </Button>
+                          <Button className='px-2 w-72 btn btn-secondary transition-all'>
                             Virtual Estimate
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     </Container>

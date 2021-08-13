@@ -13,7 +13,7 @@ import {
 import Button from '../utils/button'
 import Badge from '../utils/badge'
 
-const Hero = ({ data, isMain = false, contactFormRef }) => {
+const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
   const [ref, inView] = useInView(View)
 
   const animateTitle = useAnimation()
@@ -35,7 +35,7 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
   return (
     <section className='relative bg-black h-home-hero' ref={ref}>
       <div className='absolute z-20 w-full text-center sm:w-auto lg:z-50 sm:right-20 lg:right-32 bottom-24 sm:bottom-auto'>
-        <Badge />
+        {showBadge && <Badge />}
       </div>
       <BackgroundImage
         image={getImage(data.bgImage?.localFile)}
