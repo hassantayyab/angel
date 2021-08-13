@@ -31,9 +31,12 @@ const MobileMenu = ({ list = [] }) => (
                       showBorder={false}
                       isExpandable={subItem.childItems.nodes.length > 0}
                     >
-                      <span className='mr-4 text-base uppercase font-graphik'>
+                      <Link
+                        className='mr-4 text-base uppercase font-graphik'
+                        to={subItem.path}
+                      >
                         <span>{subItem.label}</span>
-                      </span>
+                      </Link>
                       <div className='px-2 pb-2'>
                         {subItem.childItems.nodes.map((itm) => (
                           <div

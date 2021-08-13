@@ -1,13 +1,64 @@
 import { ImgBadgeCount } from '../../images'
 import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 
 const Badge = () => {
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      query1: allBirdeyedata(
+        filter: { id: { ne: "dummy" }, sourceType: { ne: "Direct Feedback" } }
+      ) {
+        nodes {
+          rating
+        }
+      }
+      query2: allBirdeyedata(
+        filter: { id: { ne: "dummy" }, rating: { ne: 0 } }
+      ) {
+        nodes {
+          rating
+        }
+      }
+      file(name: { eq: "whitelabel-icon" }) {
+        childImageSharp {
+          fixed(height: 43, width: 43) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
+          }
+        }
+      }
+    }
+  `)
+
+  function length(obj) {
+    return Object.keys(obj).length
+  }
+  const totalRatings = length(data.query1.nodes)
+  const fiveFourThreeRatings = length(data.query2.nodes)
+
+  // console.log(totalRatings)
+  // console.log(fiveFourThreeRatings)
+
+  let total = 0
+  const ratingsTotal = data.query1.nodes
+  let i
+  for (i = 0; i < ratingsTotal.length; i++) {
+    total += ratingsTotal[i].rating
+  }
+  // console.log(total);
+
+  let averageRating = total / fiveFourThreeRatings
+  averageRating = averageRating.toFixed(1)
+  //console.log(averageRating)
+
+  let rectWidth = averageRating * 20 + '%'
+  //console.log(rectWidth)
+
   return (
     <div className='relative z-40 inline-block pt-3 pb-8 text-center'>
       <div className='relative z-20 flex flex-col justify-center w-32 h-32 p-3 text-black rounded-full bg-yellow'>
         <div className='flex items-center justify-center mb-2 gap-2'>
           <img src={ImgBadgeCount} alt='total reviews count' className='w-8' />
-          <h3 className='font-graphik'>36</h3>
+          <h4 className='font-graphik'>{totalRatings}</h4>
         </div>
         <small
           className='text-center text-black uppercase font-graphikMedium'
@@ -39,14 +90,16 @@ const Badge = () => {
             ></rect>
 
             <rect
-              width='950px'
+              width={rectWidth}
               style={{ fill: '#F71800', height: '100%' }}
               clipPath='url(#stars-circular)'
             ></rect>
           </svg>
         </div>
 
-        <div className='text-sm text-center mt-1.5 font-graphikMedium'>4.9</div>
+        <div className='text-sm text-center mt-1.5 font-graphikMedium'>
+          {averageRating}
+        </div>
       </div>
       <div className='absolute inset-0 mx-auto shadow ribbon bg-blue-light' />
     </div>

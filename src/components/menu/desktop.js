@@ -65,9 +65,12 @@ const DesktopMenu = ({ list = [] }) => {
                         <div>
                           {getChildren(expanded).map((item) => (
                             <Accordian key={item.id}>
-                              <span className='mr-6 text-sm uppercase font-graphikMedium'>
+                              <Link
+                                className='mr-6 text-sm uppercase font-graphikMedium'
+                                to={item.path}
+                              >
                                 {item.label}
-                              </span>
+                              </Link>
                               <ul className='pb-2'>
                                 {item.childItems.nodes.length > 0 &&
                                   item.childItems.nodes.map((item) => (

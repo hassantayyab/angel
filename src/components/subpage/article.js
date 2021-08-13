@@ -7,6 +7,10 @@ const Article = ({ data, title, generalInfoData }) => {
   const { contentList, contentImage } = data
 
   const renderArticleContent = () => {
+    if (!contentList || contentList?.length < 1) {
+      return
+    }
+
     return contentList.map(({ editor }, i) => {
       const data = []
 
