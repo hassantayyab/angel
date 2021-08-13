@@ -1,18 +1,47 @@
 import { ImageVideoBg, ImgPlayArrow } from '../../images'
 import { graphql } from 'gatsby'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../utils/container'
 import Separator from '../utils/separator'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Frame from '../utils/frame'
 import PlayButton from '../utils/playButton'
 import VideoDialog from './videoDialog'
+import Button from '../utils/button'
+import { useInView } from 'react-intersection-observer'
+import {
+  defaultTransition,
+  fadeIn,
+  scale,
+  springTransition,
+  View,
+} from '../../animations'
+import { useAnimation } from 'framer-motion'
+import Subtitle from '../utils/subititle'
+import Title from '../utils/title'
 
 const Video = ({ data, contactFormRef }) => {
   let [isOpen, setIsOpen] = useState(false)
 
+  const [ref, inView] = useInView(View)
+  const animateTitle = useAnimation()
+  const animateSubtitle = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateTitle.start({
+        ...scale.visible,
+        ...springTransition,
+      })
+
+      animateSubtitle.start({
+        ...fadeIn.visible,
+        ...defaultTransition,
+      })
+    }
+  }, [inView, animateTitle, animateSubtitle])
+
   return (
-    <section className='relative height-30 lg:h-96'>
+    <section className='relative height-30 lg:h-96' ref={ref}>
       <div className='absolute inset-0 z-10 w-full h-full'>
         <img
           src={ImageVideoBg}
@@ -26,16 +55,19 @@ const Video = ({ data, contactFormRef }) => {
             <div className='h-full py-12 text-white lg:py-20'>
               <div className='flex flex-col items-center justify-between lg:flex-row gap-10 sm:gap-8 lg:gap-20'>
                 <div className='flex-1 text-center uppercase lg:text-left'>
-                  <h2>{data.videoHeading}</h2>
+                  <Title animate={animateTitle}>{data.videoHeading}</Title>
                   {/* Separator */}
                   <div className='w-40 mx-auto my-6 lg:ml-0'>
                     <Separator color='white' />
                   </div>
-                  <h5 className='my-8 tracking-wider font-graphikBold'>
+                  <Subtitle
+                    className='my-8 tracking-wider font-graphikBold'
+                    animate={animateSubtitle}
+                  >
                     {data.videoSubheading}
-                  </h5>
+                  </Subtitle>
                   <div className='flex flex-wrap justify-center gap-4 lg:justify-start'>
-                    <button
+                    <Button
                       type='button'
                       className='px-0 w-60 md:w-64 btn btn-primary'
                       onClick={() =>
@@ -46,8 +78,8 @@ const Video = ({ data, contactFormRef }) => {
                       }
                     >
                       Schedule Service Now
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       type='button'
                       className='w-60 md:w-64 btn btn-secondary'
                       onClick={() =>
@@ -58,7 +90,7 @@ const Video = ({ data, contactFormRef }) => {
                       }
                     >
                       Virtual Estimate
-                    </button>
+                    </Button>
                   </div>
                 </div>
 

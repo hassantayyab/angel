@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../utils/container'
 import BenefitCard from '../subpage/benefitCard'
-import SectionHeader from '../utils/section-header'
 import Separator from '../utils/separator'
 import { useWhyChooseQuery } from '../../hooks/whyChooseQuery'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useReasonsQuery } from '../../hooks/reasonsQuery'
+import { useInView } from 'react-intersection-observer'
+import { defaultTransition, slideDown, slideUp, View } from '../../animations'
+import { useAnimation } from 'framer-motion'
+import Button from '../utils/button'
+import Subtitle from '../utils/subititle'
+import Title from '../utils/title'
 
 const WhyChoose = ({ contactFormRef }) => {
   const data = useWhyChooseQuery()
@@ -13,8 +18,26 @@ const WhyChoose = ({ contactFormRef }) => {
 
   const [selectedReason, setSelectedReason] = useState(0)
 
+  // Animations
+  const [ref, inView] = useInView(View)
+  const animateTitle = useAnimation()
+  const animateSubtitle = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateTitle.start({
+        ...slideDown.visible,
+        ...defaultTransition,
+      })
+
+      animateSubtitle.start({
+        ...slideUp.visible,
+        ...defaultTransition,
+      })
+    }
+  }, [inView, animateTitle, animateSubtitle])
+
   return (
-    <section className='relative pt-12 pb-44 md:pb-80'>
+    <section className='relative pt-12 pb-44 md:pb-80' ref={ref}>
       <div className='absolute bottom-0 left-0 w-full overflow-hidden h-3/4'>
         <div className='absolute top-0 bottom-0 w-full'>
           <GatsbyImage
@@ -33,7 +56,15 @@ const WhyChoose = ({ contactFormRef }) => {
       </div>
 
       <div className='relative z-10'>
-        <SectionHeader heading={data.whyChooseHeading} subheading='Reason To' />
+        <div className={`text-center uppercase`}>
+          <Subtitle
+            className='mb-2 tracking-wider font-graphikMedium'
+            animate={animateSubtitle}
+          >
+            Reason To
+          </Subtitle>
+          <Title animate={animateTitle}>{data.whyChooseHeading}</Title>
+        </div>
 
         {/* Separator */}
         <div className='w-40 mx-auto mt-8 mb-4'>
@@ -76,7 +107,7 @@ const WhyChoose = ({ contactFormRef }) => {
         </Container>
 
         <div className='flex flex-col items-center justify-center mt-12 gap-6 sm:flex-row'>
-          <button
+          <Button
             type='button'
             className='w-4/5 sm:w-72 btn btn-primary'
             onClick={() =>
@@ -87,8 +118,8 @@ const WhyChoose = ({ contactFormRef }) => {
             }
           >
             Schedule Service Now
-          </button>
-          <button
+          </Button>
+          <Button
             type='button'
             className='w-4/5 sm:w-72 btn btn-secondary'
             onClick={() =>
@@ -99,7 +130,7 @@ const WhyChoose = ({ contactFormRef }) => {
             }
           >
             Virtual Estimate
-          </button>
+          </Button>
         </div>
       </div>
     </section>

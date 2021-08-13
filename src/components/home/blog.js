@@ -1,16 +1,38 @@
 import { useBlogsList } from '../../hooks/blogsListQuery'
 import { graphql } from 'gatsby'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '../utils/container'
 import Separator from '../utils/separator'
 import BlogCard from './blogCard'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { useInView } from 'react-intersection-observer'
+import { defaultTransition, slideDown, slideUp, View } from '../../animations'
+import { useAnimation } from 'framer-motion'
+import Subtitle from '../utils/subititle'
+import Title from '../utils/title'
 
 const Blog = ({ data }) => {
   const blogs = useBlogsList().slice(0, 3)
 
+  const [ref, inView] = useInView(View)
+  const animateTitle = useAnimation()
+  const animateSubtitle = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateTitle.start({
+        ...slideDown.visible,
+        ...defaultTransition,
+      })
+
+      animateSubtitle.start({
+        ...slideUp.visible,
+        ...defaultTransition,
+      })
+    }
+  }, [inView, animateTitle, animateSubtitle])
+
   return (
-    <section className='relative pb-40 md:pb-80'>
+    <section className='relative pb-40 md:pb-80' ref={ref}>
       <div className='absolute bottom-0 left-0 w-full overflow-hidden h-3/4'>
         <div className='absolute top-0 bottom-0 w-full'>
           <GatsbyImage
@@ -30,10 +52,13 @@ const Blog = ({ data }) => {
 
       <Container>
         <div className='text-center text-black uppercase'>
-          <h5 className='mb-2 tracking-wider font-graphikMedium'>
+          <Subtitle
+            className='mb-2 tracking-wider font-graphikMedium'
+            animate={animateSubtitle}
+          >
             {data.blogSubheading}
-          </h5>
-          <h2>{data.blogHeading}</h2>
+          </Subtitle>
+          <Title animate={animateTitle}>{data.blogHeading}</Title>
 
           {/* Separator */}
           <div className='w-40 mx-auto mt-8 mb-4'>

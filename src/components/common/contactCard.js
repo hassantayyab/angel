@@ -1,29 +1,46 @@
 import { ImgAddress, ImgCalendar, ImgContactCardBg } from '../../images'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Frame from '../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { useInView } from 'react-intersection-observer'
+import { carTransition, slideLeft, View } from '../../animations'
+import { motion, useAnimation } from 'framer-motion'
 
 const ContactCard = ({ carImage, isCarAtBottom = false }) => {
   const [startDate, setStartDate] = useState(new Date())
 
+  const [ref, inView] = useInView(View)
+  const animateCar = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateCar.start({
+        ...slideLeft.visible,
+        ...carTransition,
+      })
+    }
+  }, [inView, animateCar])
+
   return (
-    <section className='relative'>
+    <section className='relative' ref={ref}>
       <div className='absolute top-14 left-6 -right-3 -bottom-3 sm:-right-6 sm:-bottom-6 -z-10'>
         <Frame />
       </div>
       <div className='relative z-0 flex flex-col justify-end mt-4 lg:flex-row bg-blue'>
-        <div
+        <motion.div
           className={`absolute left-0 z-20 w-80 lg:w-5/12 lg:top-auto lg:-bottom-12 lg:-left-16 2xl:-left-40 lg:translate-x-0 ${
             isCarAtBottom ? '-bottom-28' : '-top-12'
           }`}
+          variants={slideLeft}
+          initial='hidden'
+          animate={animateCar}
         >
           <GatsbyImage
             image={getImage(carImage?.localFile)}
             alt={carImage?.altText}
           />
-        </div>
+        </motion.div>
         <div className='relative w-full lg:w-1/3'>
           <img
             src={ImgContactCardBg}

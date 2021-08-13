@@ -1,8 +1,14 @@
 import React from 'react'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { hoverScale, scale } from '../../animations'
+import { motion } from 'framer-motion'
 
 const BenefitCard = ({ data }) => (
-  <div className='w-48 px-4 py-8 mx-auto mt-12 text-center bg-white shadow-2xl'>
+  <motion.div
+    className='w-48 px-4 py-8 mx-auto mt-12 text-center bg-white shadow-2xl transition-all'
+    variants={scale}
+    whileHover={hoverScale}
+  >
     <div className='relative w-20 h-20 mx-auto -mt-20 rounded-full bg-blue'>
       <div className='absolute w-3/5 absolute-center'>
         <GatsbyImage
@@ -17,7 +23,7 @@ const BenefitCard = ({ data }) => (
     <p className='mt-3 text-xs text-gray truncate-3'>
       {data._reasonPost.reasonText}
     </p>
-  </div>
+  </motion.div>
 )
 
 export default BenefitCard

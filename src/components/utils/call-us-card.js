@@ -1,10 +1,14 @@
 import { ImgCallCard, ImgPerk } from '../../images'
 import React from 'react'
+import { motion } from 'framer-motion'
+import { hoverScale, scale } from '../../animations'
 
 const CallUsCard = ({ data }) => (
-  <a
+  <motion.a
     href='tel:610.379.3993'
     className='relative block w-full sm:grid grid-cols-5 hover:shadow-xl default-transition'
+    variants={scale}
+    whileHover={hoverScale}
   >
     <div className='z-10 p-1 mb-20 rounded-full bg-white-light sm:inline-block call-card-icon sm:mb-0'>
       <div className='relative z-20 p-2 rounded-full sm:p-4 bg-blue'>
@@ -41,7 +45,7 @@ const CallUsCard = ({ data }) => (
         <h2>{data._generalData.contactNumbers.slice(-1)[0].number}</h2>
       </div>
     </div>
-  </a>
+  </motion.a>
 )
 
 export default CallUsCard

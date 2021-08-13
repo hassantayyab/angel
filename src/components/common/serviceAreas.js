@@ -1,23 +1,53 @@
 import { ImgAddress, ImgAddressBlue, ImgMap } from '../../images'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../utils/container'
 import Separator from '../utils/separator'
 import ButtonPrimary from '../utils/button-primary'
 import Frame from '../utils/frame'
 import Accordian from '../utils/accordian'
 import { useServiceAreasQuery } from '../../hooks/serviceAreasQuery'
+import { useInView } from 'react-intersection-observer'
+import { defaultTransition, slideDown, slideUp, View } from '../../animations'
+import { useAnimation } from 'framer-motion'
+import Subtitle from '../utils/subititle'
+import Title from '../utils/title'
 
 const ServiceAreas = () => {
   const data = useServiceAreasQuery()
   const [selected, setselected] = useState(0)
 
+  const [ref, inView] = useInView(View)
+  const animateTitle = useAnimation()
+  const animateSubtitle = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateTitle.start({
+        ...slideDown.visible,
+        ...defaultTransition,
+      })
+
+      animateSubtitle.start({
+        ...slideUp.visible,
+        ...defaultTransition,
+      })
+    }
+  }, [inView, animateTitle, animateSubtitle])
+
   return (
     <Container>
-      <section className='items-center grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-2 md:gap-16'>
+      <section
+        className='items-center grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-2 md:gap-16'
+        ref={ref}
+      >
         <div className='xl:ml-20 col-span-1 md:col-span-2 lg:col-span-1'>
           <div className='mb-4 text-center text-black uppercase md:text-left'>
-            <h5 className='mb-1 tracking-wider font-graphikMedium'>Map</h5>
-            <h2>{data.areaHeading}</h2>
+            <Subtitle
+              className='mb-1 tracking-wider font-graphikMedium'
+              animate={animateSubtitle}
+            >
+              Map
+            </Subtitle>
+            <Title animate={animateTitle}>{data.areaHeading}</Title>
           </div>
           <div className='w-1/2 mx-auto mt-8 mb-4 sm:w-1/3 md:ml-0'>
             <Separator />

@@ -1,11 +1,12 @@
 import { ImgPlay } from '../../images'
 import React from 'react'
+import Button from './button'
 
 const PlayButton = () => {
   return (
-    <button
+    <Button
       type='button'
-      className='border rounded-full p-1.5 border-yellow-50 border-opacity-30'
+      className='border rounded-full p-1.5 border-yellow-50 border-opacity-30 transition-all'
     >
       <div className='border rounded-full p-1.5 border-yellow-50 border-opacity-30'>
         <div className='border rounded-full p-1.5 border-yellow-50 border-opacity-30'>
@@ -14,7 +15,7 @@ const PlayButton = () => {
           </div>
         </div>
       </div>
-    </button>
+    </Button>
   )
 }
 

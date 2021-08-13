@@ -1,10 +1,17 @@
+import { fadeIn } from '../../animations'
 import { Link } from 'gatsby'
 import React from 'react'
 import Container from '../utils/container'
 import Accordian from './accordianMobile'
+import { motion } from 'framer-motion'
 
 const MobileMenu = ({ list = [] }) => (
-  <section className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white md:-top-1 lg:hidden bg-blue'>
+  <motion.section
+    className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white md:-top-1 lg:hidden bg-blue'
+    variants={fadeIn}
+    initial='hidden'
+    animate='visible'
+  >
     <div className='h-full pb-24 mt-4 overflow-scroll'>
       <Container>
         {list.length > 0 &&
@@ -54,7 +61,7 @@ const MobileMenu = ({ list = [] }) => (
         </div>
       </Container>
     </div>
-  </section>
+  </motion.section>
 )
 
 export default MobileMenu
