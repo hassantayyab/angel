@@ -4,6 +4,7 @@ export const useContactQuery = () => {
   const data = useStaticQuery(graphql`
     query ContactQuery {
       wpPage(slug: { eq: "home" }) {
+        ...SeoPageFragment
         _form {
           formHeading
           formImage {

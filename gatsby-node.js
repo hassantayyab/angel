@@ -65,7 +65,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const subpageTemplate = require.resolve(`./src/templates/sub-page.js`)
   subpage.edges.forEach(({ node }) => {
     createPage({
-      path: `/services${node.uri}`,
+      path: node.uri,
       component: subpageTemplate,
       context: { id: node.id },
     })

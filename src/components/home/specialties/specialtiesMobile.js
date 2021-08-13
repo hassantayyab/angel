@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Accordian from './accordian'
 import BackgroundImage from '../../../components/utils/backgroundImage'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { useInView } from 'react-intersection-observer'
+import { scale, springTransition, View } from '../../../animations'
+import { motion, useAnimation } from 'framer-motion'
 
 const SpecialtiesMobile = ({ data, contactFormRef }) => {
   const [openItems, setOpenItems] = useState([])
@@ -14,8 +17,19 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
     )
   }
 
+  const [ref, inView] = useInView(View)
+  const animateHeading = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateHeading.start({
+        ...scale.visible,
+        ...springTransition,
+      })
+    }
+  }, [inView, animateHeading])
+
   return (
-    <section>
+    <section ref={ref}>
       <div className='relative pt-12 pb-4 text-center sm:px-16'>
         <BackgroundImage
           image={getImage(data.specialtiesBgImage?.localFile)}
@@ -29,9 +43,14 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
           }}
         ></div>
         <div className='relative'>
-          <h3 className='mx-auto text-white uppercase md:w-1/2'>
+          <motion.h3
+            className='mx-auto text-white uppercase md:w-1/2'
+            variants={scale}
+            initial='hidden'
+            animate={animateHeading}
+          >
             {data.specialtiesHeading}
-          </h3>
+          </motion.h3>
 
           <ul className='mt-4'>
             {data.specialtiesItems.length > 0 &&
@@ -55,10 +74,12 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
                       }`}
                     >
                       <GatsbyImage
-                        image={getImage(specialty.titleIcon?.localFile)}
-                        alt={specialty.titleIcon?.altText}
-                        className={`w-8 ${
-                          openItems.includes(i) && 'filter brightness-0'
+                        image={getImage(specialty.image?.localFile)}
+                        alt={specialty.image?.altText}
+                        className={`w-8 filter ${
+                          openItems.includes(i)
+                            ? 'brightness-0'
+                            : 'brightness-0 invert'
                         }`}
                       />
                       <div

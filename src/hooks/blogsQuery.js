@@ -4,7 +4,7 @@ export const useBlogs = () => {
   const data = useStaticQuery(graphql`
     query Blogs {
       wpPage(slug: { eq: "blogs" }) {
-        # ...SEOPageFragment
+        ...SeoPageFragment
         ...HeroPageFragment
       }
     }

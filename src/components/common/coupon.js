@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import Frame from '../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import ReactToPrint from 'react-to-print'
+import Button from '../utils/button'
 
 const Coupon = ({ data, logo, borderColor }) => {
   const componentRef = useRef()
@@ -47,12 +48,12 @@ const Coupon = ({ data, logo, borderColor }) => {
           <div className='w-full mt-8 text-center'>
             <ReactToPrint
               trigger={() => (
-                <button
+                <Button
                   className='w-5/6 btn btn-primary'
                   onClick={() => window.print()}
                 >
                   Get Started
-                </button>
+                </Button>
               )}
               content={() => componentRef.current}
             />

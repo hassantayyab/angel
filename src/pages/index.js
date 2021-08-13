@@ -4,24 +4,25 @@ import TopInfoBar from '../components/common/topInfoBar'
 import { useServicesQuery } from '../hooks/servicesQuery'
 import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
-import LayoutSecondary from '../components/utils/layout-secondary'
+import ContainerSecondary from '../components/utils/containerSecondary'
 import Hero from '../components/home/hero'
-import WhyChoose from '../components/common/why-choose'
-import ServiceAreas from '../components/common/service-areas'
+import WhyChoose from '../components/common/whyChoose'
+import ServiceAreas from '../components/common/serviceAreas'
 import Contact from '../components/common/contact'
 import Footer from '../components/footer'
 import { graphql } from 'gatsby'
-import ContactCard from '../components/common/contact-card'
-import Layout from '../components/utils/layout'
+import ContactCard from '../components/common/contactCard'
+import Container from '../components/utils/container'
 import Welcome from '../components/home/welcome'
 import Video from '../components/home/video'
-import CardContact from '../components/home/cardContact'
+import CardContact from '../components/home/contactCard.js'
 import CouponAndDiscount from '../components/home/couponAndDiscount'
 import Services from '../components/home/services'
 import IndustryLeading from '../components/home/industryLeading'
 import Blog from '../components/home/blog'
 import Specialties from '../components/home/specialties'
 import { useRef } from 'react'
+import Seo from '../components/seo'
 
 const IndexPage = ({ data }) => {
   const servicesData = useServicesQuery()
@@ -44,6 +45,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
+      <Seo data={data.wpPage.seo} />
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
         <Header
@@ -54,27 +56,27 @@ const IndexPage = ({ data }) => {
       </div>
 
       <div className='mt-1.5'>
-        <LayoutSecondary>
+        <ContainerSecondary>
           <Hero data={heroData} isMain='true' contactFormRef={contactFormRef} />
-        </LayoutSecondary>
+        </ContainerSecondary>
       </div>
 
       <div className='-mt-24'>
-        <Layout>
+        <Container>
           <ContactCard
             isCarAtBottom='true'
             carImage={generalData._generalData.carImage}
           />
-        </Layout>
+        </Container>
       </div>
 
       <div className='mt-24 sm:mt-28'>
-        <Layout>
+        <Container>
           <Welcome
             data={data.wpPage._welcomeSection}
             contactFormRef={contactFormRef}
           />
-        </Layout>
+        </Container>
       </div>
 
       <div className='mt-16 sm:mt-24'>
@@ -109,15 +111,15 @@ const IndexPage = ({ data }) => {
       <Services data={data.wpPage._serviceSection} />
 
       <div className='mt-20'>
-        <LayoutSecondary>
+        <ContainerSecondary>
           <Hero data={financingData} contactFormRef={contactFormRef} />
-        </LayoutSecondary>
+        </ContainerSecondary>
       </div>
 
       <div className='-mt-20'>
-        <Layout>
+        <Container>
           <ContactCard carImage={generalData._generalData.carImage} />
-        </Layout>
+        </Container>
       </div>
 
       <div className='mt-20'>
@@ -152,7 +154,7 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   {
     wpPage(slug: { eq: "home" }) {
-      # ...SEOPageFragment
+      ...SeoPageFragment
       ...WelcomeFragment
       ...VideoFragment
       ...CardContactFragment

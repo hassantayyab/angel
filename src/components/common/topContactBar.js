@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react'
 import MobileMenu from '../menu/mobile'
 
 const TopContactBar = ({ data, contactFormRef, menuData }) => {
-  const [open, setOpen] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false)
 
   useEffect(() => {
-    if (open) {
+    if (openMenu) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'auto'
     }
-  }, [open])
+  }, [openMenu])
 
   return (
     <>
@@ -48,7 +48,7 @@ const TopContactBar = ({ data, contactFormRef, menuData }) => {
           <div className='flex -mx-2.5 transform -skew-x-12'>
             <button
               className='flex items-center py-3 pl-6 pr-12 text-white btn bg-blue gap-4 hover:bg-blue-light'
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpenMenu(!openMenu)}
             >
               <img
                 src={ImgMenu}
@@ -71,7 +71,7 @@ const TopContactBar = ({ data, contactFormRef, menuData }) => {
           </div>
         </div>
       </div>
-      {open && <MobileMenu list={menuData} />}
+      {openMenu && <MobileMenu list={menuData} />}
     </>
   )
 }

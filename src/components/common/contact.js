@@ -1,6 +1,6 @@
 import { ImgSubmit } from '../../images'
-import React, { useState } from 'react'
-import Layout from '../utils/layout'
+import React, { useEffect, useState } from 'react'
+import Container from '../utils/container'
 import Frame from '../utils/frame'
 import FormInput from './form-input'
 import { Form, Formik } from 'formik'
@@ -10,6 +10,12 @@ import Separator from '../utils/separator'
 import { useContactQuery } from '../../hooks/contactQuery'
 import BackgroundImage from '../utils/backgroundImage'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { useInView } from 'react-intersection-observer'
+import { defaultTransition, slideDown, slideUp, View } from '../../animations'
+import { useAnimation } from 'framer-motion'
+import Subtitle from '../utils/subititle'
+import Title from '../utils/title'
+import Button from '../utils/button'
 
 const Contact = () => {
   const data = useContactQuery()
@@ -35,8 +41,25 @@ const Contact = () => {
     }
   }
 
+  const [ref, inView] = useInView(View)
+  const animateTitle = useAnimation()
+  const animateSubtitle = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateTitle.start({
+        ...slideDown.visible,
+        ...defaultTransition,
+      })
+
+      animateSubtitle.start({
+        ...slideUp.visible,
+        ...defaultTransition,
+      })
+    }
+  }, [inView, animateTitle, animateSubtitle])
+
   return (
-    <section className='relative py-20 xl:mb-20' id='contactForm'>
+    <section className='relative py-20 xl:mb-20' id='contactForm' ref={ref}>
       <BackgroundImage
         image={getImage(data.formBgImage?.localFile)}
         alt={data.formBgImage?.altText}
@@ -48,7 +71,7 @@ const Contact = () => {
             'linear-gradient(90deg, rgba(0,74,143,1) 0%, rgba(0,74,143,0.9) 0%)',
         }}
       ></div>
-      <Layout>
+      <Container>
         <section className='relative md:grid grid-cols-2 gap-12'>
           <div className='relative mb-0 xl:-mb-40 mw-sub-page'>
             <div className='relative z-10 object-cover w-full h-64 pl-6 mr-6 -ml-6 overflow-hidden -top-6 md:top-8 md:w-auto md:pr-0 md:h-auto'>
@@ -65,10 +88,13 @@ const Contact = () => {
           <div className='flex flex-col justify-center mt-12 md:mt-0'>
             {/* Header */}
             <div className='mb-4 text-center text-white uppercase md:text-left'>
-              <h5 className='mb-1 tracking-wider font-graphikMedium'>
+              <Subtitle
+                className='mb-1 tracking-wider font-graphikMedium'
+                animate={animateSubtitle}
+              >
                 Contact
-              </h5>
-              <h2>{data.formHeading}</h2>
+              </Subtitle>
+              <Title animate={animateTitle}>{data.formHeading}</Title>
             </div>
 
             {/* Separator */}
@@ -140,7 +166,7 @@ const Contact = () => {
                       rows='2'
                     />
 
-                    <button
+                    <Button
                       className='absolute right-0 p-2 rounded-full -bottom-4 sm:-bottom-6 bg-yellow hover:bg-yellow-dark default-transition'
                       disabled={isSubmitting}
                     >
@@ -149,14 +175,14 @@ const Contact = () => {
                         alt='submit form'
                         className='w-8 sm:w-12'
                       />
-                    </button>
+                    </Button>
                   </div>
                 </Form>
               )}
             </Formik>
           </div>
         </section>
-      </Layout>
+      </Container>
     </section>
   )
 }

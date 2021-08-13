@@ -1,15 +1,58 @@
-import React, { useState } from 'react'
-import LayoutSecondary from '../../utils/layout-secondary'
+import React, { useEffect, useState } from 'react'
+import ContainerSecondary from '../../utils/containerSecondary'
 import Separator from '../../utils/separator'
 import Frame from '../../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import BackgroundImage from '../../../components/utils/backgroundImage'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import {
+  defaultTransition,
+  fadeIn,
+  scale,
+  slideDown,
+  slideUp,
+  springTransition,
+  View,
+} from '../../../animations'
+import Subtitle from '../../utils/subititle'
+import Title from '../../utils/title'
+import Button from '../../utils/button'
 
 const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
   const [selected, setSelected] = useState(0)
+  const [ref, inView] = useInView(View)
+
+  const animateHeading = useAnimation()
+  const animateTitle = useAnimation()
+  const animateSubtitle = useAnimation()
+  const animateContent = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateHeading.start({
+        ...scale.visible,
+        ...springTransition,
+      })
+
+      animateTitle.start({
+        ...slideDown.visible,
+        ...defaultTransition,
+      })
+
+      animateSubtitle.start({
+        ...slideUp.visible,
+        ...defaultTransition,
+      })
+
+      animateContent.start({
+        ...fadeIn.visible,
+        ...defaultTransition,
+      })
+    }
+  }, [inView, animateHeading, animateTitle, animateSubtitle, animateContent])
 
   return (
-    <section className='relative py-20'>
+    <section className='relative py-20' ref={ref}>
       <BackgroundImage
         image={getImage(data.specialtiesBgImage?.localFile)}
         alt={data.specialtiesBgImage?.altText}
@@ -21,10 +64,17 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
             'linear-gradient(90deg, rgba(0,74,143,1) 0%, rgba(0,74,143,0.9) 0%)',
         }}
       ></div>
-      <LayoutSecondary>
+      <ContainerSecondary>
         <div className='relative flex flex-col lg:flex-row gap-8 xl:gap-20'>
           <div className='flex-1'>
-            <h3 className='text-white uppercase'>{data.specialtiesHeading}</h3>
+            <motion.h3
+              className='text-white uppercase'
+              variants={scale}
+              initial='hidden'
+              animate={animateHeading}
+            >
+              {data.specialtiesHeading}
+            </motion.h3>
             <ul className='w-full mt-8'>
               {data.specialtiesItems.length > 0 &&
                 data.specialtiesItems.map((specialty, i) => (
@@ -36,10 +86,10 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                     onClick={() => setSelected(i)}
                   >
                     <GatsbyImage
-                      image={getImage(specialty.titleIcon?.localFile)}
-                      alt={specialty.titleIcon?.altText}
-                      className={`w-10 ${
-                        selected === i && 'filter brightness-0'
+                      image={getImage(specialty.image?.localFile)}
+                      alt={specialty.image?.altText}
+                      className={`w-10 filter ${
+                        selected === i ? 'brightness-0' : 'brightness-0 invert'
                       }`}
                     />
                     <div className='font-graphikMedium'>{specialty.title}</div>
@@ -73,10 +123,13 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
               ></div>
               <div className='relative text-center'>
                 <div className='mb-2 text-black uppercase'>
-                  <h5 className='tracking-wider font-graphikMedium'>
+                  <Subtitle
+                    className='tracking-wider font-graphikMedium'
+                    animate={animateSubtitle}
+                  >
                     Reason To
-                  </h5>
-                  <h2>The Best Services</h2>
+                  </Subtitle>
+                  <Title animate={animateTitle}>The Best Services</Title>
                 </div>
 
                 {/* Separator */}
@@ -94,14 +147,24 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                   />
                 </div>
 
-                <h4 className='font-graphikMedium'>
+                <motion.h4
+                  className='font-graphikMedium'
+                  variants={fadeIn}
+                  initial='hidden'
+                  animate={animateContent}
+                >
                   {data.specialtiesItems[selected].title}
-                </h4>
-                <p className='mt-3 text-gray'>
+                </motion.h4>
+                <motion.p
+                  className='mt-3 text-gray'
+                  variants={fadeIn}
+                  initial='hidden'
+                  animate={animateContent}
+                >
                   {data.specialtiesItems[selected].description}
-                </p>
+                </motion.p>
                 <div className='flex flex-col items-center justify-center px-5 mt-12 gap-4 sm:flex-row'>
-                  <button
+                  <Button
                     type='button'
                     className='flex-1 px-0 btn btn-primary'
                     onClick={() =>
@@ -112,8 +175,8 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                     }
                   >
                     Schedule Service Now
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type='button'
                     className='flex-1 px-0 btn btn-secondary'
                     onClick={() =>
@@ -124,13 +187,13 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                     }
                   >
                     Virtual Estimate
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </LayoutSecondary>
+      </ContainerSecondary>
     </section>
   )
 }

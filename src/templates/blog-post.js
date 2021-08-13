@@ -7,12 +7,13 @@ import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
 import Hero from '../components/subpage/hero'
 import Footer from '../components/footer'
 import { useServicesQuery } from '../hooks/servicesQuery'
-import Layout from '../components/utils/layout'
+import Container from '../components/utils/container'
 import Frame from '../components/utils/frame'
 import { ImgBackArrow } from '../images'
+import Seo from '../components/seo'
 
 const BlogPost = ({ data }) => {
-  const { title, content } = data.wpPost
+  const { title, content, seo } = data.wpPost
 
   const servicesData = useServicesQuery()
   const generalData = useGeneralInfoQuery()
@@ -20,12 +21,13 @@ const BlogPost = ({ data }) => {
 
   return (
     <>
+      <Seo data={seo} />
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
         <Header headerData={generalData._generalData} menuData={menuData} />
       </div>
 
-      <Layout>
+      <Container>
         <div className='relative mx-auto mt-4 mb-20 mw-blog-page'>
           <div className='relative z-10 mb-6 mr-6'>
             <Hero
@@ -55,7 +57,7 @@ const BlogPost = ({ data }) => {
             <span>Back to Blogs</span>
           </button>
         </div>
-      </Layout>
+      </Container>
 
       <Footer
         generalInfoData={generalData}
@@ -70,8 +72,8 @@ export default BlogPost
 export const query = graphql`
   query ($id: String!) {
     wpPost(id: { eq: $id }) {
+      ...SeoPostFragment
       ...HeroPostFragment
-      # ...SEOPostFragment
       title
       content
     }

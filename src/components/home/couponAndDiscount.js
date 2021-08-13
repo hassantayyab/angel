@@ -1,16 +1,38 @@
 import { useCouponsQuery } from '../../hooks/couponsQuery'
 import { graphql } from 'gatsby'
-import React from 'react'
-import Layout from '../utils/layout'
+import React, { useEffect } from 'react'
+import Container from '../utils/container'
 import Separator from '../utils/separator'
 import Coupon from '../common/coupon'
 import { ImageCouponBg } from '../../images'
+import { useInView } from 'react-intersection-observer'
+import { defaultTransition, slideDown, slideUp, View } from '../../animations'
+import { useAnimation } from 'framer-motion'
+import Subtitle from '../utils/subititle'
+import Title from '../utils/title'
 
 const CouponAndDiscount = ({ data, logo }) => {
   const coupons = useCouponsQuery()
 
+  const [ref, inView] = useInView(View)
+  const animateTitle = useAnimation()
+  const animateSubtitle = useAnimation()
+  useEffect(() => {
+    if (inView) {
+      animateTitle.start({
+        ...slideDown.visible,
+        ...defaultTransition,
+      })
+
+      animateSubtitle.start({
+        ...slideUp.visible,
+        ...defaultTransition,
+      })
+    }
+  }, [inView, animateTitle, animateSubtitle])
+
   return (
-    <section className='relative mb-72 height-26'>
+    <section className='relative mb-72 height-26' ref={ref}>
       <div className='absolute inset-0 w-full h-full -z-10'>
         <img
           src={ImageCouponBg}
@@ -18,13 +40,16 @@ const CouponAndDiscount = ({ data, logo }) => {
           className='object-cover w-full h-full'
         />
       </div>
-      <Layout>
+      <Container>
         <div className='relative flex flex-col justify-center pt-12 lg:pt-40 lg:flex-row gap-12'>
           <div className='text-center text-black uppercase lg:w-2/5 lg:text-left'>
-            <h5 className='mb-2 tracking-wider font-graphikMedium'>
+            <Subtitle
+              className='mb-2 tracking-wider font-graphikMedium'
+              animate={animateSubtitle}
+            >
               Limited Time
-            </h5>
-            <h2>{data.couponsHeading}</h2>
+            </Subtitle>
+            <Title animate={animateTitle}>{data.couponsHeading}</Title>
             {/* Separator */}
             <div className='mx-auto mt-8 w-36 lg:ml-0'>
               <Separator />
@@ -41,7 +66,7 @@ const CouponAndDiscount = ({ data, logo }) => {
             </div>
           </div>
         </div>
-      </Layout>
+      </Container>
     </section>
   )
 }
