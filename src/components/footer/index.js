@@ -155,7 +155,9 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
             <div className='flex items-center gap-2 font-graphikMedium'>
               <span>All rights reserved.</span>
               <div className='h-2.5 bg-gray' style={{ width: '1px' }}></div>
-              <span>Privacy Policy</span>
+              <Link to='/privacy-policy' className='hover:text-black-light'>
+                Privacy Policy
+              </Link>
             </div>
           </div>
           <div className='mt-6 lg:mt-0'>

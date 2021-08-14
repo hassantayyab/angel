@@ -1,4 +1,4 @@
-import { ImgAddress, ImgAddressBlue, ImgMap } from '../../images'
+import { ImgAddress, ImgAddressBlue } from '../../images'
 import React, { useEffect, useState } from 'react'
 import Container from '../utils/container'
 import Separator from '../utils/separator'
@@ -11,6 +11,7 @@ import { defaultTransition, slideDown, slideUp, View } from '../../animations'
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const ServiceAreas = () => {
   const data = useServiceAreasQuery()
@@ -116,11 +117,12 @@ const ServiceAreas = () => {
         </div>
 
         <div className='relative col-span-1 md:h-auto h-80 sm:h-96'>
-          <img
-            src={ImgMap}
-            alt='map'
-            className='relative z-10 object-cover w-full h-full pb-6 pr-6'
-          />
+          <div className='relative z-10 object-cover w-full h-full pb-6 pr-6'>
+            <GatsbyImage
+              image={getImage(data.areaImage?.localFile)}
+              alt={data.areaImage?.altText}
+            />
+          </div>
           <div className='absolute bottom-0 right-0 z-0 w-92 h-92'>
             <Frame />
           </div>

@@ -45,8 +45,10 @@ const Services = ({ data }) => {
         </div>
 
         <div className='flex flex-col items-center justify-between mt-12 md:mt-16 md:flex-row gap-12'>
-          <ServiceCard />
-          <ServiceCard />
+          {data.servicesOffered.length > 0 &&
+            data.servicesOffered.map((service, i) => (
+              <ServiceCard data={service} key={i} />
+            ))}
         </div>
       </Container>
     </section>
@@ -58,6 +60,37 @@ export const query = graphql`
     _serviceSection {
       serviceSubheading
       serviceHeading
+      servicesOffered {
+        offeredTitle
+        offeredDescription
+        offeredLink {
+          url
+        }
+        offeredBg {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                quality: 100
+                placeholder: BLURRED
+                formats: [WEBP]
+              )
+            }
+          }
+        }
+        offeredImage {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                quality: 100
+                placeholder: BLURRED
+                formats: [WEBP]
+              )
+            }
+          }
+        }
+      }
     }
   }
 `

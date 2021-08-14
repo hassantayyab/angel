@@ -13,8 +13,8 @@ import { ImgBackArrow } from '../images'
 import Seo from '../components/seo'
 import Button from '../components/utils/button'
 
-const BlogPost = ({ data }) => {
-  const { title, content, seo } = data.wpPost
+const PrivacyPolicy = ({ data }) => {
+  const { title, content, seo } = data.wpPage
 
   const servicesData = useServicesQuery()
   const generalData = useGeneralInfoQuery()
@@ -32,7 +32,7 @@ const BlogPost = ({ data }) => {
         <div className='relative mx-auto mt-4 mb-20 mw-blog-page'>
           <div className='relative z-10 mb-6 mr-6'>
             <Hero
-              data={data.wpPost._heroSection}
+              data={data.wpPage._heroSection}
               heightClassName='h-64 sm:h-96'
             />
           </div>
@@ -52,10 +52,10 @@ const BlogPost = ({ data }) => {
           <Button
             type='button'
             className='flex items-center btn btn-primary gap-4'
-            onClick={() => navigate('/blogs/')}
+            onClick={() => navigate('/')}
           >
             <img src={ImgBackArrow} alt='go back' className='w-8' />
-            <span>Back to Blogs</span>
+            <span>Back to Home</span>
           </Button>
         </div>
       </Container>
@@ -68,15 +68,16 @@ const BlogPost = ({ data }) => {
     </>
   )
 }
-export default BlogPost
 
 export const query = graphql`
-  query ($id: String!) {
-    wpPost(id: { eq: $id }) {
-      ...SeoPostFragment
-      ...HeroPostFragment
+  {
+    wpPage(slug: { eq: "privacy-policy" }) {
+      ...SeoPageFragment
+      ...HeroPageFragment
       title
       content
     }
   }
 `
+
+export default PrivacyPolicy

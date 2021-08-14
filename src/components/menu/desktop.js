@@ -2,13 +2,15 @@ import { Link } from 'gatsby'
 import React, { useEffect, useState } from 'react'
 import { Popover } from '@headlessui/react'
 import Container from '../utils/container'
-import { ImgDropdown } from '../../images'
 import Frame from '../utils/frame'
 import Accordian from './accordian'
 import Button from '../utils/button'
+import { useMenuDropdownImageQuery } from '../../hooks/useMenuDropdownImageQuery'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const DesktopMenu = ({ list = [] }) => {
   const [expanded, setExpanded] = useState(false)
+  const menuImage = useMenuDropdownImageQuery()
 
   function getChildren(index) {
     return list[index].childItems.nodes
@@ -53,13 +55,18 @@ const DesktopMenu = ({ list = [] }) => {
                   >
                     <Container>
                       <div className='flex gap-x-8'>
-                        <div className='relative col-span-1 h-80'>
-                          <img
+                        <div className='relative w-1/3 col-span-1 h-80'>
+                          {/* <img
                             src={ImgDropdown}
                             alt='map'
                             className='relative z-10 object-cover w-full h-full pb-3 pr-3'
+                          /> */}
+                          <GatsbyImage
+                            image={getImage(menuImage?.localFile)}
+                            alt={menuImage?.altText}
+                            className='relative z-10 w-95 h-95'
                           />
-                          <div className='absolute bottom-0 right-0 z-0 w-92 h-92'>
+                          <div className='absolute bottom-0 right-0 z-0 w-95 h-95'>
                             <Frame />
                           </div>
                         </div>
