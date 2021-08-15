@@ -22,12 +22,17 @@ import { useCouponsQuery } from '../hooks/couponsQuery'
 import Seo from '../components/seo'
 
 const SubPage = ({ data }) => {
-  const servicesData = useServicesQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsQuery()[0]
 
   const contactFormRef = useRef(null)
+
+  const servicesData = useServicesQuery()
+  const serviceCategories = Object.keys(servicesData)
+  const services = menuData
+    .filter((m) => m.label === 'Services')[0]
+    .childItems.nodes.sort()
 
   return (
     <>
@@ -46,10 +51,13 @@ const SubPage = ({ data }) => {
       <Container>
         <div className='items-start mt-20 mb-16 xl:pl-16 grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-16'>
           <aside className='justify-between grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12'>
-            {servicesData &&
-              Object.keys(servicesData).map((service, i) => (
+            {services &&
+              services.map((service, i) => (
                 <div key={i}>
-                  <ServiceCard data={servicesData[service]} heading={service} />
+                  <ServiceCard
+                    data={service}
+                    servicesData={servicesData[serviceCategories.sort()[i]]}
+                  />
                 </div>
               ))}
 

@@ -6,6 +6,7 @@ import ImgPlay from './play.svg'
 import ImgDropdown from './dropdown.svg'
 import ImgArrow from './arrow.svg'
 import ImgBackArrow from './back-arrow.svg'
+import ImgBadgeCount from './badge-count.svg'
 import ImgPaginationArrow from './pagination-arrow.svg'
 import ImgHeating from './heating.svg'
 import ImgHeatingFan from './heating-fan.svg'
@@ -47,6 +48,7 @@ export {
   ImgDropdown,
   ImgArrow,
   ImgBackArrow,
+  ImgBadgeCount,
   ImgPaginationArrow,
   ImgHeating,
   ImgHeatingFan,

@@ -13,6 +13,18 @@ export const useServiceAreasQuery = () => {
               name
             }
           }
+          areaImage {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  quality: 100
+                  placeholder: BLURRED
+                  formats: [WEBP]
+                )
+              }
+            }
+          }
         }
       }
     }

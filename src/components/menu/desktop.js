@@ -2,12 +2,15 @@ import { Link } from 'gatsby'
 import React, { useEffect, useState } from 'react'
 import { Popover } from '@headlessui/react'
 import Container from '../utils/container'
-import { ImgDropdown } from '../../images'
 import Frame from '../utils/frame'
 import Accordian from './accordian'
+import Button from '../utils/button'
+import { useMenuDropdownImageQuery } from '../../hooks/useMenuDropdownImageQuery'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const DesktopMenu = ({ list = [] }) => {
   const [expanded, setExpanded] = useState(false)
+  const menuImage = useMenuDropdownImageQuery()
 
   function getChildren(index) {
     return list[index].childItems.nodes
@@ -52,22 +55,30 @@ const DesktopMenu = ({ list = [] }) => {
                   >
                     <Container>
                       <div className='flex gap-x-8'>
-                        <div className='relative col-span-1 h-80'>
-                          <img
+                        <div className='relative w-1/3 col-span-1 h-80'>
+                          {/* <img
                             src={ImgDropdown}
                             alt='map'
                             className='relative z-10 object-cover w-full h-full pb-3 pr-3'
+                          /> */}
+                          <GatsbyImage
+                            image={getImage(menuImage?.localFile)}
+                            alt={menuImage?.altText}
+                            className='relative z-10 w-95 h-95'
                           />
-                          <div className='absolute bottom-0 right-0 z-0 w-92 h-92'>
+                          <div className='absolute bottom-0 right-0 z-0 w-95 h-95'>
                             <Frame />
                           </div>
                         </div>
                         <div>
                           {getChildren(expanded).map((item) => (
                             <Accordian key={item.id}>
-                              <span className='mr-6 text-sm uppercase font-graphikMedium'>
+                              <Link
+                                className='mr-6 text-sm uppercase font-graphikMedium'
+                                to={item.path}
+                              >
                                 {item.label}
-                              </span>
+                              </Link>
                               <ul className='pb-2'>
                                 {item.childItems.nodes.length > 0 &&
                                   item.childItems.nodes.map((item) => (
@@ -84,12 +95,12 @@ const DesktopMenu = ({ list = [] }) => {
                           ))}
                         </div>
                         <div className='flex flex-col justify-end pb-12 pl-12 border-l border-white border-opacity-10 transform scale-90'>
-                          <button className='px-2 mb-3 w-72 btn btn-primary'>
+                          <Button className='px-2 mb-3 w-72 btn btn-primary transition-all'>
                             Schedule Service Now
-                          </button>
-                          <button className='px-2 w-72 btn btn-secondary'>
+                          </Button>
+                          <Button className='px-2 w-72 btn btn-secondary transition-all'>
                             Virtual Estimate
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     </Container>
