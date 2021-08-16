@@ -1,27 +1,28 @@
-import React, { useRef } from 'react'
-import { graphql } from 'gatsby'
-
-import Container from '../components/utils/container'
-import Header from '../components/common/header'
-import Hero from '../components/subpage/hero'
-import ServiceAccordianCard from '../components/subpage/serviceCard'
-import Article from '../components/subpage/article'
-import PerkCard from '../components/subpage/perkCard'
-import Coupon from '../components/common/coupon'
-import WhyChoose from '../components/common/whyChoose'
-import TopInfoBar from '../components/common/topInfoBar'
 import Contact from '../components/common/contact'
-import Footer from '../components/footer'
-import ServiceAreas from '../components/common/serviceAreas'
 import ContactCard from '../components/common/contactCard'
-import ContainerSecondary from '../components/utils/containerSecondary'
-import { useServicesQuery } from '../hooks/servicesQuery'
-import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
-import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
-import { useCouponsQuery } from '../hooks/couponsQuery'
+import Coupon from '../components/common/coupon'
+import Header from '../components/common/header'
+import TopInfoBar from '../components/common/topInfoBar'
+import WhyChoose from '../components/common/whyChoose'
+import Footer from '../components/footer'
+import Hero from '../components/home/hero'
 import Seo from '../components/seo'
+import PerkCard from '../components/subpage/perkCard'
+import ContainerSecondary from '../components/utils/containerSecondary'
+import { useCouponsQuery } from '../hooks/couponsQuery'
+import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
+import { useServicesQuery } from '../hooks/servicesQuery'
+import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
+import { graphql } from 'gatsby'
+import React, { useRef } from 'react'
+import Container from '../components/utils/container'
+import CallUsCard from '../components/utils/call-us-card'
+import ServiceAccordianCard from '../components/subpage/serviceCard'
+import ServiceAreasAccordianSection from '../components/common/serviceAreasAccordianSection'
+import { useServiceAreasQuery } from '../hooks/serviceAreasQuery'
 
-const SubPage = ({ data }) => {
+const ServiceAreas = ({ data }) => {
+  const serviceAreas = useServiceAreasQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsQuery()[0]
@@ -34,16 +35,15 @@ const SubPage = ({ data }) => {
     .filter((m) => m.label === 'Services')[0]
     .childItems.nodes.sort()
 
+  console.log('data', data)
+  console.log('services', services)
+
   return (
     <>
       <Seo data={data.wpPage.seo} />
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
-        <Header
-          headerData={generalData._generalData}
-          menuData={menuData}
-          contactFormRef={contactFormRef}
-        />
+        <Header headerData={generalData._generalData} menuData={menuData} />
       </div>
 
       <div className='mt-1.5'>
@@ -69,11 +69,8 @@ const SubPage = ({ data }) => {
             <Coupon data={coupon} logo={generalData._generalData.logo} />
           </aside>
           <main className='col-span-1 md:col-span-2'>
-            <Article
-              data={data.wpPage._subpageContent}
-              generalInfoData={generalData}
-              title={data.wpPage.title}
-            />
+            <ServiceAreasAccordianSection data={serviceAreas} />
+            <CallUsCard data={generalData} />
           </main>
         </div>
 
@@ -86,11 +83,7 @@ const SubPage = ({ data }) => {
         <WhyChoose contactFormRef={contactFormRef} />
       </div>
 
-      <div className='my-12'>
-        <ServiceAreas />
-      </div>
-
-      <div className='mt-6' ref={contactFormRef}>
+      <div ref={contactFormRef}>
         <Contact />
       </div>
 
@@ -102,35 +95,14 @@ const SubPage = ({ data }) => {
     </>
   )
 }
-export default SubPage
 
 export const query = graphql`
-  query ($id: String!) {
-    wpPage(id: { eq: $id }) {
+  {
+    wpPage(slug: { eq: "service-areas" }) {
       ...SeoPageFragment
       ...HeroPageFragment
-      title
-      _subpageContent {
-        contentList {
-          editor
-        }
-        contentImage {
-          altText
-          image {
-            altText
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  quality: 100
-                  layout: FULL_WIDTH
-                  placeholder: BLURRED
-                  formats: [WEBP]
-                )
-              }
-            }
-          }
-        }
-      }
     }
   }
 `
+
+export default ServiceAreas
