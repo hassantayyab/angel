@@ -11,6 +11,9 @@ export const useServiceAreasQuery = () => {
             title
             places {
               name
+              link {
+                url
+              }
             }
           }
           areaImage {

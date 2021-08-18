@@ -15,11 +15,6 @@ const ServiceCard = ({ data }) => {
       <Link to={data.offeredLink.url}>
         <div className='relative z-10 flex flex-col mb-6 mr-6 bg-white shadow-lg default-transition hover:shadow-xl'>
           <section className='h-60'>
-            {/* <img
-            src={ImgBackground}
-            alt='service'
-            className='object-cover w-full h-full'
-          /> */}
             <GatsbyImage
               image={getImage(data.offeredBg?.localFile)}
               alt={data.offeredBg?.altText}
