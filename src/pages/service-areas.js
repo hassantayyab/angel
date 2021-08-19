@@ -9,7 +9,7 @@ import Hero from '../components/home/hero'
 import Seo from '../components/seo'
 import PerkCard from '../components/subpage/perkCard'
 import ContainerSecondary from '../components/utils/containerSecondary'
-import { useCouponsQuery } from '../hooks/couponsQuery'
+import { useCouponsListQuery } from '../hooks/couponsListQuery'
 import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useServicesQuery } from '../hooks/servicesQuery'
 import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
@@ -25,7 +25,7 @@ const ServiceAreas = ({ data }) => {
   const serviceAreas = useServiceAreasQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
-  const coupon = useCouponsQuery()[0]
+  const coupon = useCouponsListQuery()[0]
 
   const contactFormRef = useRef(null)
 

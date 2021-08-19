@@ -1,4 +1,4 @@
-import { useCouponsQuery } from '../../hooks/couponsQuery'
+import { useCouponsListQuery } from '../../hooks/couponsListQuery'
 import { graphql } from 'gatsby'
 import React, { useEffect } from 'react'
 import Container from '../utils/container'
@@ -12,7 +12,7 @@ import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
 
 const CouponAndDiscount = ({ data, logo }) => {
-  const coupons = useCouponsQuery()
+  const coupons = useCouponsListQuery()
 
   const [ref, inView] = useInView(View)
   const animateTitle = useAnimation()

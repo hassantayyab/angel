@@ -1,20 +1,14 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
-export const useCouponsQuery = () => {
+export const useCoupons = () => {
   const data = useStaticQuery(graphql`
-    query CouponsQuery {
-      allWpCoupon {
-        nodes {
-          title
-          _couponPost {
-            items {
-              text
-            }
-          }
-        }
+    query Coupons {
+      wpPage(slug: { eq: "deals" }) {
+        ...SeoPageFragment
+        ...HeroPageFragment
       }
     }
   `)
 
-  return data.allWpCoupon.nodes
+  return data.wpPage
 }
