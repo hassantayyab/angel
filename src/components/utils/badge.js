@@ -1,6 +1,6 @@
 import { ImgBadgeCount } from '../../images'
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, Link, useStaticQuery } from 'gatsby'
 
 const Badge = () => {
   const data = useStaticQuery(graphql`
@@ -35,26 +35,23 @@ const Badge = () => {
   const totalRatings = length(data.query1.nodes)
   const fiveFourThreeRatings = length(data.query2.nodes)
 
-  // console.log(totalRatings)
-  // console.log(fiveFourThreeRatings)
-
   let total = 0
   const ratingsTotal = data.query1.nodes
   let i
   for (i = 0; i < ratingsTotal.length; i++) {
     total += ratingsTotal[i].rating
   }
-  // console.log(total);
 
   let averageRating = total / fiveFourThreeRatings
   averageRating = averageRating.toFixed(1)
-  //console.log(averageRating)
 
   let rectWidth = averageRating * 20 + '%'
-  //console.log(rectWidth)
 
   return (
-    <div className='relative z-40 inline-block pt-3 pb-8 text-center'>
+    <Link
+      className='relative z-40 inline-block pt-3 pb-8 text-center'
+      to='/reviews/'
+    >
       <div className='relative z-20 flex flex-col justify-center w-32 h-32 p-3 text-black rounded-full bg-yellow'>
         <div className='flex items-center justify-center mb-2 gap-2'>
           <img src={ImgBadgeCount} alt='total reviews count' className='w-8' />
@@ -102,7 +99,7 @@ const Badge = () => {
         </div>
       </div>
       <div className='absolute inset-0 mx-auto shadow ribbon bg-blue-light' />
-    </div>
+    </Link>
   )
 }
 

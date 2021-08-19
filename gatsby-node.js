@@ -57,6 +57,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+
+      reviewsListPage: allWpCustomerReview(
+        sort: { fields: date, order: DESC }
+      ) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
     }
   `)
 
@@ -68,7 +78,8 @@ exports.createPages = async ({ graphql, actions }) => {
   // Constants
   const postsPerPage = 9
 
-  const { subpage, blogpost, blogListPage, couponsListPage } = result.data
+  const { subpage, blogpost, blogListPage, couponsListPage, reviewsListPage } =
+    result.data
 
   const subpageTemplate = require.resolve(`./src/templates/sub-page.js`)
   subpage.edges.forEach(({ node }) => {
@@ -117,6 +128,24 @@ exports.createPages = async ({ graphql, actions }) => {
         limit: postsPerPage,
         skip: i * postsPerPage,
         numPages: Math.ceil(couponsListPage.edges.length / postsPerPage),
+        currentPage: i + 1,
+      },
+    })
+  })
+
+  const reviewsListPageTemplate = require.resolve(
+    './src/templates/reviews-list.js'
+  )
+  Array.from({
+    length: Math.ceil(reviewsListPage.edges.length / postsPerPage),
+  }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/reviews/` : `/reviews/${i + 1}`,
+      component: reviewsListPageTemplate,
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages: Math.ceil(reviewsListPage.edges.length / postsPerPage),
         currentPage: i + 1,
       },
     })

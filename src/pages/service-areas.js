@@ -5,7 +5,6 @@ import Header from '../components/common/header'
 import TopInfoBar from '../components/common/topInfoBar'
 import WhyChoose from '../components/common/whyChoose'
 import Footer from '../components/footer'
-import Hero from '../components/home/hero'
 import Seo from '../components/seo'
 import PerkCard from '../components/subpage/perkCard'
 import ContainerSecondary from '../components/utils/containerSecondary'
@@ -20,6 +19,7 @@ import CallUsCard from '../components/utils/call-us-card'
 import ServiceAccordianCard from '../components/subpage/serviceCard'
 import ServiceAreasAccordianSection from '../components/common/serviceAreasAccordianSection'
 import { useServiceAreasQuery } from '../hooks/serviceAreasQuery'
+import Hero from '../components/subpage/hero'
 
 const ServiceAreas = ({ data }) => {
   const serviceAreas = useServiceAreasQuery()
@@ -34,9 +34,6 @@ const ServiceAreas = ({ data }) => {
   const services = menuData
     .filter((m) => m.label === 'Services')[0]
     .childItems.nodes.sort()
-
-  console.log('data', data)
-  console.log('services', services)
 
   return (
     <>

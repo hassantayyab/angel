@@ -56,11 +56,6 @@ const DesktopMenu = ({ list = [] }) => {
                     <Container>
                       <div className='flex gap-x-8'>
                         <div className='relative w-1/3 col-span-1 h-80'>
-                          {/* <img
-                            src={ImgDropdown}
-                            alt='map'
-                            className='relative z-10 object-cover w-full h-full pb-3 pr-3'
-                          /> */}
                           <GatsbyImage
                             image={getImage(menuImage?.localFile)}
                             alt={menuImage?.altText}
