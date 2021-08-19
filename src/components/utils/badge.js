@@ -49,7 +49,7 @@ const Badge = () => {
 
   return (
     <Link
-      className='relative z-40 inline-block pt-3 pb-8 text-center'
+      className='relative inline-block pt-3 pb-8 text-center'
       to='/reviews/'
     >
       <div className='relative z-20 flex flex-col justify-center w-32 h-32 p-3 text-black rounded-full bg-yellow'>

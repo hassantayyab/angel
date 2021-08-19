@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const MobileMenu = ({ list = [] }) => (
   <motion.section
-    className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white md:-top-1 lg:hidden bg-blue'
+    className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white lg:hidden bg-blue'
     variants={fadeIn}
     initial='hidden'
     animate='visible'
