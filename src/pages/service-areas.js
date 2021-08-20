@@ -5,11 +5,10 @@ import Header from '../components/common/header'
 import TopInfoBar from '../components/common/topInfoBar'
 import WhyChoose from '../components/common/whyChoose'
 import Footer from '../components/footer'
-import Hero from '../components/home/hero'
 import Seo from '../components/seo'
 import PerkCard from '../components/subpage/perkCard'
 import ContainerSecondary from '../components/utils/containerSecondary'
-import { useCouponsQuery } from '../hooks/couponsQuery'
+import { useCouponsListQuery } from '../hooks/couponsListQuery'
 import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useServicesQuery } from '../hooks/servicesQuery'
 import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
@@ -20,12 +19,13 @@ import CallUsCard from '../components/utils/call-us-card'
 import ServiceAccordianCard from '../components/subpage/serviceCard'
 import ServiceAreasAccordianSection from '../components/common/serviceAreasAccordianSection'
 import { useServiceAreasQuery } from '../hooks/serviceAreasQuery'
+import Hero from '../components/subpage/hero'
 
 const ServiceAreas = ({ data }) => {
   const serviceAreas = useServiceAreasQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
-  const coupon = useCouponsQuery()[0]
+  const coupon = useCouponsListQuery()[0]
 
   const contactFormRef = useRef(null)
 
@@ -34,9 +34,6 @@ const ServiceAreas = ({ data }) => {
   const services = menuData
     .filter((m) => m.label === 'Services')[0]
     .childItems.nodes.sort()
-
-  console.log('data', data)
-  console.log('services', services)
 
   return (
     <>

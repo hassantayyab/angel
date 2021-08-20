@@ -1,9 +1,9 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
-export const useCoupons = () => {
+export const useReviews = () => {
   const data = useStaticQuery(graphql`
-    query Coupons {
-      wpPage(slug: { eq: "deals" }) {
+    query Reviews {
+      wpPage(slug: { eq: "reviews" }) {
         ...SeoPageFragment
         ...HeroPageFragment
       }

@@ -18,13 +18,13 @@ import ContainerSecondary from '../components/utils/containerSecondary'
 import { useServicesQuery } from '../hooks/servicesQuery'
 import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
-import { useCouponsQuery } from '../hooks/couponsQuery'
+import { useCouponsListQuery } from '../hooks/couponsListQuery'
 import Seo from '../components/seo'
 
 const SubPage = ({ data }) => {
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
-  const coupon = useCouponsQuery()[0]
+  const coupon = useCouponsListQuery()[0]
 
   const contactFormRef = useRef(null)
 

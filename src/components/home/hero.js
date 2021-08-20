@@ -12,9 +12,13 @@ import {
 } from '../../animations'
 import Button from '../utils/button'
 import Badge from '../utils/badge'
+import { useState } from 'react'
+
+const isBrowser = typeof window !== 'undefined'
 
 const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
   const [ref, inView] = useInView(View)
+  const [scroll, setScroll] = useState(false)
 
   const animateTitle = useAnimation()
   const animateSubtitle = useAnimation()
@@ -30,11 +34,21 @@ const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
         ...defaultTransition,
       })
     }
+
+    if (isBrowser) {
+      document.addEventListener('scroll', () => {
+        window.scrollY > 10 ? setScroll(true) : setScroll(false)
+      })
+    }
   }, [inView, animateTitle, animateSubtitle])
 
   return (
     <section className='relative bg-black h-home-hero' ref={ref}>
-      <div className='absolute z-20 w-full text-center sm:w-auto lg:z-50 sm:right-20 lg:right-32 bottom-24 sm:bottom-auto'>
+      <div
+        className={`absolute z-20 w-full text-center sm:w-auto sm:right-20 lg:right-32 bottom-24 sm:bottom-auto ${
+          scroll ? 'lg:z-20' : 'lg:z-50'
+        }`}
+      >
         {showBadge && <Badge />}
       </div>
       <BackgroundImage
