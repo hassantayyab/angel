@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import ReactToPrint from 'react-to-print'
 import Button from '../utils/button'
 
-const Coupon = ({ data, logo, borderColor }) => {
+const Coupon = ({ data, logo }) => {
   const componentRef = useRef()
 
   return (

@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const MobileMenu = ({ list = [] }) => (
   <motion.section
-    className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white md:-top-1 lg:hidden bg-blue'
+    className='absolute inset-x-0 top-0 bottom-0 z-0 w-full h-screen pt-40 text-white lg:hidden bg-blue'
     variants={fadeIn}
     initial='hidden'
     animate='visible'
@@ -31,9 +31,12 @@ const MobileMenu = ({ list = [] }) => (
                       showBorder={false}
                       isExpandable={subItem.childItems.nodes.length > 0}
                     >
-                      <span className='mr-4 text-base uppercase font-graphik'>
+                      <Link
+                        className='mr-4 text-base uppercase font-graphik'
+                        to={subItem.path}
+                      >
                         <span>{subItem.label}</span>
-                      </span>
+                      </Link>
                       <div className='px-2 pb-2'>
                         {subItem.childItems.nodes.map((itm) => (
                           <div

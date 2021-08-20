@@ -7,18 +7,16 @@ export const useMenuDropdownImageQuery = () => {
         menu {
           node {
             menuDropdownImage {
-              images {
-                image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(
-                        quality: 100
-                        layout: FULL_WIDTH
-                        placeholder: BLURRED
-                        formats: [WEBP]
-                      )
-                    }
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(
+                      quality: 100
+                      layout: FULL_WIDTH
+                      placeholder: BLURRED
+                      formats: [WEBP]
+                    )
                   }
                 }
               }
@@ -29,5 +27,5 @@ export const useMenuDropdownImageQuery = () => {
     }
   `)
 
-  return data.wpMenuItem.menu.node.menuDropdownImage.images
+  return data.wpMenuItem.menu.node.menuDropdownImage.image
 }

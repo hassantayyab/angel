@@ -11,9 +11,14 @@ import {
   View,
 } from '../../animations'
 import Button from '../utils/button'
+import Badge from '../utils/badge'
+import { useState } from 'react'
 
-const Hero = ({ data, isMain = false, contactFormRef }) => {
+const isBrowser = typeof window !== 'undefined'
+
+const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
   const [ref, inView] = useInView(View)
+  const [scroll, setScroll] = useState(false)
 
   const animateTitle = useAnimation()
   const animateSubtitle = useAnimation()
@@ -29,10 +34,23 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
         ...defaultTransition,
       })
     }
+
+    if (isBrowser) {
+      document.addEventListener('scroll', () => {
+        window.scrollY > 10 ? setScroll(true) : setScroll(false)
+      })
+    }
   }, [inView, animateTitle, animateSubtitle])
 
   return (
     <section className='relative bg-black h-home-hero' ref={ref}>
+      <div
+        className={`absolute z-20 w-full text-center sm:w-auto sm:right-20 lg:right-32 bottom-24 sm:bottom-auto ${
+          scroll ? 'lg:z-20' : 'lg:z-50'
+        }`}
+      >
+        {showBadge && <Badge />}
+      </div>
       <BackgroundImage
         image={getImage(data.bgImage?.localFile)}
         alt={data.bgImage?.altText}
@@ -67,7 +85,7 @@ const Hero = ({ data, isMain = false, contactFormRef }) => {
           </motion.h6>
           <Button
             type='button'
-            className='mt-6 btn btn-primary'
+            className='mt-3 sm:mt-6 btn btn-primary'
             onClick={() =>
               contactFormRef.current.scrollIntoView({
                 block: 'end',

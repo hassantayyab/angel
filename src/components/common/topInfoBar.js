@@ -3,7 +3,7 @@ import React from 'react'
 import Container from '../utils/container'
 
 const TopInfoBar = ({ data }) => (
-  <section className='relative z-50 bg-blue-light'>
+  <section className='relative z-50 md:mb-32 lg:mb-40 xl:mb-36 bg-blue-light sm:mb-1'>
     <Container>
       <div className='flex items-center justify-center py-3 text-white uppercase'>
         <img src={ImgInfo} alt='information icon' className='w-4 md:w-6'></img>

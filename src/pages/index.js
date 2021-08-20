@@ -112,7 +112,11 @@ const IndexPage = ({ data }) => {
 
       <div className='mt-20'>
         <ContainerSecondary>
-          <Hero data={financingData} contactFormRef={contactFormRef} />
+          <Hero
+            data={financingData}
+            contactFormRef={contactFormRef}
+            showBadge={false}
+          />
         </ContainerSecondary>
       </div>
 

@@ -49,6 +49,24 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+
+      couponsListPage: allWpCoupon(sort: { fields: date, order: DESC }) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+
+      reviewsListPage: allWpCustomerReview(
+        sort: { fields: date, order: DESC }
+      ) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
     }
   `)
 
@@ -60,7 +78,8 @@ exports.createPages = async ({ graphql, actions }) => {
   // Constants
   const postsPerPage = 9
 
-  const { subpage, blogpost, blogListPage } = result.data
+  const { subpage, blogpost, blogListPage, couponsListPage, reviewsListPage } =
+    result.data
 
   const subpageTemplate = require.resolve(`./src/templates/sub-page.js`)
   subpage.edges.forEach(({ node }) => {
@@ -93,6 +112,42 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/blog${node.uri}`,
       component: blogpostTemplate,
       context: { id: node.id },
+    })
+  })
+
+  const couponsListPageTemplate = require.resolve(
+    './src/templates/coupons-list.js'
+  )
+  Array.from({
+    length: Math.ceil(couponsListPage.edges.length / postsPerPage),
+  }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/deals/` : `/deals/${i + 1}`,
+      component: couponsListPageTemplate,
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages: Math.ceil(couponsListPage.edges.length / postsPerPage),
+        currentPage: i + 1,
+      },
+    })
+  })
+
+  const reviewsListPageTemplate = require.resolve(
+    './src/templates/reviews-list.js'
+  )
+  Array.from({
+    length: Math.ceil(reviewsListPage.edges.length / postsPerPage),
+  }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/reviews/` : `/reviews/${i + 1}`,
+      component: reviewsListPageTemplate,
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages: Math.ceil(reviewsListPage.edges.length / postsPerPage),
+        currentPage: i + 1,
+      },
     })
   })
 }

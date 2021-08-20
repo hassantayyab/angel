@@ -1,8 +1,7 @@
-import { ImgAddress, ImgAddressBlue, ImgMap } from '../../images'
+import { ImgAddress, ImgAddressBlue } from '../../images'
 import React, { useEffect, useState } from 'react'
 import Container from '../utils/container'
 import Separator from '../utils/separator'
-import ButtonPrimary from '../utils/button-primary'
 import Frame from '../utils/frame'
 import Accordian from '../utils/accordian'
 import { useServiceAreasQuery } from '../../hooks/serviceAreasQuery'
@@ -11,6 +10,10 @@ import { defaultTransition, slideDown, slideUp, View } from '../../animations'
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import Button from '../utils/button'
+import { navigate } from 'gatsby'
+import ServiceAreasAccordianSection from './serviceAreasAccordianSection'
 
 const ServiceAreas = () => {
   const data = useServiceAreasQuery()
@@ -111,16 +114,22 @@ const ServiceAreas = () => {
           </div>
 
           <div className='hidden md:block'>
-            <ButtonPrimary>View All Cities Areas</ButtonPrimary>
+            <Button
+              className='btn btn-primary'
+              onClick={() => navigate('/service-areas/')}
+            >
+              View All Cities Areas
+            </Button>
           </div>
         </div>
 
         <div className='relative col-span-1 md:h-auto h-80 sm:h-96'>
-          <img
-            src={ImgMap}
-            alt='map'
-            className='relative z-10 object-cover w-full h-full pb-6 pr-6'
-          />
+          <div className='relative z-10 object-cover w-full h-full pb-6 pr-6'>
+            <GatsbyImage
+              image={getImage(data.areaImage?.localFile)}
+              alt={data.areaImage?.altText}
+            />
+          </div>
           <div className='absolute bottom-0 right-0 z-0 w-92 h-92'>
             <Frame />
           </div>
@@ -128,30 +137,14 @@ const ServiceAreas = () => {
 
         {/* TODO: Extract this into a separate component */}
         <div className='block text-center md:hidden'>
-          {data.areaLocations.length > 0 &&
-            data.areaLocations.map(({ title, places }, i) => (
-              <div key={i} className='mb-2'>
-                <Accordian>
-                  <span className='text-white'>{title}</span>
-                  <ul className='py-2'>
-                    {places.length > 0 &&
-                      places.map(({ name }, j) => (
-                        <li
-                          className='flex justify-center px-4 py-3 cursor-pointer gap-3 default-transition'
-                          key={j}
-                        >
-                          <img src={ImgAddress} alt='address icon' />
-                          <span className='text-gray font-graphikMedium'>
-                            {name}
-                          </span>
-                        </li>
-                      ))}
-                  </ul>
-                </Accordian>
-              </div>
-            ))}
+          <ServiceAreasAccordianSection data={data} />
           <div className='block mt-8 md:hidden'>
-            <ButtonPrimary>View All Cities Areas</ButtonPrimary>
+            <Button
+              className='btn btn-primary'
+              onClick={() => navigate('/service-areas/')}
+            >
+              View All Cities Areas
+            </Button>
           </div>
         </div>
       </section>

@@ -76,7 +76,7 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
                 alt='input address'
                 className='left-4 absolute-y-center'
               />
-              <select className='flex-1 inline-block pl-10 outline-none placeholder-gray'>
+              <select className='flex-1 inline-block pl-10 rounded-none outline-none placeholder-gray'>
                 <option defaultValue value='' disabled>
                   Service area
                 </option>

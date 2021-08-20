@@ -8,8 +8,11 @@ import MobileContactMenu from '../menu/mobileContactMenu'
 import { motion } from 'framer-motion'
 import { hoverScale, scale } from '../../animations'
 
+const isBrowser = typeof window !== 'undefined'
+
 const Header = ({ headerData, menuData, contactFormRef }) => {
   const [openContactMenu, setOpenContactMenu] = useState(false)
+  const [scroll, setScroll] = useState(false)
 
   useEffect(() => {
     if (openContactMenu) {
@@ -17,12 +20,21 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
     } else {
       document.body.style.overflow = 'auto'
     }
-  }, [openContactMenu])
+    if (isBrowser) {
+      document.addEventListener('scroll', () => {
+        window.scrollY > 10 ? setScroll(true) : setScroll(false)
+      })
+    }
+  }, [openContactMenu, scroll])
 
   return (
-    <>
-      <header className='relative z-50 flex flex-col items-center justify-between pl-0 sm:mt-1 md:flex-row gap-x-4 gap-y-5 xl:container md:pl-6 lg:pl-0 xl:mx-auto xl:px-6'>
-        <div className='relative z-50 flex items-center justify-center order-2 w-full px-5 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 gap-4'>
+    <div
+      className={`md:fixed left-0 w-full z-50 transition-color duration-300 ${
+        scroll ? 'md:bg-blue top-0' : 'top-14'
+      }`}
+    >
+      <header className='relative z-50 flex flex-col items-center justify-between pl-0 md:flex-row gap-x-4 gap-y-5 xl:container md:pl-6 lg:pl-0 xl:mx-auto xl:px-6'>
+        <div className='relative z-50 flex items-center justify-center order-2 w-full px-5 py-0 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 gap-4 lg:py-0 md:py-4'>
           <motion.span
             className='transition-all'
             variants={scale}
@@ -52,7 +64,7 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
             contactFormRef={contactFormRef}
             menuData={menuData}
           />
-          <div className='hidden md:block'>
+          <div className={`hidden md:block ${scroll && 'text-white'}`}>
             <DesktopMenu list={menuData} />
           </div>
         </div>
@@ -60,7 +72,7 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
       {openContactMenu && headerData.contactNumbers.length > 0 && (
         <MobileContactMenu data={headerData.contactNumbers} />
       )}
-    </>
+    </div>
   )
 }
 
