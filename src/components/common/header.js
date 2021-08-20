@@ -25,10 +25,14 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
         window.scrollY > 10 ? setScroll(true) : setScroll(false)
       })
     }
-  }, [openContactMenu])
+  }, [openContactMenu, scroll])
 
   return (
-    <div className={scroll && 'md:fixed top-0 left-0 w-full z-50 md:bg-blue'}>
+    <div
+      className={`md:fixed left-0 w-full z-50 transition-color duration-300 ${
+        scroll ? 'md:bg-blue top-0' : 'top-14'
+      }`}
+    >
       <header className='relative z-50 flex flex-col items-center justify-between pl-0 md:flex-row gap-x-4 gap-y-5 xl:container md:pl-6 lg:pl-0 xl:mx-auto xl:px-6'>
         <div className='relative z-50 flex items-center justify-center order-2 w-full px-5 py-0 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 gap-4 lg:py-0 md:py-4'>
           <motion.span

@@ -46,7 +46,7 @@ const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
     <section className='relative bg-black h-home-hero' ref={ref}>
       <div
         className={`absolute z-20 w-full text-center sm:w-auto sm:right-20 lg:right-32 bottom-24 sm:bottom-auto ${
-          scroll ? 'lg:z-0' : 'lg:z-50'
+          scroll ? 'lg:z-20' : 'lg:z-50'
         }`}
       >
         {showBadge && <Badge />}
