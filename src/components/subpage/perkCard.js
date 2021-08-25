@@ -23,7 +23,7 @@ const PerkCard = ({ data }) => (
       </h6>
       <a
         href='javascript;'
-        className='block mt-2 ml-6 text-sm uppercase text-orange font-graphikBold hover:opacity-80 default-transition md:ml-0'
+        className='hidden mt-2 ml-6 text-sm uppercase text-orange font-graphikBold hover:opacity-80 default-transition md:ml-0'
       >
         Read More
       </a>
