@@ -29,7 +29,7 @@ const BlogList = ({ data, location }) => {
   const pageSize = 9
 
   const handlePageChange = (v) => {
-    navigate(v === 0 ? `/blogs/` : `/blogs/${v + 1}`)
+    navigate(v === 0 ? `/blog/` : `/blog/${v + 1}`)
   }
 
   return (

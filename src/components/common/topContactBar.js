@@ -1,10 +1,19 @@
 import { ImgCall, ImgMenu } from '../../images'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import MobileMenu from '../menu/mobile'
+import { motion } from 'framer-motion'
+import { fadeIn } from '../../animations'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
-const TopContactBar = ({ data, contactFormRef, menuData }) => {
-  const [openMenu, setOpenMenu] = useState(false)
-
+const TopContactBar = ({
+  data,
+  contactFormRef,
+  menuData,
+  scroll,
+  openMenu,
+  setOpenMenu,
+  setOpenContactMenu,
+}) => {
   useEffect(() => {
     if (openMenu) {
       document.body.style.overflow = 'hidden'
@@ -13,8 +22,26 @@ const TopContactBar = ({ data, contactFormRef, menuData }) => {
     }
   }, [openMenu])
 
+  const handleClick = () => {
+    setOpenMenu(!openMenu)
+    setOpenContactMenu(false)
+  }
+
   return (
     <>
+      {openMenu && (
+        <motion.button
+          className={`fixed z-50 text-5xl md:text-6xl text-white left-6 md:right-6 md:left-auto md:top-36 ${
+            scroll ? 'top-20' : 'top-32'
+          }`}
+          variants={fadeIn}
+          initial='hidden'
+          animate='visible'
+          onClick={() => setOpenMenu(!openMenu)}
+        >
+          &times;
+        </motion.button>
+      )}
       <div className='relative z-50 flex justify-center md:justify-between'>
         <div className='items-center hidden px-6 py-3 text-base font-medium text-white xl:px-12 xl:py-4 lg:flex btn font-graphikMedium bg-blue transform -skew-x-12'>
           {data.length > 0 &&
@@ -34,12 +61,7 @@ const TopContactBar = ({ data, contactFormRef, menuData }) => {
         </div>
         <button
           className='hidden px-8 py-3 mr-2 border-l-8 btn bg-yellow border-yellow-dark transform -skew-x-12 lg:block'
-          onClick={() =>
-            contactFormRef.current.scrollIntoView({
-              block: 'end',
-              behavior: 'smooth',
-            })
-          }
+          onClick={() => scrollTo(contactFormRef, 'end')}
         >
           <div className='transform skew-x-12'>Schedule Service Now</div>
         </button>
@@ -48,7 +70,7 @@ const TopContactBar = ({ data, contactFormRef, menuData }) => {
           <div className='flex -mx-2.5 transform -skew-x-12'>
             <button
               className='flex items-center py-3 pl-6 pr-12 text-white btn bg-blue gap-4 hover:bg-blue-light'
-              onClick={() => setOpenMenu(!openMenu)}
+              onClick={handleClick}
             >
               <img
                 src={ImgMenu}
@@ -59,12 +81,7 @@ const TopContactBar = ({ data, contactFormRef, menuData }) => {
             </button>
             <button
               className='w-full border-l-8 btn btn-primary border-yellow-dark'
-              onClick={() =>
-                contactFormRef.current.scrollIntoView({
-                  block: 'end',
-                  behavior: 'smooth',
-                })
-              }
+              onClick={() => scrollTo(contactFormRef, 'end')}
             >
               <div className='transform skew-x-12'>Schedule Service Now</div>
             </button>

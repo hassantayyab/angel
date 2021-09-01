@@ -77,10 +77,10 @@ const ServiceAreas = ({ data }) => {
       </Container>
 
       <div className='mt-6'>
-        <WhyChoose contactFormRef={contactFormRef} />
+        <WhyChoose contactFormRef='#scrollEl' />
       </div>
 
-      <div ref={contactFormRef}>
+      <div id='scrollEl'>
         <Contact />
       </div>
 

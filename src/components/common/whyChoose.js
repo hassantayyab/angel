@@ -11,6 +11,7 @@ import { useAnimation } from 'framer-motion'
 import Button from '../utils/button'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const WhyChoose = ({ contactFormRef }) => {
   const data = useWhyChooseQuery()
@@ -110,24 +111,14 @@ const WhyChoose = ({ contactFormRef }) => {
           <Button
             type='button'
             className='w-4/5 sm:w-72 btn btn-primary'
-            onClick={() =>
-              contactFormRef.current.scrollIntoView({
-                block: 'end',
-                behavior: 'smooth',
-              })
-            }
+            onClick={() => scrollTo(contactFormRef, 'end')}
           >
             Schedule Service Now
           </Button>
           <Button
             type='button'
             className='w-4/5 sm:w-72 btn btn-secondary'
-            onClick={() =>
-              contactFormRef.current.scrollIntoView({
-                block: 'end',
-                behavior: 'smooth',
-              })
-            }
+            onClick={() => scrollTo(contactFormRef, 'end')}
           >
             Virtual Estimate
           </Button>
