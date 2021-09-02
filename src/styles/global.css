@@ -187,16 +187,6 @@
       height: 23rem;
     }
   }
-
-  @media (min-width: 1536px) {
-    .h-subpage-hero {
-      height: 46rem;
-    }
-
-    .h-home-hero {
-      height: 50rem;
-    }
-  }
 }
 
 @media (min-width: 640px) {
@@ -260,6 +250,18 @@
 
   .h-contact-frame {
     height: 100%;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-secondary {
+    max-width: calc(1536px + ((100% - 1536px) / 2));
+  }
+}
+
+@media (min-width: 2138px) {
+  .container-secondary {
+    max-width: calc(2138px + ((100% - 2138px) / 2));
   }
 }
 

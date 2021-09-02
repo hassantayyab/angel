@@ -54,14 +54,18 @@ const SubPage = ({ data }) => {
         <div className='items-start mt-20 mb-16 grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-24'>
           <aside className='justify-between order-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12 lg:order-1'>
             {services &&
-              services.map((service, i) => (
-                <div key={i}>
-                  <ServiceAccordianCard
-                    data={service}
-                    servicesData={servicesData[serviceCategories.sort()[i]]}
-                  />
-                </div>
-              ))}
+              services.map((service, i) => {
+                return (
+                  servicesData[serviceCategories.sort()[i]] && (
+                    <div key={i}>
+                      <ServiceAccordianCard
+                        data={service}
+                        servicesData={servicesData[serviceCategories.sort()[i]]}
+                      />
+                    </div>
+                  )
+                )
+              })}
 
             <PerkCard data={generalData._guaranteeCard} />
             <Coupon data={coupon} logo={generalData._generalData.logo} />

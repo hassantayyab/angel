@@ -39,11 +39,13 @@ const BlogList = ({ data, location }) => {
         <Header headerData={generalData._generalData} menuData={menuData} />
       </div>
 
-      <div className='mt-1.5'>
-        <ContainerSecondary>
-          <Hero data={heroData._heroSection} />
-        </ContainerSecondary>
-      </div>
+      {heroData && (
+        <div className='mt-1.5'>
+          <ContainerSecondary>
+            <Hero data={heroData._heroSection} />
+          </ContainerSecondary>
+        </div>
+      )}
 
       <Container>
         <section className='justify-between my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10'>
