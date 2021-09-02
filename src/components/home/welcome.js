@@ -12,6 +12,7 @@ import {
 } from '../../animations'
 import { useInView } from 'react-intersection-observer'
 import Button from '../utils/button'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const container = {
   hidden: { opacity: 0 },
@@ -116,12 +117,7 @@ const Welcome = ({ data, contactFormRef }) => {
           </motion.p>
           <Button
             className='mt-8 btn btn-primary'
-            onClick={() =>
-              contactFormRef.current.scrollIntoView({
-                block: 'end',
-                behavior: 'smooth',
-              })
-            }
+            onClick={() => scrollTo(contactFormRef, 'end')}
           >
             Schedule Service Now
           </Button>

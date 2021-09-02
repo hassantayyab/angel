@@ -15,6 +15,7 @@ import Button from '../utils/button'
 import Container from '../utils/container'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const IndustryLeading = ({ data, carImage, contactFormRef }) => {
   const [ref, inView] = useInView(View)
@@ -76,12 +77,7 @@ const IndustryLeading = ({ data, carImage, contactFormRef }) => {
 
             <Button
               className='btn btn-secondary bg-blue hover:bg-blue-light'
-              onClick={() =>
-                contactFormRef.current.scrollIntoView({
-                  block: 'end',
-                  behavior: 'smooth',
-                })
-              }
+              onClick={() => scrollTo(contactFormRef, 'end')}
             >
               Request Service Today
             </Button>

@@ -13,6 +13,7 @@ module.exports = {
         url: `${process.env.WP_URL}/graphql`,
       },
     },
+    'gatsby-plugin-smoothscroll',
     'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
     // 'gatsby-plugin-sitemap',

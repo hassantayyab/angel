@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 
 import Container from '../components/utils/container'
@@ -26,8 +26,6 @@ const SubPage = ({ data }) => {
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsListQuery()[0]
 
-  const contactFormRef = useRef(null)
-
   const servicesData = useServicesQuery()
   const serviceCategories = Object.keys(servicesData)
   const services = menuData
@@ -42,7 +40,7 @@ const SubPage = ({ data }) => {
         <Header
           headerData={generalData._generalData}
           menuData={menuData}
-          contactFormRef={contactFormRef}
+          contactFormRef='#scrollEl'
         />
       </div>
 
@@ -53,22 +51,26 @@ const SubPage = ({ data }) => {
       </div>
 
       <Container>
-        <div className='items-start mt-20 mb-16 xl:pl-16 grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-16'>
-          <aside className='justify-between grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12'>
+        <div className='items-start mt-20 mb-16 grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-24'>
+          <aside className='justify-between order-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12 lg:order-1'>
             {services &&
-              services.map((service, i) => (
-                <div key={i}>
-                  <ServiceAccordianCard
-                    data={service}
-                    servicesData={servicesData[serviceCategories.sort()[i]]}
-                  />
-                </div>
-              ))}
+              services.map((service, i) => {
+                return (
+                  servicesData[serviceCategories.sort()[i]] && (
+                    <div key={i}>
+                      <ServiceAccordianCard
+                        data={service}
+                        servicesData={servicesData[serviceCategories.sort()[i]]}
+                      />
+                    </div>
+                  )
+                )
+              })}
 
             <PerkCard data={generalData._guaranteeCard} />
             <Coupon data={coupon} logo={generalData._generalData.logo} />
           </aside>
-          <main className='col-span-1 md:col-span-2'>
+          <main className='order-1 col-span-1 md:col-span-2 lg:order-2'>
             <Article
               data={data.wpPage._subpageContent}
               generalInfoData={generalData}
@@ -83,14 +85,14 @@ const SubPage = ({ data }) => {
       </Container>
 
       <div className='mt-6'>
-        <WhyChoose contactFormRef={contactFormRef} />
+        <WhyChoose contactFormRef='#scrollEl' />
       </div>
 
       <div className='my-12'>
         <ServiceAreas />
       </div>
 
-      <div className='mt-6' ref={contactFormRef}>
+      <div className='mt-6' id='scrollEl'>
         <Contact />
       </div>
 

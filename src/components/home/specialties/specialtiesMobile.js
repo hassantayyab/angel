@@ -5,6 +5,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useInView } from 'react-intersection-observer'
 import { scale, springTransition, View } from '../../../animations'
 import { motion, useAnimation } from 'framer-motion'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const SpecialtiesMobile = ({ data, contactFormRef }) => {
   const [openItems, setOpenItems] = useState([])
@@ -119,24 +120,14 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
         <button
           type='button'
           className='w-full px-0 btn btn-primary'
-          onClick={() =>
-            contactFormRef.current.scrollIntoView({
-              block: 'end',
-              behavior: 'smooth',
-            })
-          }
+          onClick={() => scrollTo(contactFormRef, 'end')}
         >
           Schedule Service Now
         </button>
         <button
           type='button'
           className='w-full px-0 btn btn-secondary'
-          onClick={() =>
-            contactFormRef.current.scrollIntoView({
-              block: 'end',
-              behavior: 'smooth',
-            })
-          }
+          onClick={() => scrollTo(contactFormRef, 'end')}
         >
           Virtual Estimate
         </button>
