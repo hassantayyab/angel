@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       screens: {
         xs: '400px',
+        '3xl': '2138px',
       },
       fontFamily: {
         perfetto: ['Perfetto', 'serif'],

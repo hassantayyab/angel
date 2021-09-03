@@ -133,7 +133,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                 >
                   <Link
                     className='hover:text-yellow default-transition'
-                    to={service._servicePost.servicePageLink.url}
+                    to={service?._servicePost.servicePageLink.url}
                   >
                     {service.title}
                   </Link>

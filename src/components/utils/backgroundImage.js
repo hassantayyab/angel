@@ -10,7 +10,7 @@ const BackgroundImage = ({ image, alt, loading = 'lazy', className }) => {
           alt={alt || 'bg'}
           loading={loading}
           style={{ height: '100%' }}
-          className={className}
+          className={className + ' object-fill w-full h-full'}
         />
       )}
     </div>

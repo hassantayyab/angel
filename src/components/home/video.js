@@ -19,6 +19,7 @@ import {
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const Video = ({ data, contactFormRef }) => {
   let [isOpen, setIsOpen] = useState(false)
@@ -70,24 +71,14 @@ const Video = ({ data, contactFormRef }) => {
                     <Button
                       type='button'
                       className='px-0 w-60 md:w-64 btn btn-primary'
-                      onClick={() =>
-                        contactFormRef.current.scrollIntoView({
-                          block: 'end',
-                          behavior: 'smooth',
-                        })
-                      }
+                      onClick={() => scrollTo(contactFormRef, 'end')}
                     >
                       Schedule Service Now
                     </Button>
                     <Button
                       type='button'
                       className='w-60 md:w-64 btn btn-secondary'
-                      onClick={() =>
-                        contactFormRef.current.scrollIntoView({
-                          block: 'end',
-                          behavior: 'smooth',
-                        })
-                      }
+                      onClick={() => scrollTo(contactFormRef, 'end')}
                     >
                       Virtual Estimate
                     </Button>

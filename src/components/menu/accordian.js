@@ -22,7 +22,7 @@ const Accordian = ({ children, btnIcon, btnText = '+' }) => (
               }`}
               style={{ lineHeight: 0 }}
             >
-              {open ? '_' : btnText}
+              {open && btnText ? '_' : btnText}
             </span>
           )}
         </Disclosure.Button>

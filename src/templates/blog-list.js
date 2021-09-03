@@ -29,7 +29,7 @@ const BlogList = ({ data, location }) => {
   const pageSize = 9
 
   const handlePageChange = (v) => {
-    navigate(v === 0 ? `/blogs/` : `/blogs/${v + 1}`)
+    navigate(v === 0 ? `/blog/` : `/blog/${v + 1}`)
   }
 
   return (
@@ -39,11 +39,13 @@ const BlogList = ({ data, location }) => {
         <Header headerData={generalData._generalData} menuData={menuData} />
       </div>
 
-      <div className='mt-1.5'>
-        <ContainerSecondary>
-          <Hero data={heroData._heroSection} />
-        </ContainerSecondary>
-      </div>
+      {heroData && (
+        <div className='mt-1.5'>
+          <ContainerSecondary>
+            <Hero data={heroData._heroSection} />
+          </ContainerSecondary>
+        </div>
+      )}
 
       <Container>
         <section className='justify-between my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10'>

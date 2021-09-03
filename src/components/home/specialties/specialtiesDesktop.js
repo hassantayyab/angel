@@ -18,6 +18,7 @@ import {
 import Subtitle from '../../utils/subititle'
 import Title from '../../utils/title'
 import Button from '../../utils/button'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
   const [selected, setSelected] = useState(0)
@@ -167,24 +168,14 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                   <Button
                     type='button'
                     className='flex-1 px-0 btn btn-primary'
-                    onClick={() =>
-                      contactFormRef.current.scrollIntoView({
-                        block: 'end',
-                        behavior: 'smooth',
-                      })
-                    }
+                    onClick={() => scrollTo(contactFormRef, 'end')}
                   >
                     Schedule Service Now
                   </Button>
                   <Button
                     type='button'
                     className='flex-1 px-0 btn btn-secondary'
-                    onClick={() =>
-                      contactFormRef.current.scrollIntoView({
-                        block: 'end',
-                        behavior: 'smooth',
-                      })
-                    }
+                    onClick={() => scrollTo(contactFormRef, 'end')}
                   >
                     Virtual Estimate
                   </Button>
