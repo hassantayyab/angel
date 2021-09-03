@@ -33,7 +33,13 @@ const Pagination = ({
         disabled={pageNumber === 1}
         onClick={() => handlePageChange(pageNumber - 1)}
       >
-        <img src={ImgPaginationArrow} alt='arrow' className='w-12' />
+        <img
+          width='auto'
+          height='auto'
+          src={ImgPaginationArrow}
+          alt='arrow'
+          className='w-12'
+        />
       </button>
       {Array(totalPages)
         .fill('')
@@ -158,7 +164,13 @@ const Pagination = ({
         disabled={pageNumber === totalPages}
         onClick={() => handlePageChange(pageNumber + 1)}
       >
-        <img src={ImgPaginationArrow} alt='arrow' className='w-12' />
+        <img
+          width='auto'
+          height='auto'
+          src={ImgPaginationArrow}
+          alt='arrow'
+          className='w-12'
+        />
       </button>
     </div>
   )

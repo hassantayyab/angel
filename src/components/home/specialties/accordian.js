@@ -26,6 +26,8 @@ const Accordian = ({
             <div className='flex-1'>{children[0]}</div>
             {btnIcon ? (
               <img
+                width='auto'
+                height='auto'
                 src={btnIcon}
                 alt='expansion arrow'
                 className={`w-2.5 ml-4 inline-block transform ${

@@ -15,6 +15,8 @@ const Accordian = ({
 
     return btnIcon ? (
       <img
+        width='auto'
+        height='auto'
         src={btnIcon}
         alt='expansion arrow'
         className={`w-2.5 ml-4 inline-flex transform ${

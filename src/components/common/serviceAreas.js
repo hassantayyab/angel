@@ -102,6 +102,8 @@ const ServiceAreas = () => {
                     key={i}
                   >
                     <img
+                      width='auto'
+                      height='auto'
                       src={ImgAddressBlue}
                       alt='address icon'
                       className='max-w-4'

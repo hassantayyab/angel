@@ -35,6 +35,8 @@ const CouponAndDiscount = ({ data, logo }) => {
     <section className='relative mb-72 height-26' ref={ref}>
       <div className='absolute inset-0 w-full h-full -z-10'>
         <img
+          width='auto'
+          height='auto'
           src={ImageCouponBg}
           alt='coupon section background'
           className='object-cover w-full h-full'

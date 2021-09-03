@@ -53,7 +53,13 @@ const TopContactBar = ({
                     i < data.length - 1 && 'border-r pr-3 xl:pr-5'
                   } ${i > 0 && 'pl-3 xl:pl-5'}`}
                 >
-                  <img src={ImgCall} alt='call' className='w-6 mr-3' />
+                  <img
+                    width='auto'
+                    height='auto'
+                    src={ImgCall}
+                    alt='call'
+                    className='w-6 mr-3'
+                  />
                   <span>{number}</span>
                 </a>
               </div>
@@ -73,6 +79,8 @@ const TopContactBar = ({
               onClick={handleClick}
             >
               <img
+                width='auto'
+                height='auto'
                 src={ImgMenu}
                 alt='menu'
                 className='w-6 transform skew-x-12'

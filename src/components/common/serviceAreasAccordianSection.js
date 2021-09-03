@@ -17,7 +17,12 @@ const ServiceAreasAccordianSection = ({ data }) => {
                       className='flex justify-center px-4 py-3 cursor-pointer gap-3 default-transition'
                       key={j}
                     >
-                      <img src={ImgAddress} alt='address icon' />
+                      <img
+                        width='auto'
+                        height='auto'
+                        src={ImgAddress}
+                        alt='address icon'
+                      />
                       <span className='text-gray font-graphikMedium'>
                         {name}
                       </span>

@@ -54,7 +54,13 @@ const Badge = () => {
     >
       <div className='relative z-20 flex flex-col justify-center w-32 h-32 p-3 text-black rounded-full bg-yellow'>
         <div className='flex items-center justify-center mb-2 gap-2'>
-          <img src={ImgBadgeCount} alt='total reviews count' className='w-8' />
+          <img
+            width='auto'
+            height='auto'
+            src={ImgBadgeCount}
+            alt='total reviews count'
+            className='w-8'
+          />
           <h4 className='font-graphikBold'>{totalRatings}</h4>
         </div>
         <small
