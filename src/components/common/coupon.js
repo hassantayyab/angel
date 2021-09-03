@@ -39,7 +39,13 @@ const Coupon = ({ data, logo }) => {
                   className='flex items-center mb-6 tracking-wider uppercase'
                   key={i}
                 >
-                  <img className='mr-3' src={ImgTick} alt='checked icon' />
+                  <img
+                    width='auto'
+                    height='auto'
+                    className='mr-3'
+                    src={ImgTick}
+                    alt='checked icon'
+                  />
                   <span>{text}</span>
                 </li>
               ))}

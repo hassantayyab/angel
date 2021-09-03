@@ -171,6 +171,8 @@ const Contact = () => {
                       disabled={isSubmitting}
                     >
                       <img
+                        width='auto'
+                        height='auto'
                         src={ImgSubmit}
                         alt='submit form'
                         className='w-8 sm:w-12'

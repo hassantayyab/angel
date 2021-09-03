@@ -73,7 +73,7 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
               className='p-3 rounded-full bg-blue'
               onClick={handleClick}
             >
-              <img src={ImgCallCard} alt='call us' />
+              <img width='auto' height='auto' src={ImgCallCard} alt='call us' />
             </button>
           </div>
         </div>

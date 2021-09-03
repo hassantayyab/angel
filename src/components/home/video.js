@@ -45,6 +45,8 @@ const Video = ({ data, contactFormRef }) => {
     <section className='relative height-30 lg:h-96' ref={ref}>
       <div className='absolute inset-0 z-10 w-full h-full'>
         <img
+          width='auto'
+          height='auto'
           src={ImageVideoBg}
           alt='video section background'
           className='object-cover w-full h-full'
@@ -109,6 +111,8 @@ const Video = ({ data, contactFormRef }) => {
                         <PlayButton />
                       </div>
                       <img
+                        width='auto'
+                        height='auto'
                         src={ImgPlayArrow}
                         alt='pointer'
                         className='z-30 pt-16 pr-40 absolute-center'

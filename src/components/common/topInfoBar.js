@@ -6,7 +6,13 @@ const TopInfoBar = ({ data }) => (
   <section className='relative z-50 md:mb-32 lg:mb-40 xl:mb-36 bg-blue-light sm:mb-1'>
     <Container>
       <div className='flex items-center justify-center py-3 text-white uppercase'>
-        <img src={ImgInfo} alt='information icon' className='w-4 md:w-6'></img>
+        <img
+          width='auto'
+          height='auto'
+          src={ImgInfo}
+          alt='information icon'
+          className='w-4 md:w-6'
+        ></img>
         <span className='ml-2 mr-1 text-xs md:ml-3 md:text-sm'>
           {data.topInfoText}
         </span>
