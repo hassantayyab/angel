@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 const BenefitCard = ({ data }) => (
   <motion.div
-    className='w-48 px-4 py-8 mx-auto mt-12 text-center bg-white shadow-2xl transition-all'
+    className='w-48 px-4 py-8 mt-12 text-center bg-white shadow-2xl transition-all'
     variants={scale}
     whileHover={hoverScale}
   >

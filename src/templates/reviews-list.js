@@ -45,6 +45,30 @@ const ReviewsList = ({ data, location }) => {
       </div>
 
       <Container>
+        <section className='mt-20'>
+          <iframe
+            name='bfiframe'
+            src='https://localreviews.buzz/widget/render.php?bid=161893005182434&amp;wid=3&amp;ver=4&amp;update=0'
+            id='bfpublish'
+            width='100%'
+            height='600'
+            scrolling='auto'
+            frameborder='0'
+            title='Customer reviews'
+          ></iframe>
+          <span class='bf-spn'>
+            {' '}
+            powered by{' '}
+            <a
+              class='bf-pwr'
+              href='http://www.localreviews.buzz'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              LocalReviews.Buzz
+            </a>
+          </span>
+        </section>
         <section className='justify-between my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10'>
           {reviews.slice(0, pageSize).map((review, i) => (
             <div className='flex justify-center' key={i}>
