@@ -144,7 +144,7 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                       data.specialtiesItems[selected].image?.localFile
                     )}
                     alt={data.specialtiesItems[selected].image?.altText}
-                    className='inline-block w-16 mb-5'
+                    className='inline-block w-16 mb-5 filter brightness-0'
                   />
                 </div>
 
