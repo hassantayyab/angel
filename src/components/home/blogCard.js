@@ -34,7 +34,13 @@ const BlogCard = ({ data }) => (
         />
         {/* <p className='text-sm text-gray'>{data.excerpt}</p> */}
 
-        <img src={ImgArrow} alt='arrow' className='mt-auto' />
+        <img
+          width='auto'
+          height='auto'
+          src={ImgArrow}
+          alt='arrow'
+          className='mt-auto'
+        />
       </section>
     </div>
 

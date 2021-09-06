@@ -21,15 +21,12 @@ import Services from '../components/home/services'
 import IndustryLeading from '../components/home/industryLeading'
 import Blog from '../components/home/blog'
 import Specialties from '../components/home/specialties'
-import { useRef } from 'react'
 import Seo from '../components/seo'
 
 const IndexPage = ({ data }) => {
   const servicesData = useServicesQuery()
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
-
-  const contactFormRef = useRef(null)
 
   const heroData = {
     title: data.wpPage._heroSection.heroTitle,
@@ -51,13 +48,13 @@ const IndexPage = ({ data }) => {
         <Header
           headerData={generalData._generalData}
           menuData={menuData}
-          contactFormRef={contactFormRef}
+          contactFormRef='#scrollEl'
         />
       </div>
 
       <div className='mt-1.5'>
         <ContainerSecondary>
-          <Hero data={heroData} isMain='true' contactFormRef={contactFormRef} />
+          <Hero data={heroData} isMain='true' contactFormRef='#scrollEl' />
         </ContainerSecondary>
       </div>
 
@@ -74,32 +71,26 @@ const IndexPage = ({ data }) => {
         <Container>
           <Welcome
             data={data.wpPage._welcomeSection}
-            contactFormRef={contactFormRef}
+            contactFormRef='#scrollEl'
           />
         </Container>
       </div>
 
       <div className='mt-16 sm:mt-24'>
-        <Video
-          data={data.wpPage._videoSection}
-          contactFormRef={contactFormRef}
-        />
+        <Video data={data.wpPage._videoSection} contactFormRef='#scrollEl' />
       </div>
 
       <div className='mt-40 sm:mt-64 md:mt-56 lg:mt-20'>
-        <WhyChoose contactFormRef={contactFormRef} />
+        <WhyChoose contactFormRef='#scrollEl' />
       </div>
 
-      <CardContact
-        data={data.wpPage._cardContact}
-        contactFormRef={contactFormRef}
-      />
+      <CardContact data={data.wpPage._cardContact} contactFormRef='#scrollEl' />
 
       <div>
         <Specialties
           data={data.wpPage._specialtiesSection}
           logo={generalData._generalData.logo}
-          contactFormRef={contactFormRef}
+          contactFormRef='#scrollEl'
         />
       </div>
 
@@ -114,7 +105,7 @@ const IndexPage = ({ data }) => {
         <ContainerSecondary>
           <Hero
             data={financingData}
-            contactFormRef={contactFormRef}
+            contactFormRef='#scrollEl'
             showBadge={false}
           />
         </ContainerSecondary>
@@ -134,7 +125,7 @@ const IndexPage = ({ data }) => {
         <ServiceAreas />
       </div>
 
-      <div className='mt-20' ref={contactFormRef}>
+      <div className='mt-20' id='scrollEl'>
         <Contact />
       </div>
 
@@ -142,7 +133,7 @@ const IndexPage = ({ data }) => {
         <IndustryLeading
           data={data.wpPage._industryLeading}
           carImage={generalData._generalData.carImage}
-          contactFormRef={contactFormRef}
+          contactFormRef='#scrollEl'
         />
       </div>
 

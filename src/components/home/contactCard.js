@@ -9,6 +9,7 @@ import { useInView } from 'react-intersection-observer'
 import { defaultTransition, slideDown, slideUp, View } from '../../animations'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const ContactCard = ({ data, contactFormRef }) => {
   const [ref, inView] = useInView(View)
@@ -54,12 +55,7 @@ const ContactCard = ({ data, contactFormRef }) => {
               <Title animate={animateTitle}>{data.cardContactHeading}</Title>
               <Button
                 className='mt-8 btn btn-secondary'
-                onClick={() =>
-                  contactFormRef.current.scrollIntoView({
-                    block: 'end',
-                    behavior: 'smooth',
-                  })
-                }
+                onClick={() => scrollTo(contactFormRef, 'end')}
               >
                 Schedule Service Now
               </Button>

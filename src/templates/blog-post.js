@@ -29,7 +29,7 @@ const BlogPost = ({ data }) => {
       </div>
 
       <Container>
-        <div className='relative mx-auto mt-4 mb-20 mw-blog-page'>
+        <div className='relative mx-auto mb-20 mt-44 md:mt-4 mw-blog-page'>
           <div className='relative z-10 mb-6 mr-6'>
             <Hero
               data={data.wpPost._heroSection}
@@ -52,7 +52,7 @@ const BlogPost = ({ data }) => {
           <Button
             type='button'
             className='flex items-center btn btn-primary gap-4'
-            onClick={() => navigate('/blogs/')}
+            onClick={() => navigate('/blog/')}
           >
             <img src={ImgBackArrow} alt='go back' className='w-8' />
             <span>Back to Blogs</span>

@@ -43,6 +43,8 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
         </motion.div>
         <div className='relative w-full lg:w-1/3'>
           <img
+            width='auto'
+            height='auto'
             src={ImgContactCardBg}
             alt='card bg'
             className='absolute inset-0 object-cover w-full h-full'
@@ -61,6 +63,8 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
           }`}
         >
           <img
+            width='auto'
+            height='auto'
             src={ImgContactCardBg}
             alt='card bg'
             className='absolute inset-0 object-cover w-full h-full'
@@ -72,6 +76,8 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
             </h5>
             <div className='relative flex w-full'>
               <img
+                width='auto'
+                height='auto'
                 src={ImgAddress}
                 alt='input address'
                 className='left-4 absolute-y-center'
@@ -89,6 +95,8 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
         </div>
         <div className={`relative lg:pb-0 ${isCarAtBottom && 'pb-8'}`}>
           <img
+            width='auto'
+            height='auto'
             src={ImgContactCardBg}
             alt='card bg'
             className='absolute inset-0 object-cover w-full h-full'
@@ -106,7 +114,12 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
             </h5>
             <div className='relative flex w-full'>
               <div className='z-10 left-4 absolute-y-center'>
-                <img src={ImgCalendar} alt='input address' />
+                <img
+                  width='auto'
+                  height='auto'
+                  src={ImgCalendar}
+                  alt='input address'
+                />
               </div>
               <div className='w-full'>
                 <DatePicker

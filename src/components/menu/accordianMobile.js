@@ -15,6 +15,8 @@ const Accordian = ({
 
     return btnIcon ? (
       <img
+        width='auto'
+        height='auto'
         src={btnIcon}
         alt='expansion arrow'
         className={`w-2.5 ml-4 inline-flex transform ${
@@ -39,10 +41,7 @@ const Accordian = ({
             showBorder && 'border-b border-white border-opacity-10'
           }`}
         >
-          <Disclosure.Button
-            as='div'
-            className='flex items-center justify-between w-full px-2 py-2 text-left outline-none cursor-pointer'
-          >
+          <Disclosure.Button className='flex items-center justify-between w-full px-2 py-2 text-left outline-none cursor-pointer'>
             {children[0]}
             {renderExpansionButton(open)}
           </Disclosure.Button>

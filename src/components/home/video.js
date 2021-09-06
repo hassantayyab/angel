@@ -19,6 +19,7 @@ import {
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const Video = ({ data, contactFormRef }) => {
   let [isOpen, setIsOpen] = useState(false)
@@ -44,6 +45,8 @@ const Video = ({ data, contactFormRef }) => {
     <section className='relative height-30 lg:h-96' ref={ref}>
       <div className='absolute inset-0 z-10 w-full h-full'>
         <img
+          width='auto'
+          height='auto'
           src={ImageVideoBg}
           alt='video section background'
           className='object-cover w-full h-full'
@@ -70,24 +73,14 @@ const Video = ({ data, contactFormRef }) => {
                     <Button
                       type='button'
                       className='px-0 w-60 md:w-64 btn btn-primary'
-                      onClick={() =>
-                        contactFormRef.current.scrollIntoView({
-                          block: 'end',
-                          behavior: 'smooth',
-                        })
-                      }
+                      onClick={() => scrollTo(contactFormRef, 'end')}
                     >
                       Schedule Service Now
                     </Button>
                     <Button
                       type='button'
                       className='w-60 md:w-64 btn btn-secondary'
-                      onClick={() =>
-                        contactFormRef.current.scrollIntoView({
-                          block: 'end',
-                          behavior: 'smooth',
-                        })
-                      }
+                      onClick={() => scrollTo(contactFormRef, 'end')}
                     >
                       Virtual Estimate
                     </Button>
@@ -118,6 +111,8 @@ const Video = ({ data, contactFormRef }) => {
                         <PlayButton />
                       </div>
                       <img
+                        width='auto'
+                        height='auto'
                         src={ImgPlayArrow}
                         alt='pointer'
                         className='z-30 pt-16 pr-40 absolute-center'

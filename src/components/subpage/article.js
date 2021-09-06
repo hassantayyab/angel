@@ -39,7 +39,7 @@ const Article = ({ data, title, generalInfoData }) => {
 
       data.push([
         editor && (
-          <article key={i} className='prose'>
+          <article key={i} className='prose max-w-none mw-sub-page'>
             <div
               className='text-inner-html'
               dangerouslySetInnerHTML={{ __html: editor }}

@@ -89,14 +89,26 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                <img src={ImgAddress} alt='address' className='mt-1' />
+                <img
+                  width='auto'
+                  height='auto'
+                  src={ImgAddress}
+                  alt='address'
+                  className='mt-1'
+                />
                 <span>{generalInfoData._generalData.address}</span>
               </a>
               <a
                 className='flex items-start sm:gap-2 gap-4 md:gap-6'
                 href='tel:610-379-3993'
               >
-                <img src={ImgPhone} alt='phone number' className='mt-1' />
+                <img
+                  width='auto'
+                  height='auto'
+                  src={ImgPhone}
+                  alt='phone number'
+                  className='mt-1'
+                />
                 <div className='flex flex-col uppercase'>
                   <span className='text-gray'>Phone</span>
                   <span className='text-base font-graphikBold text-gray-dark'>
@@ -111,7 +123,13 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                 className='flex items-start sm:gap-2 gap-4 md:gap-6'
                 href={`mailto:${generalInfoData._generalData.email}`}
               >
-                <img src={ImgEmail} alt='email address' className='mt-1' />
+                <img
+                  width='auto'
+                  height='auto'
+                  src={ImgEmail}
+                  alt='email address'
+                  className='mt-1'
+                />
                 <div className='flex flex-col uppercase'>
                   <span className='text-gray'>Email</span>
                   <span className='lowercase'>
@@ -133,7 +151,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                 >
                   <Link
                     className='hover:text-yellow default-transition'
-                    to={service._servicePost.servicePageLink.url}
+                    to={service?._servicePost.servicePageLink.url}
                   >
                     {service.title}
                   </Link>

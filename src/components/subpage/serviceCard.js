@@ -19,13 +19,15 @@ const ServiceAccordianCard = ({ data, servicesData }) => {
               }`}
               key={i}
             >
-              <GatsbyImage
-                image={getImage(
-                  servicesData[i]._servicePost.serviceImage?.localFile
-                )}
-                alt={servicesData[i]._servicePost.serviceImage?.altText}
-                className='w-8 mr-6'
-              />
+              {servicesData[i] && (
+                <GatsbyImage
+                  image={getImage(
+                    servicesData[i]._servicePost.serviceImage?.localFile
+                  )}
+                  alt={servicesData[i]._servicePost.serviceImage?.altText}
+                  className='w-8 mr-6'
+                />
+              )}
               <Link className='font-graphikMedium' to={item.path}>
                 {item.label}
               </Link>

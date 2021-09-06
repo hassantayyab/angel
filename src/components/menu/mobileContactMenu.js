@@ -22,7 +22,13 @@ const MobileContactMenu = ({ data }) => (
                   href={`tel:${number}`}
                   className={`flex items-center hover:text-yellow default-transition w-full text-lg mb-8`}
                 >
-                  <img src={ImgCall} alt='call' className='w-6 mr-3' />
+                  <img
+                    width='auto'
+                    height='auto'
+                    src={ImgCall}
+                    alt='call'
+                    className='w-6 mr-3'
+                  />
                   <div className='flex items-center'>
                     <span className='mr-2 text-white font-graphik text-opacity-80'>
                       {location}:

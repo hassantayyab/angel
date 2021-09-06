@@ -12,7 +12,13 @@ const CallUsCard = ({ data }) => (
   >
     <div className='z-10 p-1 mb-20 rounded-full bg-white-light sm:inline-block call-card-icon sm:mb-0'>
       <div className='relative z-20 p-2 rounded-full sm:p-4 bg-blue'>
-        <img src={ImgCallCard} alt='call icon' className='inline-block w-6' />
+        <img
+          width='auto'
+          height='auto'
+          src={ImgCallCard}
+          alt='call icon'
+          className='inline-block w-6'
+        />
       </div>
     </div>
     <div className='flex flex-col justify-center px-10 py-6 text-center text-white col-span-2 bg-orange polygon-right sm:text-left'>
@@ -27,6 +33,8 @@ const CallUsCard = ({ data }) => (
 
     <div className='relative px-10 py-6 overflow-hidden text-center text-black col-span-3 bg-yellow polygon-left call-card-left-section-margin'>
       <img
+        width='auto'
+        height='auto'
         src={ImgPerk}
         alt='call us bg'
         className='absolute inset-0 object-contain w-full'

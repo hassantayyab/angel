@@ -13,6 +13,7 @@ import {
 import Button from '../utils/button'
 import Badge from '../utils/badge'
 import { useState } from 'react'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 const isBrowser = typeof window !== 'undefined'
 
@@ -43,9 +44,9 @@ const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
   }, [inView, animateTitle, animateSubtitle])
 
   return (
-    <section className='relative bg-black h-home-hero' ref={ref}>
+    <section className='relative bg-black mt-28 h-home-hero md:mt-0' ref={ref}>
       <div
-        className={`absolute z-20 w-full text-center sm:w-auto sm:right-20 lg:right-32 bottom-24 sm:bottom-auto ${
+        className={`absolute z-20 w-full text-center sm:w-auto sm:right-20 lg:right-32 bottom-28 sm:bottom-auto ${
           scroll ? 'lg:z-20' : 'lg:z-50'
         }`}
       >
@@ -55,14 +56,14 @@ const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
         image={getImage(data.bgImage?.localFile)}
         alt={data.bgImage?.altText}
       />
-      <div className='relative h-full px-6 py-40 sm:px-16'>
+      <div className='relative h-full px-6 pb-40 pt-28 sm:py-40 2xl:py-40 3xl:py-40 sm:px-16'>
         <div
-          className={`flex flex-col justify-center w-full h-full px-8 py-12 text-white uppercase br-frame sm:text-left sm:items-start sm:w-3/5 lg:w-1/2 top-20 border-yellow ${
+          className={`flex flex-col justify-center w-full h-full px-8 py-12 text-white uppercase br-frame sm:text-left sm:items-start sm:w-3/5 lg:w-2/3 xl:w-1/2 3xl:w-1/3 top-20 border-yellow ${
             isMain ? 'items-center text-center' : 'items-left'
           }`}
         >
           {isMain && (
-            <div className='px-6 py-2 -mt-32 sm:-mt-28 md:-mt-24 lg:-mt-12 xl:-mt-16 mb-7 bg-orange transform -skew-x-12'>
+            <div className='px-6 py-2 -mt-44 sm:-mt-28 md:-mt-24 lg:-mt-16 xl:-mt-16 2xl:-mt-16 3xl:-mt-16 mb-7 bg-orange transform -skew-x-12'>
               <h6 className=' transform skew-x-12'>Your Comfort Is</h6>
             </div>
           )}
@@ -86,12 +87,7 @@ const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
           <Button
             type='button'
             className='mt-3 sm:mt-6 btn btn-primary'
-            onClick={() =>
-              contactFormRef.current.scrollIntoView({
-                block: 'end',
-                behavior: 'smooth',
-              })
-            }
+            onClick={() => scrollTo(contactFormRef, 'end')}
           >
             Schedule Service Now
           </Button>
