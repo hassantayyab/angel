@@ -6,7 +6,7 @@ import Accordian from '../utils/accordian'
 
 const ServiceAccordianCard = ({ data, servicesData }) => {
   return (
-    <Accordian btnIcon={ImgChevron}>
+    <Accordian btnIcon={ImgChevron} defaultOpen={true}>
       <Link className='text-white uppercase font-graphikMedium' to={data.path}>
         {data.label}
       </Link>
