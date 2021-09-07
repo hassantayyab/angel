@@ -13,7 +13,7 @@ import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useServicesQuery } from '../hooks/servicesQuery'
 import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
 import { graphql } from 'gatsby'
-import React, { useRef } from 'react'
+import React from 'react'
 import Container from '../components/utils/container'
 import CallUsCard from '../components/utils/call-us-card'
 import ServiceAccordianCard from '../components/subpage/serviceCard'
@@ -26,8 +26,6 @@ const ServiceAreas = ({ data }) => {
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsListQuery()[0]
-
-  const contactFormRef = useRef(null)
 
   const servicesData = useServicesQuery()
   const serviceCategories = Object.keys(servicesData)

@@ -20,6 +20,7 @@ import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
 import { useCouponsListQuery } from '../hooks/couponsListQuery'
 import Seo from '../components/seo'
+import { useServiceCategoriesQuery } from '../hooks/serviceCategoriesQuery'
 
 const SubPage = ({ data }) => {
   const generalData = useGeneralInfoQuery()
@@ -27,10 +28,7 @@ const SubPage = ({ data }) => {
   const coupon = useCouponsListQuery()[0]
 
   const servicesData = useServicesQuery()
-  const serviceCategories = Object.keys(servicesData)
-  const services = menuData
-    .filter((m) => m.label === 'Services')[0]
-    .childItems.nodes.sort()
+  const serviceCategories = useServiceCategoriesQuery()
 
   return (
     <>
@@ -53,17 +51,15 @@ const SubPage = ({ data }) => {
       <Container>
         <div className='items-start mt-20 mb-16 grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-24'>
           <aside className='justify-between order-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12 lg:order-1'>
-            {services &&
-              services.map((service, i) => {
+            {serviceCategories &&
+              serviceCategories.map((category, i) => {
                 return (
-                  servicesData[serviceCategories.sort()[i]] && (
-                    <div key={i}>
-                      <ServiceAccordianCard
-                        data={service}
-                        servicesData={servicesData[serviceCategories.sort()[i]]}
-                      />
-                    </div>
-                  )
+                  <div key={i}>
+                    <ServiceAccordianCard
+                      category={category}
+                      servicesData={servicesData[category.slug]}
+                    />
+                  </div>
                 )
               })}
 

@@ -8,27 +8,15 @@ export const useServicesQuery = () => {
           title
           serviceCategories {
             nodes {
+              slug
               name
             }
           }
           _servicePost {
-            serviceText
             servicePageLink {
               url
             }
             serviceImage {
-              altText
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(
-                    quality: 100
-                    placeholder: BLURRED
-                    formats: [WEBP]
-                  )
-                }
-              }
-            }
-            serviceBgImage {
               altText
               localFile {
                 childImageSharp {
@@ -50,9 +38,9 @@ export const useServicesQuery = () => {
 }
 
 function formatData(serviceData) {
-  return serviceData.reduce((obj, item) => {
+  const unOrdered = serviceData.reduce((obj, item) => {
     const { serviceCategories, ...data } = item
-    const key = serviceCategories.nodes[0].name
+    const key = serviceCategories.nodes[0].slug.replace('_', '-')
 
     if (obj && obj.hasOwnProperty(key)) {
       return { ...obj, [key]: [...obj[key], data] }
@@ -60,4 +48,11 @@ function formatData(serviceData) {
       return { ...obj, [key]: [data] }
     }
   }, {})
+
+  return Object.keys(unOrdered)
+    .sort()
+    .reduce((obj, key) => {
+      obj[key] = unOrdered[key]
+      return obj
+    }, {})
 }

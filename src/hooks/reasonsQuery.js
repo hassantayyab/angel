@@ -23,7 +23,7 @@ export const useReasonsQuery = () => {
           }
           reasonCategories {
             nodes {
-              name
+              slug
             }
           }
         }
@@ -31,18 +31,5 @@ export const useReasonsQuery = () => {
     }
   `)
 
-  return formatData(data.allWpReason.nodes)
-}
-
-function formatData(data) {
-  return data.reduce((obj, item) => {
-    const { reasonCategories, ...data } = item
-    const key = reasonCategories.nodes[0].name
-
-    if (obj && obj.hasOwnProperty(key)) {
-      return { ...obj, [key]: [...obj[key], data] }
-    } else {
-      return { ...obj, [key]: [data] }
-    }
-  }, {})
+  return data.allWpReason.nodes
 }
