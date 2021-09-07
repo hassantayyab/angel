@@ -171,11 +171,11 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
 
           {/* Services */}
           <section className='text-sm col-span-2 xs:col-span-1'>
-            <h6 className='uppercase'>Services</h6>
+            <h6 className='uppercase mb-7'>Services</h6>
             {services.length > 0 &&
               services.map((service, i) => (
                 <div
-                  className='flex flex-col mt-7 text-gray gap-y-3 font-graphikMedium'
+                  className='flex flex-col mb-3 text-gray gap-y-3 font-graphikMedium'
                   key={i}
                 >
                   <Link
