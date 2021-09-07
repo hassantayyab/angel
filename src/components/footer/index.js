@@ -5,9 +5,38 @@ import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { hoverScale, scale } from '../../animations'
 import { motion } from 'framer-motion'
+import { useServiceCategoriesQuery } from '../../hooks/serviceCategoriesQuery'
+
+function formatDataIntoServices(data, categories) {
+  let services = []
+
+  for (const key in data) {
+    services = [
+      ...services,
+      {
+        title: categories.filter((e) => e.slug === key)[0].name,
+        link: '/' + key,
+      },
+    ]
+
+    for (const k in data[key]) {
+      const elem = data[key][k]
+      services = [
+        ...services,
+        {
+          title: elem.title,
+          link: '/' + key + elem._servicePost.servicePageLink.url,
+        },
+      ]
+    }
+  }
+
+  return services
+}
 
 const Footer = ({ generalInfoData, servicesData, menuData }) => {
-  const services = Object.values(servicesData).flat()
+  const serviceCategories = useServiceCategoriesQuery()
+  const services = formatDataIntoServices(servicesData, serviceCategories)
 
   return (
     <footer className='pt-16 mt-4'>
@@ -151,7 +180,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                 >
                   <Link
                     className='hover:text-yellow default-transition'
-                    to={service?._servicePost.servicePageLink.url}
+                    to={service.link}
                   >
                     {service.title}
                   </Link>
