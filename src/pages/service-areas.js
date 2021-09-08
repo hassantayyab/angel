@@ -13,13 +13,14 @@ import { useGeneralInfoQuery } from '../hooks/generalInfoQuery'
 import { useServicesQuery } from '../hooks/servicesQuery'
 import { useHeaderMenuQuery } from '../hooks/useMenuQuery'
 import { graphql } from 'gatsby'
-import React, { useRef } from 'react'
+import React from 'react'
 import Container from '../components/utils/container'
 import CallUsCard from '../components/utils/call-us-card'
 import ServiceAccordianCard from '../components/subpage/serviceCard'
 import ServiceAreasAccordianSection from '../components/common/serviceAreasAccordianSection'
 import { useServiceAreasQuery } from '../hooks/serviceAreasQuery'
 import Hero from '../components/subpage/hero'
+import { useServiceCategoriesQuery } from '../hooks/serviceCategoriesQuery'
 
 const ServiceAreas = ({ data }) => {
   const serviceAreas = useServiceAreasQuery()
@@ -27,13 +28,8 @@ const ServiceAreas = ({ data }) => {
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsListQuery()[0]
 
-  const contactFormRef = useRef(null)
-
   const servicesData = useServicesQuery()
-  const serviceCategories = Object.keys(servicesData)
-  const services = menuData
-    .filter((m) => m.label === 'Services')[0]
-    .childItems.nodes.sort()
+  const serviceCategories = useServiceCategoriesQuery()
 
   return (
     <>
@@ -52,17 +48,15 @@ const ServiceAreas = ({ data }) => {
       <Container>
         <div className='items-start mt-20 mb-16 xl:pl-16 grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-16'>
           <aside className='justify-between grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12'>
-            {services &&
-              services.map((service, i) => {
+            {serviceCategories &&
+              serviceCategories.map((category, i) => {
                 return (
-                  servicesData[serviceCategories.sort()[i]] && (
-                    <div key={i}>
-                      <ServiceAccordianCard
-                        data={service}
-                        servicesData={servicesData[serviceCategories.sort()[i]]}
-                      />
-                    </div>
-                  )
+                  <div key={i}>
+                    <ServiceAccordianCard
+                      category={category}
+                      servicesData={servicesData[category.slug]}
+                    />
+                  </div>
                 )
               })}
 

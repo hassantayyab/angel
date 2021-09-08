@@ -97,7 +97,7 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
                           <GatsbyImage
                             image={getImage(specialty.image?.localFile)}
                             alt={specialty.image?.altText}
-                            className='inline-block w-16 mb-4'
+                            className='inline-block w-16 mb-4 filter brightness-0'
                           />
                         </div>
 

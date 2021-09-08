@@ -34,7 +34,7 @@ const Blog = ({ data }) => {
   return (
     <section className='relative pb-40 md:pb-80' ref={ref}>
       <div className='absolute bottom-0 left-0 w-full overflow-hidden h-3/4'>
-        <div className='absolute top-0 bottom-0 w-full'>
+        <div className='absolute bottom-0 w-full'>
           <GatsbyImage
             image={getImage(data.blogBgImage?.localFile)}
             alt={data.blogBgImage?.altText}

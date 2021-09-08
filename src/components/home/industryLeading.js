@@ -49,10 +49,10 @@ const IndustryLeading = ({ data, carImage, contactFormRef }) => {
       />
       <div
         className='absolute inset-0'
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(254,199,36,0.9) 0%, rgba(254,199,36,0.9) 100%)',
-        }}
+        // style={{
+        //   background:
+        //     'linear-gradient(180deg, rgba(254,199,36,0.9) 0%, rgba(254,199,36,0.9) 100%)',
+        // }}
       ></div>
       <Container>
         <div className='relative z-10 flex flex-col items-center text-center lg:text-left lg:flex-row'>

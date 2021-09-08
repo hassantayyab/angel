@@ -66,10 +66,10 @@ const Contact = () => {
       />
       <div
         className='absolute inset-0'
-        style={{
-          background:
-            'linear-gradient(90deg, rgba(0,74,143,1) 0%, rgba(0,74,143,0.9) 0%)',
-        }}
+        // style={{
+        //   background:
+        //     'linear-gradient(90deg, rgba(0,74,143,1) 0%, rgba(0,74,143,0.9) 0%)',
+        // }}
       ></div>
       <Container>
         <section className='relative md:grid grid-cols-2 gap-12'>
