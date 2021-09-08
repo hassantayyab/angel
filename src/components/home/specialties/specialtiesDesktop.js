@@ -66,7 +66,7 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
         }}
       ></div>
       <ContainerSecondary>
-        <div className='relative flex flex-col lg:flex-row gap-8 xl:gap-20'>
+        <div className='relative flex flex-col lg:flex-row space-x-8 xl:space-x-20'>
           <div className='flex-1'>
             <motion.h3
               className='text-white uppercase'
@@ -81,7 +81,7 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                 data.specialtiesItems.map((specialty, i) => (
                   <li
                     key={i}
-                    className={`flex items-center default-transition border border-transparent px-6 py-4 gap-6 cursor-pointer hover:border-yellow ${
+                    className={`flex items-center default-transition border border-transparent px-6 py-4 space-x-6 cursor-pointer hover:border-yellow ${
                       selected === i ? 'bg-yellow' : 'text-white'
                     }`}
                     onClick={() => setSelected(i)}
@@ -164,7 +164,7 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                 >
                   {data.specialtiesItems[selected].description}
                 </motion.p>
-                <div className='flex flex-col items-center justify-center px-5 mt-12 gap-4 sm:flex-row'>
+                <div className='flex flex-col items-center justify-center px-5 mt-12 space-x-4 sm:flex-row'>
                   <Button
                     type='button'
                     className='flex-1 px-0 btn btn-primary'

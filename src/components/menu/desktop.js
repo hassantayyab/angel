@@ -54,7 +54,7 @@ const DesktopMenu = ({ list = [] }) => {
                     static
                   >
                     <Container>
-                      <div className='flex gap-x-8'>
+                      <div className='flex space-x-8'>
                         <div className='relative w-1/3 col-span-1 h-80'>
                           <GatsbyImage
                             image={getImage(menuImage?.localFile)}
@@ -83,7 +83,7 @@ const DesktopMenu = ({ list = [] }) => {
                                 <ul className='pb-2'>
                                   {item.childItems.nodes.map((item) => (
                                     <li
-                                      className='flex items-center px-6 py-2 text-sm text-white cursor-pointer text-opacity-80 font-graphik gap-3 default-transition'
+                                      className='flex items-center px-6 py-2 text-sm text-white cursor-pointer text-opacity-80 font-graphik space-x-3 default-transition'
                                       key={item.id}
                                     >
                                       <span className='bg-white rounded-full bg-opacity-80 w-1.5 h-1.5'></span>

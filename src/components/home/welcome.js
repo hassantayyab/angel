@@ -62,9 +62,9 @@ const Welcome = ({ data, contactFormRef }) => {
 
   return (
     <section className='container px-0 pt-16 xl:px-40 lg:pt-0' ref={ref}>
-      <div className='flex flex-col gap-6 lg:gap-12 lg:flex-row'>
+      <div className='flex flex-col space-y-6 lg:space-x-12 lg:space-y-0 lg:flex-row'>
         <motion.ul
-          className='flex justify-center lg:mb-0 lg:flex-col gap-3 lg:gap-4'
+          className='flex justify-center lg:mb-0 lg:flex-col space-x-3 lg:space-y-4 lg:space-x-0'
           variants={container}
           initial='hidden'
           animate={animateList}

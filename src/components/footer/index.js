@@ -49,7 +49,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
               className='mx-auto'
             />
 
-            <ul className='absolute bottom-0 right-0 flex flex-col items-center justify-center mt-16 mb-6 lg:justify-between md:flex-row gap-4 md:static sm:bottom-2 sm:right-2'>
+            <ul className='absolute bottom-0 right-0 flex flex-col items-center justify-center mt-16 mb-6 lg:justify-between md:flex-row space-y-4 md:space-y-0 md:space-x-4 space-x-0 md:static sm:bottom-2 sm:right-2'>
               {generalInfoData._generalData.socialLinks.length > 0 &&
                 generalInfoData._generalData.socialLinks.map((link, i) => (
                   <motion.li
@@ -93,7 +93,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
           {/* Navigation */}
           <section className='col-span-2 xs:col-span-1 lg:ml-6 xl:ml-0'>
             <h6 className='uppercase'>Navigation</h6>
-            <div className='flex flex-col text-sm mt-7 text-gray-dark gap-y-3 font-graphikMedium'>
+            <div className='flex flex-col text-sm mt-7 text-gray-dark space-y-3 font-graphikMedium'>
               {menuData.length > 0 &&
                 menuData.map((menu) => (
                   <div key={menu.id}>
@@ -111,9 +111,9 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
           {/* Contact */}
           <section className='ml-0 xs:-ml-6 md:ml-0 col-span-2 xs:col-span-1'>
             <h6 className='uppercase'>Contact</h6>
-            <div className='flex flex-col text-sm mt-7 text-gray-dark gap-y-3 font-graphikMedium'>
+            <div className='flex flex-col text-sm mt-7 text-gray-dark space-y-3 font-graphikMedium'>
               <a
-                className='flex items-start gap-4 sm:gap-2 md:gap-6'
+                className='flex items-start space-x-4 sm:space-x-2 md:space-x-6'
                 href='https://www.google.com'
                 target='_blank'
                 rel='noreferrer'
@@ -128,7 +128,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                 <span>{generalInfoData._generalData.address}</span>
               </a>
               <a
-                className='flex items-start sm:gap-2 gap-4 md:gap-6'
+                className='flex items-start space-x-4 sm:space-x-2 md:space-x-6'
                 href='tel:610-379-3993'
               >
                 <img
@@ -149,7 +149,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
                 </div>
               </a>
               <a
-                className='flex items-start sm:gap-2 gap-4 md:gap-6'
+                className='flex items-start space-x-4 sm:space-x-2 md:space-x-6'
                 href={`mailto:${generalInfoData._generalData.email}`}
               >
                 <img
@@ -175,7 +175,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
             {services.length > 0 &&
               services.map((service, i) => (
                 <div
-                  className='flex flex-col mb-3 text-gray gap-y-3 font-graphikMedium'
+                  className='flex flex-col mb-3 text-gray space-y-3 font-graphikMedium'
                   key={i}
                 >
                   <Link
@@ -190,7 +190,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
         </div>
 
         <div className='flex flex-col justify-between pt-5 pb-10 lg:flex-row'>
-          <div className='flex flex-col items-center justify-center text-xs uppercase gap-2 text-gray lg:justify-start md:flex-row'>
+          <div className='flex flex-col items-center justify-center text-xs uppercase space-y-2 md:space-y-0 md:space-x-2 text-gray lg:justify-start md:flex-row'>
             <span
               role='img'
               aria-label='copyright'
@@ -199,7 +199,7 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
               &copy; {new Date().getFullYear()}{' '}
               {generalInfoData._generalData.websiteName}
             </span>
-            <div className='flex items-center gap-2 font-graphikMedium'>
+            <div className='flex items-center space-x-2 font-graphikMedium'>
               <span>All rights reserved.</span>
               <div className='h-2.5 bg-gray' style={{ width: '1px' }}></div>
               <Link to='/privacy-policy' className='hover:text-black-light'>

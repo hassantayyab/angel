@@ -14,7 +14,7 @@ const ServiceAreasAccordianSection = ({ data }) => {
                 {places.length > 0 &&
                   places.map(({ name }, j) => (
                     <li
-                      className='flex justify-center px-4 py-3 cursor-pointer gap-3 default-transition'
+                      className='flex justify-center px-4 py-3 cursor-pointer space-x-3 default-transition'
                       key={j}
                     >
                       <img

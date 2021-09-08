@@ -44,7 +44,7 @@ const Services = ({ data }) => {
           <Separator />
         </div>
 
-        <div className='flex flex-col items-center justify-between mt-12 md:mt-16 md:flex-row gap-12'>
+        <div className='flex flex-col items-center justify-between mt-12 md:mt-16 md:flex-row space-y-12 md:space-x-12 md:space-y-12'>
           {data.servicesOffered.length > 0 &&
             data.servicesOffered.map((service, i) => (
               <ServiceCard data={service} key={i} />
