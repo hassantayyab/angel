@@ -12,12 +12,14 @@ import Button from '../utils/button'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
 import scrollTo from 'gatsby-plugin-smoothscroll'
+import { useReasonCategoriesQuery } from '../../hooks/reasonCategoriesQuery'
 
 const WhyChoose = ({ contactFormRef }) => {
   const data = useWhyChooseQuery()
   const reasonsData = useReasonsQuery()
+  const reasonCategories = useReasonCategoriesQuery()
 
-  const [selectedReason, setSelectedReason] = useState(0)
+  const [selectedReason, setSelectedReason] = useState(reasonCategories[0])
 
   // Animations
   const [ref, inView] = useInView(View)
@@ -74,23 +76,23 @@ const WhyChoose = ({ contactFormRef }) => {
 
         {/* TODO: Extract this into a separate component */}
         <div className='flex items-center justify-center mt-6 gap-8'>
-          {Object.keys(reasonsData).length > 0 &&
-            Object.keys(reasonsData).map((reason, i) => (
+          {reasonCategories.length > 0 &&
+            reasonCategories.map((category, i) => (
               <div
                 key={i}
                 className='flex items-center justify-center text-base gap-8 text-gray'
               >
                 <button
                   type='button'
-                  onClick={() => setSelectedReason(i)}
+                  onClick={() => setSelectedReason(category)}
                   className={`uppercase hover:text-orange default-transition h-7 ${
-                    i === selectedReason &&
+                    category.slug === selectedReason.slug &&
                     'text-orange border-b-2 border-orange'
                   }`}
                 >
-                  {reason}
+                  {category.name}
                 </button>
-                {i < Object.keys(reasonsData).length - 1 && (
+                {i < reasonCategories.length - 1 && (
                   <div className='h-4 w-0.5 bg-gray' />
                 )}
               </div>
@@ -99,11 +101,16 @@ const WhyChoose = ({ contactFormRef }) => {
 
         {/* Step Cards */}
         <Container>
-          <div className='flex flex-wrap items-center justify-center mt-16 gap-5'>
-            {reasonsData[Object.keys(reasonsData)[selectedReason]].length > 0 &&
-              reasonsData[Object.keys(reasonsData)[selectedReason]].map(
-                (reason, i) => <BenefitCard data={reason} key={i} />
-              )}
+          <div className='flex flex-wrap items-center justify-center mx-auto mt-16 xl:flex-nowrap gap-5'>
+            {reasonsData
+              .filter((r) =>
+                r.reasonCategories.nodes
+                  .map(({ slug }) => slug)
+                  .includes(selectedReason.slug)
+              )
+              .map((reason, i) => (
+                <BenefitCard data={reason} key={i} />
+              ))}
           </div>
         </Container>
 

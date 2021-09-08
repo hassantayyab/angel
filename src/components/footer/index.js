@@ -5,9 +5,38 @@ import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { hoverScale, scale } from '../../animations'
 import { motion } from 'framer-motion'
+import { useServiceCategoriesQuery } from '../../hooks/serviceCategoriesQuery'
+
+function formatDataIntoServices(data, categories) {
+  let services = []
+
+  for (const key in data) {
+    services = [
+      ...services,
+      {
+        title: categories.filter((e) => e.slug === key)[0].name,
+        link: '/' + key,
+      },
+    ]
+
+    for (const k in data[key]) {
+      const elem = data[key][k]
+      services = [
+        ...services,
+        {
+          title: elem.title,
+          link: '/' + key + elem._servicePost.servicePageLink.url,
+        },
+      ]
+    }
+  }
+
+  return services
+}
 
 const Footer = ({ generalInfoData, servicesData, menuData }) => {
-  const services = Object.values(servicesData).flat()
+  const serviceCategories = useServiceCategoriesQuery()
+  const services = formatDataIntoServices(servicesData, serviceCategories)
 
   return (
     <footer className='pt-16 mt-4'>
@@ -142,16 +171,16 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
 
           {/* Services */}
           <section className='text-sm col-span-2 xs:col-span-1'>
-            <h6 className='uppercase'>Services</h6>
+            <h6 className='uppercase mb-7'>Services</h6>
             {services.length > 0 &&
               services.map((service, i) => (
                 <div
-                  className='flex flex-col mt-7 text-gray gap-y-3 font-graphikMedium'
+                  className='flex flex-col mb-3 text-gray gap-y-3 font-graphikMedium'
                   key={i}
                 >
                   <Link
                     className='hover:text-yellow default-transition'
-                    to={service?._servicePost.servicePageLink.url}
+                    to={service.link}
                   >
                     {service.title}
                   </Link>
