@@ -101,18 +101,16 @@ const WhyChoose = ({ contactFormRef }) => {
 
         {/* Step Cards */}
         <Container>
-          <div className='flex pb-4 overflow-x-scroll'>
-            <div className='flex items-center justify-center mx-auto mt-16 gap-5'>
-              {reasonsData
-                .filter((r) =>
-                  r.reasonCategories.nodes
-                    .map(({ slug }) => slug)
-                    .includes(selectedReason.slug)
-                )
-                .map((reason, i) => (
-                  <BenefitCard data={reason} key={i} />
-                ))}
-            </div>
+          <div className='flex flex-wrap items-center justify-center mx-auto mt-16 xl:flex-nowrap gap-5'>
+            {reasonsData
+              .filter((r) =>
+                r.reasonCategories.nodes
+                  .map(({ slug }) => slug)
+                  .includes(selectedReason.slug)
+              )
+              .map((reason, i) => (
+                <BenefitCard data={reason} key={i} />
+              ))}
           </div>
         </Container>
 
