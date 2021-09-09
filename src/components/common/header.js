@@ -39,8 +39,8 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
         scroll ? 'bg-blue top-0 lg:shadow-lg' : 'top-14 sm:top-10 md:top-14'
       }`}
     >
-      <header className='relative z-50 flex flex-col items-center justify-between pl-0 md:flex-row gap-x-4 gap-y-3 md:gap-y-5 xl:container md:pl-6 lg:pl-0 xl:mx-auto xl:px-6'>
-        <div className='relative z-50 flex items-center justify-center order-2 w-full px-5 py-0 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 gap-4 lg:py-0 md:py-4'>
+      <header className='relative z-50 flex flex-col items-center justify-between pl-0 mb-3 md:flex-row md:mb-5 xl:container md:pl-6 lg:pl-0 xl:mx-auto xl:px-6'>
+        <div className='relative z-50 flex items-center justify-center order-2 w-full px-5 py-0 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 md:space-x-2 lg:py-0 md:py-4'>
           {openContactMenu && (
             <motion.button
               className={`fixed z-50 text-5xl md:text-6xl text-white left-6 md:right-6 md:left-auto md:top-28 ${
@@ -77,7 +77,7 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
             </button>
           </div>
         </div>
-        <div className='order-1 w-full md:order-2 md:w-auto'>
+        <div className='order-1 w-full mb-3 md:mb-0 md:order-2 md:w-auto'>
           <TopContactBar
             data={headerData.contactNumbers}
             contactFormRef={contactFormRef}

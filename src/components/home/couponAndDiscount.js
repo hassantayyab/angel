@@ -43,7 +43,7 @@ const CouponAndDiscount = ({ data, logo }) => {
         />
       </div>
       <Container>
-        <div className='relative flex flex-col justify-center pt-12 lg:pt-40 lg:flex-row gap-12'>
+        <div className='relative flex flex-col justify-center pt-12 lg:pt-40 lg:flex-row space-y-12 lg:space-y-0'>
           <div className='text-center text-black uppercase lg:w-2/5 lg:text-left'>
             <Subtitle
               className='mb-2 tracking-wider font-graphikMedium'
@@ -59,7 +59,7 @@ const CouponAndDiscount = ({ data, logo }) => {
           </div>
           <div className='flex-1'>
             <div className='flex pb-6 overflow-x-scroll overflow-y-hidden'>
-              <div className='flex justify-center lg:justify-start gap-6'>
+              <div className='flex justify-center lg:justify-start space-x-6'>
                 {coupons.length > 0 &&
                   coupons.map((coupon, i) => (
                     <Coupon key={i} data={coupon} logo={logo} />

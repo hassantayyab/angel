@@ -70,7 +70,7 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
                     setOpenItem={() => handleOpenItem(i)}
                   >
                     <div
-                      className={`flex items-center gap-4 ${
+                      className={`flex items-center space-x-4 ${
                         openItems.includes(i) ? 'text-black' : 'text-white'
                       }`}
                     >
@@ -116,7 +116,7 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
         </div>
       </div>
 
-      <div className='flex flex-col items-center justify-center px-12 my-12 gap-4'>
+      <div className='flex flex-col items-center justify-center px-12 my-12 space-y-4'>
         <button
           type='button'
           className='w-full px-0 btn btn-primary'

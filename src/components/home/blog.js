@@ -66,7 +66,7 @@ const Blog = ({ data }) => {
           </div>
         </div>
         <div className='flex justify-start px-1 pb-6 mt-12 overflow-x-scroll overflow-y-hidden lg:justify-center'>
-          <div className='flex gap-5 lg:gap-8'>
+          <div className='flex space-x-5 lg:space-x-8'>
             {blogs.length > 0 &&
               blogs.map((blog, i) => <BlogCard key={i} data={blog} />)}
           </div>

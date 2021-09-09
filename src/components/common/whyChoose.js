@@ -75,12 +75,12 @@ const WhyChoose = ({ contactFormRef }) => {
         </div>
 
         {/* TODO: Extract this into a separate component */}
-        <div className='flex items-center justify-center mt-6 gap-8'>
+        <div className='flex items-center justify-center mt-6 space-x-8'>
           {reasonCategories.length > 0 &&
             reasonCategories.map((category, i) => (
               <div
                 key={i}
-                className='flex items-center justify-center text-base gap-8 text-gray'
+                className='flex items-center justify-center text-base space-x-8 text-gray'
               >
                 <button
                   type='button'
@@ -101,7 +101,7 @@ const WhyChoose = ({ contactFormRef }) => {
 
         {/* Step Cards */}
         <Container>
-          <div className='flex flex-wrap items-center justify-center mx-auto mt-16 xl:flex-nowrap gap-5'>
+          <div className='flex flex-wrap items-center justify-center mx-auto mt-8 xl:flex-nowrap space-x-5 space-y-20'>
             {reasonsData
               .filter((r) =>
                 r.reasonCategories.nodes
@@ -114,7 +114,7 @@ const WhyChoose = ({ contactFormRef }) => {
           </div>
         </Container>
 
-        <div className='flex flex-col items-center justify-center mt-12 gap-6 sm:flex-row'>
+        <div className='flex flex-col items-center justify-center mt-12 space-y-6 sm:space-x-6 sm:space-y-0 sm:flex-row'>
           <Button
             type='button'
             className='w-4/5 sm:w-72 btn btn-primary'

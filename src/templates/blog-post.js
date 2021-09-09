@@ -51,7 +51,7 @@ const BlogPost = ({ data }) => {
         <div className='mx-auto my-12 mw-blog-page'>
           <Button
             type='button'
-            className='flex items-center btn btn-primary gap-4'
+            className='flex items-center btn btn-primary space-x-4'
             onClick={() => navigate('/blog/')}
           >
             <img src={ImgBackArrow} alt='go back' className='w-8' />

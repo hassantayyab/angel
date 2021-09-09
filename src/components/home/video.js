@@ -56,7 +56,7 @@ const Video = ({ data, contactFormRef }) => {
         <div className='flex flex-col justify-center lg:h-full'>
           <Container>
             <div className='h-full py-12 text-white lg:py-20'>
-              <div className='flex flex-col items-center justify-between lg:flex-row gap-10 sm:gap-8 lg:gap-20'>
+              <div className='flex flex-col items-center justify-between lg:flex-row space-y-10 sm:space-y-8 lg:space-x-20'>
                 <div className='flex-1 text-center uppercase lg:text-left'>
                   <Title animate={animateTitle}>{data.videoHeading}</Title>
                   {/* Separator */}
@@ -69,7 +69,7 @@ const Video = ({ data, contactFormRef }) => {
                   >
                     {data.videoSubheading}
                   </Subtitle>
-                  <div className='flex flex-wrap justify-center gap-4 lg:justify-start'>
+                  <div className='flex flex-col items-center justify-center sm:flex-row flex-nowrap space-y-4 sm:space-x-4 sm:space-y-0 lg:justify-start'>
                     <Button
                       type='button'
                       className='px-0 w-60 md:w-64 btn btn-primary'
@@ -87,7 +87,7 @@ const Video = ({ data, contactFormRef }) => {
                   </div>
                 </div>
 
-                <div className='w-full lg:flex-1 md:w-3/5'>
+                <div className='w-full lg:flex-1 xs:w-4/5 md:w-3/5'>
                   <div className='relative -mb-28'>
                     <div className='relative'>
                       <div className='relative w-full lg:w-11/12'>
