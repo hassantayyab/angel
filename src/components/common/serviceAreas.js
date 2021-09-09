@@ -56,7 +56,7 @@ const ServiceAreas = () => {
           </div>
 
           {/* TODO: Extract this into a separate component */}
-          <ul className='hidden mt-10 md:flex gap-4'>
+          <ul className='hidden mt-10 md:flex space-x-4'>
             {data.areaLocations.length > 0 &&
               data.areaLocations.map(({ title }, i) => {
                 let template = []
@@ -84,7 +84,7 @@ const ServiceAreas = () => {
                 return (
                   <li
                     key={i}
-                    className='flex text-base uppercase gap-4 text-gray-dark font-graphikMedium'
+                    className='flex text-base uppercase space-x-4 text-gray-dark font-graphikMedium'
                     onClick={() => setselected(i)}
                   >
                     {template}
@@ -98,7 +98,7 @@ const ServiceAreas = () => {
               {data.areaLocations[selected].places.length > 0 &&
                 data.areaLocations[selected].places.map(({ name }, i) => (
                   <li
-                    className='flex p-4 cursor-pointer gap-3 hover:bg-yellow default-transition'
+                    className='flex p-4 cursor-pointer space-x-3 hover:bg-yellow default-transition'
                     key={i}
                   >
                     <img

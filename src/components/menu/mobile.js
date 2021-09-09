@@ -40,7 +40,7 @@ const MobileMenu = ({ list = [] }) => (
                       <div className='px-2 pb-2'>
                         {subItem.childItems.nodes.map((itm) => (
                           <div
-                            className='flex items-center px-6 py-2 text-sm text-white cursor-pointer text-opacity-80 font-graphik gap-3 default-transition'
+                            className='flex items-center px-6 py-2 text-sm text-white cursor-pointer text-opacity-80 font-graphik space-x-3 default-transition'
                             key={itm.id}
                           >
                             <span className='bg-white rounded-full bg-opacity-80 w-1.5 h-1.5'></span>

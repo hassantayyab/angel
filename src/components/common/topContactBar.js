@@ -75,7 +75,7 @@ const TopContactBar = ({
         <div className='w-full overflow-hidden lg:hidden'>
           <div className='flex -mx-2.5 transform -skew-x-12'>
             <button
-              className='flex items-center py-3 pl-6 pr-12 text-white btn bg-blue gap-4 hover:bg-blue-light'
+              className='flex items-center py-3 pl-6 pr-12 text-white btn bg-blue space-x-4 hover:bg-blue-light'
               onClick={handleClick}
             >
               <img

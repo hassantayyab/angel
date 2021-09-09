@@ -64,13 +64,7 @@ const Contact = () => {
         image={getImage(data.formBgImage?.localFile)}
         alt={data.formBgImage?.altText}
       />
-      <div
-        className='absolute inset-0'
-        // style={{
-        //   background:
-        //     'linear-gradient(90deg, rgba(0,74,143,1) 0%, rgba(0,74,143,0.9) 0%)',
-        // }}
-      ></div>
+      <div className='absolute inset-0'></div>
       <Container>
         <section className='relative md:grid grid-cols-2 gap-12'>
           <div className='relative mb-0 xl:-mb-40 mw-sub-page'>
@@ -125,12 +119,12 @@ const Contact = () => {
                   data-netlify='true'
                   data-netlify-honeypot='bot-field'
                 >
-                  <div className='flex flex-col items-end justify-between mb-6 gap-8 sm:flex-row'>
+                  <div className='flex flex-col items-end justify-between mb-6 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
                     <FormInput name='fullName' label='Full Name' />
                     <FormInput type='email' name='email' label='Email' />
                   </div>
 
-                  <div className='flex flex-col items-end justify-between my-8 gap-8 sm:flex-row'>
+                  <div className='flex flex-col items-end justify-between my-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
                     <FormInput name='phone' label='Phone' />
                     <FormInput name='city' label='City' component='select'>
                       <option disabled value=''>
@@ -142,7 +136,7 @@ const Contact = () => {
                     </FormInput>
                   </div>
 
-                  <div className='flex flex-col items-end justify-between mb-8 gap-8 sm:flex-row'>
+                  <div className='flex flex-col items-end justify-between mb-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
                     <FormInput name='state' label='State' />
                     <FormInput
                       name='services'
