@@ -63,6 +63,7 @@ const IndexPage = ({ data }) => {
           <ContactCard
             isCarAtBottom='true'
             carImage={generalData._generalData.carImage}
+            logo={generalData._generalData.logo}
           />
         </Container>
       </div>
