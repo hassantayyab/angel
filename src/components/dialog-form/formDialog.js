@@ -10,16 +10,31 @@ import CustomerForm from './customerForm'
 import ScheduleForm from './scheduleForm'
 import Confirmation from './confirmation'
 
+const initialState = {
+  issue: '',
+  details: {
+    issue: 'No Cooling',
+    message: '',
+    personalInfo: {
+      firstName: '',
+      lastName: '',
+      mobile: '',
+      email: '',
+    },
+    addressInfo: {
+      street: '',
+      suite: '',
+      city: '',
+      state: '',
+      zipCode: '',
+    },
+  },
+}
+
 const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
   const [mainStep, setMainStep] = useState(1)
-  const [step, setStep] = useState(1)
-  const [value, setValue] = useState({
-    issue: '',
-    details: {
-      issue: 'No Cooling',
-      message: '',
-    },
-  })
+  const [subStep, setSubStep] = useState(1)
+  const [value, setValue] = useState({ ...initialState })
 
   const formTitles = [
     'How Can We Help?',
@@ -33,27 +48,56 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
   ]
 
   const checkIfDisabled = useCallback(() => {
-    console.log('value', value)
-    if (step === 1 && value.issue === '') {
+    // console.log('value', value)
+    if (subStep === 1 && value.issue === '') {
       return true
     }
 
-    if (step === 2 && value.details?.issue === '') {
+    if (subStep === 2 && value.details?.issue === '') {
       return true
     }
 
-    if (step === 3 && value.details?.message === '') {
+    if (subStep === 3 && value.details?.message === '') {
       return true
     }
 
     return false
-  }, [value, step])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, subStep])
+
+  const changeNextSteps = () => {
+    if (subStep === 8) {
+      setIsOpen(false)
+    } else {
+      if (subStep !== 2 && subStep !== 3 && subStep !== 4) {
+        setMainStep(mainStep + 1)
+      }
+
+      setSubStep(subStep + 1)
+    }
+  }
+
+  const changePrevSteps = () => {
+    if (subStep !== 3 && subStep !== 4 && subStep !== 5) {
+      setMainStep(mainStep - 1)
+    }
+
+    setSubStep(subStep - 1)
+  }
 
   useEffect(() => {
     if (value) {
       checkIfDisabled()
     }
   }, [value, checkIfDisabled])
+
+  useEffect(() => {
+    if (isOpen) {
+      setSubStep(1)
+      setMainStep(1)
+      setValue({ ...initialState })
+    }
+  }, [isOpen])
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -101,7 +145,7 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
                 </div>
               )}
               <Dialog.Title className='p-6 text-xl text-center text-white sm:text-3xl bg-blue rounded-t-2xl'>
-                {formTitles[step - 1]}
+                {formTitles[mainStep - 1]}
                 <div className='mt-3 text-sm font-graphik'>
                   <FormStepper
                     steps={[
@@ -111,13 +155,13 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
                       'schedule',
                       'confirm',
                     ]}
-                    stepNumber={step}
+                    stepNumber={mainStep}
                   />
                 </div>
-                {step > 1 && (
+                {subStep > 1 && (
                   <button
                     className='fixed z-50 flex flex-col items-center justify-center w-8 h-8 text-2xl bg-white rounded-full text-blue-dark font-graphik left-4 top-4 hover:bg-yellow default-transition'
-                    onClick={() => setStep(step - 1)}
+                    onClick={changePrevSteps}
                   >
                     <img
                       src={ImgArrow}
@@ -143,12 +187,12 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
                 </div>
 
                 <div
-                  className={`relative z-10 px-8 overflow-auto sm:px-20 md:px-32 lg:px-44 h-72  ${
-                    step > 1 && 'bg-white bg-opacity-90'
-                  }`}
+                  className={`relative z-10 px-6 overflow-auto sm:px-20 md:px-32 lg:px-44 ${
+                    subStep > 1 && 'bg-white bg-opacity-90'
+                  } ${subStep === 4 || subStep === 5 ? 'h-96' : 'h-72'}`}
                 >
                   {/* Step 1 */}
-                  {step === 1 && (
+                  {subStep === 1 && (
                     <IssueForm
                       value={value.issue}
                       setValue={(v) => setValue({ ...value, issue: v })}
@@ -156,37 +200,39 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
                   )}
 
                   {/* Step 2 */}
-                  {(step === 2 || step === 3) && (
+                  {(subStep === 2 ||
+                    subStep === 3 ||
+                    subStep === 4 ||
+                    subStep === 5) && (
                     <Detailsform
-                      step={step}
+                      step={subStep}
                       value={value.details}
                       setValue={(v) => setValue({ ...value, details: v })}
+                      nextStep={changeNextSteps}
                     />
                   )}
 
                   {/* Step 3 */}
-                  {step === 4 && <CustomerForm />}
+                  {subStep === 6 && <CustomerForm />}
 
                   {/* Step 4 */}
-                  {step === 5 && <ScheduleForm />}
+                  {subStep === 7 && <ScheduleForm />}
 
                   {/* Step 5 */}
-                  {step === 6 && <Confirmation />}
+                  {subStep === 8 && <Confirmation />}
                 </div>
 
-                <div className='inline-block mx-auto mt-6 text-center'>
-                  <StepperFormButton
-                    step={step}
-                    isDisabled={checkIfDisabled()}
-                    nextStep={
-                      step === 5
-                        ? () => setIsOpen(false)
-                        : () => setStep(step + 1)
-                    }
-                  >
-                    {step > 4 ? 'Close' : 'Continue'}
-                  </StepperFormButton>
-                </div>
+                {subStep !== 4 && subStep !== 5 && (
+                  <div className='inline-block mx-auto mt-6 text-center'>
+                    <StepperFormButton
+                      step={mainStep}
+                      isDisabled={checkIfDisabled()}
+                      nextStep={changeNextSteps}
+                    >
+                      {mainStep > 4 ? 'Close' : 'Continue'}
+                    </StepperFormButton>
+                  </div>
+                )}
               </div>
             </div>
           </Transition.Child>

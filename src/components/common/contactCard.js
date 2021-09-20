@@ -71,7 +71,7 @@ const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
             className='absolute inset-0 object-cover w-full h-full'
           />
           <div className='absolute inset-0'></div>
-          <div className='relative px-8 py-8 xl:px-12'>
+          <div className='relative px-8 py-8 text-center xl:px-12'>
             <Button
               type='button'
               className='px-0 w-60 md:w-64 btn btn-secondary'
@@ -96,7 +96,7 @@ const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
                 'linear-gradient(90deg, rgba(9,89,164,0.6) 0%, rgba(9,89,164,0.6) 0%)',
             }}
           ></div>
-          <div className='relative px-8 py-8 xl:px-12'>
+          <div className='relative px-8 py-8 text-center xl:px-12'>
             <Button
               type='button'
               className='px-0 w-60 md:w-64 btn btn-primary'
