@@ -39,7 +39,7 @@ const Detailsform = ({ step, value, setValue, nextStep }) => {
         Select Your Issue
       </h3>
       {Object.keys(options).map((title, i) => (
-        <Accordian key={i}>
+        <Accordian key={i} defaultOpen={i === 0}>
           <h5 className='text-blue font-graphik'>{title}</h5>
 
           {/* Hidden Content */}
@@ -50,7 +50,7 @@ const Detailsform = ({ step, value, setValue, nextStep }) => {
                 key={i}
                 selected={option === value?.issue}
                 value={value}
-                setValue={setValue}
+                setValue={() => setValue({ ...value, issue: option })}
               >
                 {option}
               </Chip>
@@ -96,7 +96,7 @@ const Detailsform = ({ step, value, setValue, nextStep }) => {
             <FormInput name='lastName' label='LAST NAME' />
             <FormInput name='mobile' label='MOBILE NUMBER' />
             <FormInput type='email' name='email' label='EMAIL' />
-            <small className='flex text-left text-black text-opacity-40'>
+            <small className='flex text-left text-black text-opacity-50'>
               We’ll send you a text message and email to confirm your
               appointment and to provide you with other updates, if need be.
             </small>

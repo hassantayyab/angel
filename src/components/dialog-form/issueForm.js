@@ -1,6 +1,5 @@
 import React from 'react'
 import SelectionInput from './selectionInput'
-import StepperFormButton from './stepperFormButton'
 
 const IssueForm = ({ value, setValue }) => (
   <SelectionInput

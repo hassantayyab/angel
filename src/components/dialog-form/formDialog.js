@@ -10,6 +10,12 @@ import CustomerForm from './customerForm'
 import ScheduleForm from './scheduleForm'
 import Confirmation from './confirmation'
 
+const timeSlots = [
+  '9:00am-1:00pm',
+  '1:00pm-5:00pm',
+  '5:00pm-8:00pm',
+  'First Available',
+]
 const initialState = {
   issue: '',
   details: {
@@ -28,6 +34,10 @@ const initialState = {
       state: '',
       zipCode: '',
     },
+  },
+  schedule: {
+    date: new Date(),
+    timeSlot: timeSlots[0],
   },
 }
 
@@ -177,7 +187,11 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
                   <div>&times;</div>
                 </button>
               </Dialog.Title>
-              <div className='relative flex flex-col justify-between py-10'>
+              <div
+                className={`relative flex flex-col justify-between ${
+                  subStep === 7 ? 'pb-10' : 'py-10'
+                }`}
+              >
                 {/* Car image */}
                 <div className='z-0 w-80 absolute-center'>
                   <GatsbyImage
@@ -187,9 +201,13 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
                 </div>
 
                 <div
-                  className={`relative z-10 px-6 overflow-auto sm:px-20 md:px-32 lg:px-44 ${
+                  className={`relative z-10 overflow-auto ${
                     subStep > 1 && 'bg-white bg-opacity-90'
-                  } ${subStep === 4 || subStep === 5 ? 'h-96' : 'h-72'}`}
+                  } ${subStep !== 7 && 'px-6 sm:px-20 md:px-32 lg:px-44'} ${
+                    subStep === 4 || subStep === 5 || subStep === 7
+                      ? 'h-96'
+                      : 'h-72'
+                  }`}
                 >
                   {/* Step 1 */}
                   {subStep === 1 && (
@@ -216,7 +234,13 @@ const FormDialog = ({ isOpen, setIsOpen, logo, carImage }) => {
                   {subStep === 6 && <CustomerForm />}
 
                   {/* Step 4 */}
-                  {subStep === 7 && <ScheduleForm />}
+                  {subStep === 7 && (
+                    <ScheduleForm
+                      timeSlots={timeSlots}
+                      value={value.schedule}
+                      setValue={(v) => setValue({ ...value, schedule: v })}
+                    />
+                  )}
 
                   {/* Step 5 */}
                   {subStep === 8 && <Confirmation />}
