@@ -10,14 +10,12 @@ const FormInput = ({
   component,
   ...rest
 }) => (
-  <div className={`relative w-full ${className}`}>
+  <div className={`relative w-full mb-6 ${className}`}>
     <Field
       type={type}
       name={name}
       placeholder={label}
-      className={`inline-block w-full text-black placeholder-white bg-transparent border-2 outline-none text-sm ${
-        component === 'select' ? 'py-4' : 'py-3.5'
-      }`}
+      className={`inline-block w-full text-black placeholder-black bg-transparent border-b outline-none text-sm py-2`}
       style={{ borderColor: '#336695' }}
       aria-labelledby={`${name}-label`}
       component={component}
