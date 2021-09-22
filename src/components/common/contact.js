@@ -27,7 +27,7 @@ const Contact = () => {
 
   const handleSubmit = async (values, setSubmitting, resetForm) => {
     try {
-      await submitForm(values, setSubmitting, resetForm)
+      await submitForm(values)
       navigate('/your-form-was-submitted/')
       resetForm()
     } catch (error) {

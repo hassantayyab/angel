@@ -14,7 +14,7 @@ const ScheduleForm = ({ timeSlots, value, setValue }) => {
           />
         </div>
         <div className='py-3'>
-          <h6 className='text-black uppercase mb-2.5 text-opacity-80 font-graphikMedium'>
+          <h6 className='mb-2 text-black uppercase text-opacity-80 font-graphikMedium'>
             Select A Time Slot
           </h6>
           {timeSlots.slice(0, -1).length > 0 &&
@@ -22,7 +22,7 @@ const ScheduleForm = ({ timeSlots, value, setValue }) => {
               <Chip
                 key={i}
                 selected={value.timeSlot === time}
-                className='mx-4'
+                className='mx-4 my-2'
                 value={value}
                 setValue={() => setValue({ ...value, timeSlot: time })}
               >

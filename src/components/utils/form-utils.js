@@ -56,7 +56,7 @@ export const AddressInfoSchema = Yup.object().shape({
   zipCode: Yup.string().max(7, 'Too Long!').required('Required!'),
 })
 
-export function submitForm(values, setSubmitting, resetForm) {
+export function submitForm(values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',

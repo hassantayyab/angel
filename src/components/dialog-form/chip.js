@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Chip = ({ selected, value, setValue, children, className }) => {
+const Chip = ({ selected, setValue, children, className }) => {
   return (
     <div
       className={`inline-block hover:bg-orange hover:text-white cursor-pointer default-transition py-2 px-5 border border-orange rounded-full text-xs font-graphikMedium ${className}  ${

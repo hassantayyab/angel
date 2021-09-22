@@ -1,14 +1,10 @@
 import React from 'react'
+import { estimates, services } from './constants'
 import SelectionInput from './selectionInput'
 
-const IssueForm = ({ value, setValue }) => (
+const IssueForm = ({ type, value, setValue }) => (
   <SelectionInput
-    options={[
-      'Schedule Service',
-      'Emergency Repair',
-      'Schedule Maintenance',
-      'Get a Free Quote',
-    ]}
+    options={type === 'service' ? services : estimates}
     value={value}
     setValue={setValue}
   />

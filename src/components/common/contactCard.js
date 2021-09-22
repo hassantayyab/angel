@@ -11,6 +11,12 @@ import FormDialog from '../dialog-form/formDialog'
 
 const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
   let [isOpen, setIsOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openDialog = (v) => {
+    setType(v)
+    setIsOpen(true)
+  }
 
   const [ref, inView] = useInView(View)
   const animateCar = useAnimation()
@@ -74,8 +80,8 @@ const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
           <div className='relative px-8 py-8 text-center xl:px-12'>
             <Button
               type='button'
-              className='px-0 w-60 md:w-64 btn btn-secondary'
-              onClick={() => setIsOpen(true)}
+              className='px-0 w-60 md:w-64 btn btn-primary'
+              onClick={() => openDialog('service')}
             >
               Same Day Services
             </Button>
@@ -99,8 +105,8 @@ const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
           <div className='relative px-8 py-8 text-center xl:px-12'>
             <Button
               type='button'
-              className='px-0 w-60 md:w-64 btn btn-primary'
-              onClick={() => setIsOpen(true)}
+              className='px-0 w-60 md:w-64 btn btn-secondary'
+              onClick={() => openDialog('estimate')}
             >
               Virtual Estimates
             </Button>
@@ -110,6 +116,7 @@ const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
 
       {/* VideoDialog */}
       <FormDialog
+        type={type}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         logo={logo}
