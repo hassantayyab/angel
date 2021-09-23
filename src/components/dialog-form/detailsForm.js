@@ -174,12 +174,12 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
           !fileSizeError && 'opacity-0'
         }`}
       >
-        One or more file size is greater than 1 MegaBytes.
+        One or more file size is greater than 1 Megabytes.
       </div>
       <small className='flex mt-3 text-left text-black text-opacity-50'>
         You can upload files of maximum
         <span className='font-graphikMedium text-black-light ml-0.5'>
-          1 MegaBytes
+          1 Megabytes
         </span>
         .
       </small>
