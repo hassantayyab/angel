@@ -74,3 +74,22 @@ export function submitForm(values) {
       })
   })
 }
+
+export function submitRequestForm(values) {
+  return new Promise((resolve, reject) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'multipart/form-data' },
+      body: encode({
+        'form-name': 'request service',
+        ...values,
+      }),
+    })
+      .then(() => {
+        resolve(true)
+      })
+      .catch(() => {
+        reject(false)
+      })
+  })
+}

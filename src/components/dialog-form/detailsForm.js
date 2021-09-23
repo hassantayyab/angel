@@ -1,6 +1,6 @@
 import { ImgArrowForm } from '../../images'
 import { Form, Formik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import { AddressInfoSchema, PersonalInfoSchema } from '../utils/form-utils'
 import Accordian from './accordian'
 import Chip from './chip'
@@ -10,6 +10,9 @@ import { hoverScale, scale } from '../../animations'
 import { estimateOptions, services, serviceOptions } from './constants'
 
 const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
+  const [files, setFiles] = useState(['', '', '', ''])
+  const [fileSizeError, setFileSizeError] = useState(false)
+
   const options = type === 'service' ? serviceOptions : estimateOptions
 
   const handlePersonalInfoSubmit = (values) => {
@@ -20,6 +23,40 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   const handleAddressInfoSubmit = (values) => {
     setValue({ ...value, addressInfo: values })
     nextStep()
+  }
+
+  const handleFiles = (event) => {
+    const newFiles = Array.from(event.target.files).slice(0, 4)
+
+    if (newFiles.find((f) => f.size > 1020000)) {
+      setFileSizeError(true)
+      return
+    }
+    setFileSizeError(false)
+
+    if (files[0] === '') {
+      setFiles([...newFiles, ...files.slice(newFiles.length, 4)])
+    } else {
+      const filesWithContent = files.filter((f) => f)
+
+      if (filesWithContent.length >= 4) {
+        return
+      }
+
+      const totalFilesWithContent = [
+        ...filesWithContent,
+        ...newFiles.slice(0, 4 - filesWithContent.length),
+      ]
+
+      setFiles([
+        ...totalFilesWithContent,
+        ...files.slice(totalFilesWithContent.length, 4),
+      ])
+    }
+  }
+
+  const removeFile = (index) => {
+    setFiles(files.map((f, i) => (i === index ? '' : f)))
   }
 
   const issueSelection = () => (
@@ -73,6 +110,80 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
         will then join you at the requested time on the platform of your choice.
       </p>
     </>
+  )
+
+  const uploadImages = () => (
+    <div className='mx-6 lg:mx-40 sm:mx-20'>
+      <h3 className='mb-6 text-left text-black text-opacity-70 font-graphikMedium'>
+        Click below to upload photos
+      </h3>
+      <div className='h-96 sm:h-72'>
+        <div className='relative h-full py-4 mt-4 border border-dashed rounded border-blue-dark'>
+          <input
+            className='absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer'
+            type='file'
+            accept='image/*'
+            multiple
+            onChange={(e) => handleFiles(e)}
+          />
+          <div className='absolute inset-0 w-full h-full px-6'>
+            <div className='items-center justify-center h-full py-4 grid grid-rows-2 grid-cols-2 gap-4'>
+              {files.map((file, i) => {
+                let elem = []
+                if (file) {
+                  elem = (
+                    <img
+                      className='object-cover w-full'
+                      src={URL.createObjectURL(file)}
+                      alt='file'
+                    />
+                  )
+                } else {
+                  elem = (
+                    <span className='flex flex-col justify-center text-5xl'>
+                      +
+                    </span>
+                  )
+                }
+
+                return (
+                  <div
+                    key={i}
+                    className={`relative flex items-stretch h-full w-full sm:h-30 sm:w-30 justify-center border rounded text-blue border-blue-dark ${
+                      file ? 'p-0' : 'p-8'
+                    } ${i === 0 || i === 2 ? 'ml-auto' : 'mr-auto'}`}
+                  >
+                    {file && (
+                      <button
+                        className='absolute z-20 flex flex-col items-center justify-center w-6 h-6 text-xl bg-white border rounded-full text-orange-dark font-graphik shadow-sm border-orange-dark -right-2 -top-2 hover:bg-yellow default-transition'
+                        onClick={() => removeFile(i)}
+                      >
+                        <div>&times;</div>
+                      </button>
+                    )}
+                    {elem}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`mt-2 text-sm text-left text-orange-dark h-4 ${
+          !fileSizeError && 'opacity-0'
+        }`}
+      >
+        One or more file size is greater than 1 MegaBytes.
+      </div>
+      <small className='flex mt-3 text-left text-black text-opacity-50'>
+        You can upload files of maximum
+        <span className='font-graphikMedium text-black-light ml-0.5'>
+          1 MegaBytes
+        </span>
+        .
+      </small>
+    </div>
   )
 
   const message = () => (
@@ -216,9 +327,10 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     <div className='h-full pb-4'>
       {step === 2 && type === 'service' && issueSelection()}
       {step === 2 && type === 'estimate' && platformSelection()}
-      {step === 3 && message()}
-      {step === 4 && personalInfo()}
-      {step === 5 && addressInfo()}
+      {step === 3 && uploadImages()}
+      {step === 4 && message()}
+      {step === 5 && personalInfo()}
+      {step === 6 && addressInfo()}
     </div>
   )
 }

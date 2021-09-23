@@ -15,7 +15,7 @@ import {
   serviceOptions,
   timeSlots,
 } from './constants'
-import { submitForm } from '../utils/form-utils'
+import { submitRequestForm } from '../utils/form-utils'
 
 const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   const [mainStep, setMainStep] = useState(1)
@@ -30,6 +30,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   const formTitles = [
     type === 'service' ? 'How Can We Help?' : 'Virtual Estimates',
     'Tell Us More',
+    "What's It Look Like?",
     'Want To Describe It?',
     'How Can We Reach You?',
     'Where Do You Need Us?',
@@ -47,7 +48,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
       return true
     }
 
-    if (subStep === 3 && value.details?.message === '') {
+    if (subStep === 4 && value.details?.message === '') {
       return true
     }
 
@@ -55,10 +56,10 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   }, [subStep, value])
 
   const changeNextSteps = async () => {
-    if (subStep === 8) {
+    if (subStep === 9) {
       setIsOpen(false)
     } else {
-      if (subStep !== 2 && subStep !== 3 && subStep !== 4) {
+      if (subStep !== 2 && subStep !== 3 && subStep !== 4 && subStep !== 5) {
         setMainStep(mainStep + 1)
       }
 
@@ -85,9 +86,9 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
         }
       }
 
-      if (subStep === 7) {
+      if (subStep === 8) {
         try {
-          await submitForm({ requestType: type, ...value })
+          await submitRequestForm({ requestType: type, ...value })
           setSubStep(subStep + 1)
         } catch (error) {
           setSubmit({
@@ -103,7 +104,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   }
 
   const changePrevSteps = () => {
-    if (subStep !== 3 && subStep !== 4 && subStep !== 5) {
+    if (subStep !== 3 && subStep !== 4 && subStep !== 5 && subStep !== 6) {
       setMainStep(mainStep - 1)
     }
 
@@ -162,10 +163,11 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
           >
             <div
               className={`inline-block w-full h-full text-center align-middle bg-white shadow-2xl sm:w-5/6 md:w-5/6 lg:w-3/4 xl:w-1/2 transition-all transform rounded-2xl ${
-                (subStep === 4 ||
+                (subStep === 3 ||
                   subStep === 5 ||
-                  subStep === 7 ||
-                  subStep === 8) &&
+                  subStep === 6 ||
+                  subStep === 8 ||
+                  subStep === 9) &&
                 'mt-14'
               }`}
             >
@@ -191,7 +193,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                     stepNumber={mainStep}
                   />
                 </div>
-                {subStep > 1 && (
+                {mainStep > 1 && (
                   <button
                     className='fixed z-50 flex flex-col items-center justify-center w-8 h-8 text-2xl bg-white rounded-full text-blue-dark font-graphik left-4 top-4 hover:bg-yellow default-transition'
                     onClick={changePrevSteps}
@@ -212,7 +214,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
               </Dialog.Title>
               <div
                 className={`relative flex flex-col justify-between ${
-                  subStep === 7 || subStep === 8 ? 'pb-10' : 'py-10'
+                  subStep === 8 || subStep === 9 ? 'pb-10' : 'py-10'
                 }`}
               >
                 {/* Car image */}
@@ -229,20 +231,22 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                   className={`relative z-10 overflow-auto ${
                     subStep > 1 && 'bg-white bg-opacity-90'
                   } ${
-                    subStep !== 7 &&
+                    subStep !== 3 &&
                     subStep !== 8 &&
+                    subStep !== 9 &&
                     'px-6 sm:px-20 md:px-32 lg:px-40'
                   } ${
-                    subStep === 4 ||
+                    subStep === 3 ||
                     subStep === 5 ||
-                    subStep === 7 ||
-                    subStep === 8
+                    subStep === 6 ||
+                    subStep === 8 ||
+                    subStep === 9
                       ? 'h-full'
                       : 'h-72'
                   }`}
                 >
                   {/* Main Step 1 */}
-                  {subStep === 1 && (
+                  {mainStep === 1 && (
                     <IssueForm
                       type={type}
                       value={value.request}
@@ -251,10 +255,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                   )}
 
                   {/* Main Step 2 */}
-                  {(subStep === 2 ||
-                    subStep === 3 ||
-                    subStep === 4 ||
-                    subStep === 5) && (
+                  {mainStep === 2 && (
                     <Detailsform
                       type={type}
                       step={subStep}
@@ -266,7 +267,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                   )}
 
                   {/* Main Step 3 */}
-                  {subStep === 6 && (
+                  {mainStep === 3 && (
                     <CustomerForm
                       value={value.isNewCustomer}
                       setValue={(v) => setValue({ ...value, isNewCustomer: v })}
@@ -274,7 +275,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                   )}
 
                   {/* Main Step 4 */}
-                  {subStep === 7 && (
+                  {mainStep === 4 && (
                     <ScheduleForm
                       timeSlots={timeSlots}
                       value={value.schedule}
@@ -283,12 +284,12 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                   )}
 
                   {/* Main Step 5 */}
-                  {subStep === 8 && (
+                  {mainStep === 5 && (
                     <Confirmation carImage={carImage} value={value} />
                   )}
                 </div>
 
-                {subStep !== 4 && subStep !== 5 && (
+                {subStep !== 5 && subStep !== 6 && (
                   <div className='inline-block mx-auto mt-6 text-center'>
                     <StepperFormButton
                       step={mainStep}
