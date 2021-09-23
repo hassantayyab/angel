@@ -75,13 +75,32 @@ export function submitForm(values) {
   })
 }
 
-export function submitRequestForm(values) {
+export function submitServiceForm(values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'multipart/form-data' },
       body: encode({
-        'form-name': 'request service',
+        'form-name': 'same day services',
+        ...values,
+      }),
+    })
+      .then(() => {
+        resolve(true)
+      })
+      .catch(() => {
+        reject(false)
+      })
+  })
+}
+
+export function submitEstimateForm(values) {
+  return new Promise((resolve, reject) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'multipart/form-data' },
+      body: encode({
+        'form-name': 'virtual estimates',
         ...values,
       }),
     })

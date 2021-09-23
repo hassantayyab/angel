@@ -15,7 +15,7 @@ import {
   serviceOptions,
   timeSlots,
 } from './constants'
-import { submitRequestForm } from '../utils/form-utils'
+import { submitServiceForm, submitEstimateForm } from '../utils/form-utils'
 
 const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   const [mainStep, setMainStep] = useState(1)
@@ -88,7 +88,9 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
 
       if (subStep === 8) {
         try {
-          await submitRequestForm({ requestType: type, ...value })
+          ;(await type) === 'service'
+            ? submitServiceForm({ requestType: type, ...value })
+            : submitEstimateForm({ requestType: type, ...value })
           setSubStep(subStep + 1)
         } catch (error) {
           setSubmit({
