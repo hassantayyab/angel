@@ -166,7 +166,31 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
       <div className='hidden'>
         <form
           method='post'
-          name={type === 'service' ? 'same day services' : 'virtual estimates'}
+          name='same day services'
+          data-netlify='true'
+          data-netlify-honeypot='bot-field'
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <input defaultValue={value.request} name='request' />
+          <input defaultValue={value.details.issue} name='issue' />
+          <input defaultValue={value.details.message} name='message' />
+          <input
+            defaultValue={value.details.personalInfo}
+            name='personalInfo'
+          />
+          <input defaultValue={value.details.addressInfo} name='addressInfo' />
+          <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
+          <input defaultValue={value.schedule.date} name='date' />
+          <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
+          <button type='submit' ref={formButton} />
+        </form>
+      </div>
+
+      {/* Input Fields */}
+      <div className='hidden'>
+        <form
+          method='post'
+          name='virtual estimates'
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={(e) => handleSubmit(e)}
