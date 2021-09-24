@@ -1,15 +1,22 @@
-import { ImgAddress, ImgCalendar, ImgContactCardBg } from '../../images'
+import { ImgContactCardBg } from '../../images'
 import React, { useEffect, useState } from 'react'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Frame from '../utils/frame'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useInView } from 'react-intersection-observer'
 import { carTransition, slideLeft, View } from '../../animations'
 import { motion, useAnimation } from 'framer-motion'
+import Button from '../utils/button'
+import FormDialog from '../dialog-form/formDialog'
 
-const ContactCard = ({ carImage, isCarAtBottom = false }) => {
-  const [startDate, setStartDate] = useState(new Date())
+const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
+  let [isOpen, setIsOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openDialog = (v) => {
+    setType(v)
+    setIsOpen(true)
+  }
 
   const [ref, inView] = useInView(View)
   const animateCar = useAnimation()
@@ -70,27 +77,14 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
             className='absolute inset-0 object-cover w-full h-full'
           />
           <div className='absolute inset-0'></div>
-          <div className='relative px-8 py-8 xl:px-12'>
-            <h5 className='mb-3 tracking-wider text-white uppercase font-graphikBold'>
+          <div className='relative px-8 py-8 text-center xl:px-12'>
+            <Button
+              type='button'
+              className='px-0 w-60 md:w-64 btn btn-primary'
+              onClick={() => openDialog('service')}
+            >
               Same Day Services
-            </h5>
-            <div className='relative flex w-full'>
-              <img
-                width='auto'
-                height='auto'
-                src={ImgAddress}
-                alt='input address'
-                className='left-4 absolute-y-center'
-              />
-              <select className='flex-1 inline-block pl-10 rounded-none outline-none placeholder-gray'>
-                <option defaultValue value='' disabled>
-                  Service area
-                </option>
-                <option>Air Conditioning</option>
-                <option>Heating</option>
-              </select>
-              <button className='px-5 py-3 text-white btn bg-orange'>Go</button>
-            </div>
+            </Button>
           </div>
         </div>
         <div className={`relative lg:pb-0 ${isCarAtBottom && 'pb-8'}`}>
@@ -108,30 +102,26 @@ const ContactCard = ({ carImage, isCarAtBottom = false }) => {
                 'linear-gradient(90deg, rgba(9,89,164,0.6) 0%, rgba(9,89,164,0.6) 0%)',
             }}
           ></div>
-          <div className='relative px-8 py-8 xl:px-12'>
-            <h5 className='mb-3 tracking-wider text-white uppercase font-graphikBold'>
+          <div className='relative px-8 py-8 text-center xl:px-12'>
+            <Button
+              type='button'
+              className='px-0 w-60 md:w-64 btn btn-secondary'
+              onClick={() => openDialog('estimate')}
+            >
               Virtual Estimates
-            </h5>
-            <div className='relative flex w-full'>
-              <div className='z-10 left-4 absolute-y-center'>
-                <img
-                  width='auto'
-                  height='auto'
-                  src={ImgCalendar}
-                  alt='input address'
-                />
-              </div>
-              <div className='w-full'>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                />
-              </div>
-              <button className='px-5 py-3 btn bg-yellow'>Go</button>
-            </div>
+            </Button>
           </div>
         </div>
       </div>
+
+      {/* VideoDialog */}
+      <FormDialog
+        type={type}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        logo={logo}
+        carImage={carImage}
+      />
     </section>
   )
 }

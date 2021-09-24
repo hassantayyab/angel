@@ -4,6 +4,8 @@ import ImgMenu from './menu.svg'
 import ImgPlay from './play.svg'
 import ImgDropdown from './dropdown.svg'
 import ImgArrow from './arrow.svg'
+import ImgDownArrow from './down-arrow.svg'
+import ImgArrowForm from './arrow-form.svg'
 import ImgBackArrow from './back-arrow.svg'
 import ImgBadgeCount from './badge-count.svg'
 import ImgPaginationArrow from './pagination-arrow.svg'
@@ -20,7 +22,6 @@ import ImgAddress from './address.svg'
 import ImgAddressBlue from './address-blue.svg'
 import ImgAddressYellow from './address-yellow.svg'
 import ImgEmail from './email.svg'
-import ImgCalendar from './calendar.svg'
 import ImgContactCardBg from './contact-card-bg.svg'
 
 export {
@@ -30,6 +31,8 @@ export {
   ImgPlay,
   ImgDropdown,
   ImgArrow,
+  ImgDownArrow,
+  ImgArrowForm,
   ImgBackArrow,
   ImgBadgeCount,
   ImgPaginationArrow,
@@ -46,6 +49,5 @@ export {
   ImgAddressBlue,
   ImgAddressYellow,
   ImgEmail,
-  ImgCalendar,
   ImgContactCardBg,
 }
