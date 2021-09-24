@@ -12,7 +12,7 @@ const MobileMenu = ({ list = [] }) => (
     initial='hidden'
     animate='visible'
   >
-    <div className='h-full pb-24 mt-4 overflow-scroll'>
+    <div className='h-full pb-24 mt-4 overflow-auto'>
       <Container>
         {list.length > 0 &&
           list.map((item) => (

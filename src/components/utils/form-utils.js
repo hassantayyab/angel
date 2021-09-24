@@ -56,13 +56,53 @@ export const AddressInfoSchema = Yup.object().shape({
   zipCode: Yup.string().max(7, 'Too Long!').required('Required!'),
 })
 
-export function submitForm(values, setSubmitting, resetForm) {
+export function submitForm(values) {
+  console.log('values', values)
+
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': 'contact',
+        ...values,
+      }),
+    })
+      .then(() => {
+        resolve(true)
+      })
+      .catch(() => {
+        reject(false)
+      })
+  })
+}
+
+export function submitServiceForm(event, values) {
+  return new Promise((resolve, reject) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'same day services',
+        ...values,
+      }),
+    })
+      .then(() => {
+        resolve(true)
+      })
+      .catch(() => {
+        reject(false)
+      })
+  })
+}
+
+export function submitEstimateForm(event, values) {
+  return new Promise((resolve, reject) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'virtual estimates',
         ...values,
       }),
     })
