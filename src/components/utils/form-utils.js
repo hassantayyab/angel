@@ -57,6 +57,8 @@ export const AddressInfoSchema = Yup.object().shape({
 })
 
 export function submitForm(values) {
+  console.log('values', values)
+
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
@@ -75,11 +77,11 @@ export function submitForm(values) {
   })
 }
 
-export function submitServiceForm(values) {
+export function submitServiceForm(event, values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': 'same day services',
         ...values,
@@ -94,11 +96,11 @@ export function submitServiceForm(values) {
   })
 }
 
-export function submitEstimateForm(values) {
+export function submitEstimateForm(event, values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': 'virtual estimates',
         ...values,

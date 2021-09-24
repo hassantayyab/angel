@@ -22,13 +22,26 @@ const Contact = () => {
   const [submit, setSubmit] = useState({
     sent: false,
     error: false,
-    message: '',
+    message: 'Hello!',
   })
 
   const handleSubmit = async (values, setSubmitting, resetForm) => {
     try {
       await submitForm(values)
-      navigate('/your-form-was-submitted/')
+      // navigate('/your-form-was-submitted/')
+      setSubmit({
+        sent: true,
+        error: false,
+        message: 'Submitted Successfully!',
+      })
+
+      setTimeout(() => {
+        setSubmit({
+          sent: false,
+          error: false,
+          message: '',
+        })
+      }, 5000)
       resetForm()
     } catch (error) {
       setSubmit({
@@ -79,7 +92,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className='flex flex-col justify-center mt-12 md:mt-0'>
+          <div className='flex flex-col justify-center mt-12 md:mt-2'>
             {/* Header */}
             <div className='mb-4 text-center text-white uppercase md:text-left'>
               <Subtitle
@@ -176,6 +189,13 @@ const Contact = () => {
                 </Form>
               )}
             </Formik>
+            <small
+              className={`h-4 mt-2 text-sm text-green-500 font-graphikMedium ${
+                !submit.sent && 'opacity-0'
+              }`}
+            >
+              {submit.message}
+            </small>
           </div>
         </section>
       </Container>
