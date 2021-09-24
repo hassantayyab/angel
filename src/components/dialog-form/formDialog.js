@@ -175,6 +175,10 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
         >
           <input defaultValue={value.request} name='request' />
           <input defaultValue={value.details.issue} name='issue' />
+          <input type='file' name='img1' />
+          <input type='file' name='img2' />
+          <input type='file' name='img3' />
+          <input type='file' name='img4' />
           <input defaultValue={value.details.message} name='message' />
           <input defaultValue={value.details.personalInfo.email} name='email' />
           <input
@@ -218,6 +222,10 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
         >
           <input defaultValue={value.request} name='request' />
           <input defaultValue={value.details.issue} name='issue' />
+          <input type='file' name='img1' />
+          <input type='file' name='img2' />
+          <input type='file' name='img3' />
+          <input type='file' name='img4' />
           <input defaultValue={value.details.message} name='message' />
           <input defaultValue={value.details.personalInfo.email} name='email' />
           <input
@@ -317,7 +325,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                       stepNumber={mainStep}
                     />
                   </div>
-                  {mainStep > 1 && (
+                  {mainStep > 1 && mainStep < 5 && (
                     <button
                       className='fixed z-50 flex flex-col items-center justify-center w-8 h-8 text-2xl bg-white rounded-full text-blue-dark font-graphik left-4 top-4 hover:bg-yellow default-transition'
                       onClick={changePrevSteps}

@@ -21,7 +21,16 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   }
 
   const handleAddressInfoSubmit = (values) => {
-    setValue({ ...value, addressInfo: values })
+    setValue({
+      ...value,
+      addressInfo: values,
+      images: {
+        img1: files[0],
+        img2: files[1],
+        img3: files[2],
+        img4: files[3],
+      },
+    })
     nextStep()
   }
 
@@ -35,7 +44,10 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     setFileSizeError(false)
 
     if (files[0] === '') {
-      setFiles([...newFiles, ...files.slice(newFiles.length, 4)])
+      setFiles((oldFiles) => [
+        ...newFiles,
+        ...oldFiles.slice(newFiles.length, 4),
+      ])
     } else {
       const filesWithContent = files.filter((f) => f)
 
@@ -48,15 +60,15 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
         ...newFiles.slice(0, 4 - filesWithContent.length),
       ]
 
-      setFiles([
+      setFiles((oldFiles) => [
         ...totalFilesWithContent,
-        ...files.slice(totalFilesWithContent.length, 4),
+        ...oldFiles.slice(totalFilesWithContent.length, 4),
       ])
     }
   }
 
   const removeFile = (index) => {
-    setFiles(files.map((f, i) => (i === index ? '' : f)))
+    setFiles((oldfiles) => [...oldfiles.map((f, i) => (i === index ? '' : f))])
   }
 
   const issueSelection = () => (
@@ -177,7 +189,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
         One or more file size is greater than 1 Megabytes.
       </div>
       <small className='flex mt-3 text-left text-black text-opacity-50'>
-        You can upload files of maximum
+        You can upload each file of maximum
         <span className='font-graphikMedium text-black-light ml-0.5'>
           1 Megabytes
         </span>
