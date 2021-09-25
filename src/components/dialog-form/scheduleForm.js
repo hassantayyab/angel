@@ -9,7 +9,7 @@ const ScheduleForm = ({ timeSlots, value, setValue }) => {
         <div className='pb-4 bg-blue w-100'>
           <DatePicker
             selected={value.date}
-            onChange={(date) => setValue({ ...value, date: date.toString() })}
+            onChange={(date) => setValue({ ...value, date })}
             inline
           />
         </div>
