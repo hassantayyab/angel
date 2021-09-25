@@ -10,7 +10,6 @@ import { hoverScale, scale } from '../../animations'
 import { estimateOptions, services, serviceOptions } from './constants'
 
 const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
-  const [files, setFiles] = useState(['', '', '', ''])
   const [fileSizeError, setFileSizeError] = useState(false)
 
   const options = type === 'service' ? serviceOptions : estimateOptions
@@ -21,7 +20,10 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   }
 
   const handleAddressInfoSubmit = (values) => {
-    setValue({ ...value, addressInfo: values })
+    setValue({
+      ...value,
+      addressInfo: values,
+    })
     nextStep()
   }
 
@@ -34,10 +36,13 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     }
     setFileSizeError(false)
 
-    if (files[0] === '') {
-      setFiles([...newFiles, ...files.slice(newFiles.length, 4)])
+    if (value.images[0] === '') {
+      setValue({
+        ...value,
+        images: [...newFiles, ...value.images.slice(newFiles.length, 4)],
+      })
     } else {
-      const filesWithContent = files.filter((f) => f)
+      const filesWithContent = value.images.filter((f) => f)
 
       if (filesWithContent.length >= 4) {
         return
@@ -48,15 +53,21 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
         ...newFiles.slice(0, 4 - filesWithContent.length),
       ]
 
-      setFiles([
-        ...totalFilesWithContent,
-        ...files.slice(totalFilesWithContent.length, 4),
-      ])
+      setValue({
+        ...value,
+        images: [
+          ...totalFilesWithContent,
+          ...value.images.slice(totalFilesWithContent.length, 4),
+        ],
+      })
     }
   }
 
   const removeFile = (index) => {
-    setFiles(files.map((f, i) => (i === index ? '' : f)))
+    setValue({
+      ...value,
+      images: [...value.images.map((f, i) => (i === index ? '' : f))],
+    })
   }
 
   const issueSelection = () => (
@@ -128,7 +139,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
           />
           <div className='absolute inset-0 w-full h-full px-6'>
             <div className='items-center justify-center h-full py-4 grid grid-rows-2 grid-cols-2 gap-4'>
-              {files.map((file, i) => {
+              {value.images.map((file, i) => {
                 let elem = []
                 if (file) {
                   elem = (
@@ -177,7 +188,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
         One or more file size is greater than 1 Megabytes.
       </div>
       <small className='flex mt-3 text-left text-black text-opacity-50'>
-        You can upload files of maximum
+        You can upload each file of maximum
         <span className='font-graphikMedium text-black-light ml-0.5'>
           1 Megabytes
         </span>
