@@ -16,8 +16,12 @@ import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
 import Button from '../utils/button'
+import { useHeaderMenuQuery } from '../../hooks/useMenuQuery'
 
 const Contact = () => {
+  const services = useHeaderMenuQuery()
+    .filter((m) => m.label === 'Services')[0]
+    .childItems.nodes.map((i) => i.label)
   const data = useContactQuery()
   const [submit, setSubmit] = useState({
     sent: false,
@@ -28,7 +32,6 @@ const Contact = () => {
   const handleSubmit = async (values, setSubmitting, resetForm) => {
     try {
       await submitForm(values)
-      // navigate('/your-form-was-submitted/')
       setSubmit({
         sent: true,
         error: false,
@@ -152,8 +155,12 @@ const Contact = () => {
                       <option disabled value=''>
                         Services
                       </option>
-                      <option value='heating'>Heating</option>
-                      <option value='installation'>Installation</option>
+                      {services.length > 0 &&
+                        services.map((s, i) => (
+                          <option value={s} key={i}>
+                            {s}
+                          </option>
+                        ))}
                     </FormInput>
                   </div>
 
