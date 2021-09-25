@@ -7,6 +7,17 @@ function encode(data) {
     .join('&')
 }
 
+// Encode for netlify file upload form
+function encodeForm(data) {
+  const formData = new FormData()
+
+  for (const key of Object.keys(data)) {
+    formData.append(key, data[key])
+  }
+
+  return formData
+}
+
 // Schema for validation
 const phoneRegExp =
   /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
@@ -82,13 +93,13 @@ export function submitForm(values) {
 
 export function submitServiceForm(event, values) {
   return new Promise((resolve, reject) => {
-    let myForm = document.getElementById('service')
-    let formData = new FormData(myForm)
-
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'multipart/form-data' },
-      body: new URLSearchParams(formData).toString(),
+      body: encodeForm({
+        'form-name': 'same day services',
+        ...values,
+      }),
     })
       .then(() => {
         resolve(true)
@@ -101,13 +112,13 @@ export function submitServiceForm(event, values) {
 
 export function submitEstimateForm(event, values) {
   return new Promise((resolve, reject) => {
-    let myForm = document.getElementById('estimate')
-    let formData = new FormData(myForm)
-
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString(),
+      body: encodeForm({
+        'form-name': 'virtual estimates',
+        ...values,
+      }),
     })
       .then(() => {
         resolve(true)
