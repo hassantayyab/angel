@@ -205,19 +205,19 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     <>
       <Formik
         initialValues={value.personalInfo}
+        validateOnMount={true}
         validationSchema={PersonalInfoSchema}
         onSubmit={(values, { setSubmitting }) => {
           handlePersonalInfoSubmit(values, setSubmitting)
         }}
       >
-        {(f) => (
+        {({ isValid }) => (
           <Form
             method='post'
             name='contact'
             data-netlify='true'
             data-netlify-honeypot='bot-field'
           >
-            <div>{JSON.stringify(f.null, 2)}</div>
             <FormInput name='firstName' label='FIRST NAME' />
             <FormInput name='lastName' label='LAST NAME' />
             <FormInput name='mobile' label='MOBILE NUMBER' />
@@ -231,25 +231,23 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
               type='submit'
               className='flex items-center mx-auto mt-6 default-transition'
               variants={scale}
-              whileHover={f.isValid && f.dirty && hoverScale}
-              disabled={!(f.isValid && f.dirty)}
+              whileHover={isValid && hoverScale}
+              disabled={!isValid}
             >
               <div
                 className={`flex flex-col items-center justify-center px-0 mr-3 border border-black rounded-full w-14 h-14 ${
-                  !(f.isValid && f.dirty) && 'border-opacity-40'
+                  !isValid && 'border-opacity-40'
                 }`}
               >
                 <img
                   src={ImgArrowForm}
-                  className={`w-7 filter ${
-                    !(f.isValid && f.dirty) && 'contrast-0'
-                  }`}
+                  className={`w-7 filter ${!isValid && 'contrast-0'}`}
                   alt='arrow'
                 />
               </div>
               <div
                 className={`text-sm text-black uppercase font-graphikMedium ${
-                  !(f.isValid && f.dirty) && 'text-opacity-40'
+                  !isValid && 'text-opacity-40'
                 }`}
               >
                 Continue
@@ -265,12 +263,13 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     <>
       <Formik
         initialValues={value.addressInfo}
+        validateOnMount={true}
         validationSchema={AddressInfoSchema}
         onSubmit={(values, { setSubmitting }) => {
           handleAddressInfoSubmit(values, setSubmitting)
         }}
       >
-        {({ dirty, isValid }) => (
+        {({ isValid }) => (
           <Form
             className='flex flex-col h-full'
             method='post'
@@ -293,25 +292,23 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
               type='submit'
               className='flex items-center mx-auto mt-6 default-transition'
               variants={scale}
-              whileHover={isValid && dirty && hoverScale}
-              disabled={!(isValid && dirty)}
+              whileHover={isValid && hoverScale}
+              disabled={!isValid}
             >
               <div
                 className={`flex flex-col items-center justify-center px-0 mr-3 border border-black rounded-full w-14 h-14 ${
-                  !(isValid && dirty) && 'border-opacity-40'
+                  !isValid && 'border-opacity-40'
                 }`}
               >
                 <img
                   src={ImgArrowForm}
-                  className={`w-7 filter ${
-                    !(isValid && dirty) && 'contrast-0'
-                  }`}
+                  className={`w-7 filter ${!isValid && 'contrast-0'}`}
                   alt='arrow'
                 />
               </div>
               <div
                 className={`text-sm text-black uppercase font-graphikMedium ${
-                  !(isValid && dirty) && 'text-opacity-40'
+                  !isValid && 'text-opacity-40'
                 }`}
               >
                 Continue

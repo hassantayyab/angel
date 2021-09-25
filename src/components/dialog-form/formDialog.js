@@ -23,6 +23,17 @@ import {
 } from './constants'
 import { submitServiceForm, submitEstimateForm } from '../utils/form-utils'
 
+function formatValues(obj, res = {}) {
+  for (let key in obj) {
+    if (typeof obj[key] == 'object') {
+      formatValues(obj[key], res)
+    } else {
+      res[key] = obj[key]
+    }
+  }
+  return res
+}
+
 const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   const formButton = useRef(null)
 
@@ -96,12 +107,6 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
 
       if (subStep === 8) {
         try {
-          // if (type === 'service') {
-          //   await submitServiceForm({ requestType: type, ...value })
-          // } else {
-          //   await submitEstimateForm({ requestType: type, ...value })
-          // }
-          // setSubStep(subStep + 1)
           formButton.current.click()
         } catch (error) {
           setSubmit({
@@ -117,18 +122,15 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   }
 
   const handleSubmit = async (e) => {
-    console.log('values', e)
     e.preventDefault()
 
     try {
       if (type === 'service') {
-        await submitServiceForm(e, value)
+        await submitServiceForm(e, formatValues(value))
       } else {
-        await submitEstimateForm(e, value)
+        await submitEstimateForm(e, formatValues(value))
       }
-      console.log('submitted')
       setSubStep(subStep + 1)
-      // resetForm()
     } catch (error) {
       setSubmit({
         sent: true,
@@ -174,11 +176,30 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
           <input defaultValue={value.request} name='request' />
           <input defaultValue={value.details.issue} name='issue' />
           <input defaultValue={value.details.message} name='message' />
+          <input defaultValue={value.details.personalInfo.email} name='email' />
           <input
-            defaultValue={value.details.personalInfo}
-            name='personalInfo'
+            defaultValue={value.details.personalInfo.firstName}
+            name='firstName'
           />
-          <input defaultValue={value.details.addressInfo} name='addressInfo' />
+          <input
+            defaultValue={value.details.personalInfo.lastName}
+            name='lastName'
+          />
+          <input
+            defaultValue={value.details.personalInfo.mobile}
+            name='mobile'
+          />
+          <input defaultValue={value.details.addressInfo.city} name='city' />
+          <input defaultValue={value.details.addressInfo.state} name='state' />
+          <input
+            defaultValue={value.details.addressInfo.street}
+            name='street'
+          />
+          <input defaultValue={value.details.addressInfo.suite} name='suite' />
+          <input
+            defaultValue={value.details.addressInfo.zipCode}
+            name='zipCode'
+          />
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
           <input defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
@@ -190,7 +211,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
       <div className='hidden'>
         <form
           method='post'
-          name='virtual estimates'
+          name='same day services'
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={(e) => handleSubmit(e)}
@@ -198,11 +219,30 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
           <input defaultValue={value.request} name='request' />
           <input defaultValue={value.details.issue} name='issue' />
           <input defaultValue={value.details.message} name='message' />
+          <input defaultValue={value.details.personalInfo.email} name='email' />
           <input
-            defaultValue={value.details.personalInfo}
-            name='personalInfo'
+            defaultValue={value.details.personalInfo.firstName}
+            name='firstName'
           />
-          <input defaultValue={value.details.addressInfo} name='addressInfo' />
+          <input
+            defaultValue={value.details.personalInfo.lastName}
+            name='lastName'
+          />
+          <input
+            defaultValue={value.details.personalInfo.mobile}
+            name='mobile'
+          />
+          <input defaultValue={value.details.addressInfo.city} name='city' />
+          <input defaultValue={value.details.addressInfo.state} name='state' />
+          <input
+            defaultValue={value.details.addressInfo.street}
+            name='street'
+          />
+          <input defaultValue={value.details.addressInfo.suite} name='suite' />
+          <input
+            defaultValue={value.details.addressInfo.zipCode}
+            name='zipCode'
+          />
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
           <input defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
