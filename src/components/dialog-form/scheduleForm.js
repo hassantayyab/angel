@@ -2,7 +2,7 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import Chip from './chip'
 
-const ScheduleForm = ({ timeSlots, value, setValue }) => {
+const ScheduleForm = ({ contactNumber, timeSlots, value, setValue }) => {
   return (
     <div id='scheduleForm'>
       <div className='flex flex-col justify-between'>
@@ -49,7 +49,7 @@ const ScheduleForm = ({ timeSlots, value, setValue }) => {
             office at
             <br />{' '}
             <span className='text-black font-graphikMedium text-opacity-80'>
-              (215) 555-1212
+              {contactNumber}
             </span>
           </small>
         </div>

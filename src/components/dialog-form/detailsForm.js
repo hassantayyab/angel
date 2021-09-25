@@ -126,7 +126,10 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   const uploadImages = () => (
     <div className='mx-6 lg:mx-40 sm:mx-20'>
       <h3 className='mb-6 text-left text-black text-opacity-70 font-graphikMedium'>
-        Click below to upload photos
+        Click below to upload photos{' '}
+        <span className='text-xl italic font-graphik text-opacity-40'>
+          (optional)
+        </span>
       </h3>
       <div className='h-96 sm:h-72'>
         <div className='relative h-full py-4 mt-4 border border-dashed rounded border-blue-dark'>
@@ -185,14 +188,23 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
           !fileSizeError && 'opacity-0'
         }`}
       >
-        One or more file size is greater than 1 Megabytes.
+        One or more file size is greater than 1000 kb.
       </div>
-      <small className='flex mt-3 text-left text-black text-opacity-50'>
-        You can upload each file of maximum
-        <span className='font-graphikMedium text-black-light ml-0.5'>
-          1 Megabytes
-        </span>
-        .
+      <small className='mt-3 text-left text-black text-opacity-50'>
+        <div>
+          You can upload each file of maximum
+          <span className='font-graphikMedium text-black-light ml-0.5'>
+            1000 kb
+          </span>
+          .
+        </div>
+        <div>
+          You can also choose to{' '}
+          <span className='font-graphikMedium text-black-light ml-0.5'>
+            skip
+          </span>{' '}
+          this step.
+        </div>
       </small>
     </div>
   )

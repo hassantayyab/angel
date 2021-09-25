@@ -61,6 +61,7 @@ const IndexPage = ({ data }) => {
       <div className='-mt-24'>
         <Container>
           <ContactCard
+            contactNumber={generalData._generalData.contactNumbers[0].number}
             isCarAtBottom='true'
             carImage={generalData._generalData.carImage}
             logo={generalData._generalData.logo}
