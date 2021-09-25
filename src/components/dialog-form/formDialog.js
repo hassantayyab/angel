@@ -186,13 +186,30 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={(e) => handleSubmit(e)}
+          id='service'
         >
           <input defaultValue={value.request} name='request' />
           <input defaultValue={value.details.issue} name='issue' />
-          <input type='file' name='img1' />
-          <input type='file' name='img2' />
-          <input type='file' name='img3' />
-          <input type='file' name='img4' />
+          <input
+            type='file'
+            defaultValue={value.details.images[0]}
+            name='img1'
+          />
+          <input
+            type='file'
+            defaultValue={value.details.images[1]}
+            name='img2'
+          />
+          <input
+            type='file'
+            defaultValue={value.details.images[2]}
+            name='img3'
+          />
+          <input
+            type='file'
+            defaultValue={value.details.images[3]}
+            name='img4'
+          />
           <input defaultValue={value.details.message} name='message' />
           <input defaultValue={value.details.personalInfo.email} name='email' />
           <input
@@ -233,13 +250,30 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={(e) => handleSubmit(e)}
+          id='estimate'
         >
           <input defaultValue={value.request} name='request' />
           <input defaultValue={value.details.issue} name='issue' />
-          <input type='file' name='img1' />
-          <input type='file' name='img2' />
-          <input type='file' name='img3' />
-          <input type='file' name='img4' />
+          <input
+            type='file'
+            defaultValue={value.details.images[0]}
+            name='img1'
+          />
+          <input
+            type='file'
+            defaultValue={value.details.images[1]}
+            name='img2'
+          />
+          <input
+            type='file'
+            defaultValue={value.details.images[2]}
+            name='img3'
+          />
+          <input
+            type='file'
+            defaultValue={value.details.images[3]}
+            name='img4'
+          />
           <input defaultValue={value.details.message} name='message' />
           <input defaultValue={value.details.personalInfo.email} name='email' />
           <input
