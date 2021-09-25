@@ -35,7 +35,7 @@ const Confirmation = ({ carImage, value }) => {
             <br />
             {value.schedule.timeSlot}
             <br />
-            {`${value.details.addressInfo.street}, ${value.details.addressInfo.suite}, ${value.details.addressInfo.zipCode}, ${value.details.addressInfo.state}, ${value.details.addressInfo.city}`}
+            {`${value.details.addressInfo.street}, ${value.details.addressInfo.suite}, ${value.details.addressInfo.zipCode}, ${value.details.addressInfo.city}, ${value.details.addressInfo.state}`}
             <br />
             {value.details.personalInfo.mobile}
             <br />

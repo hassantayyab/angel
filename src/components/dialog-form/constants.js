@@ -79,7 +79,7 @@ export const initialState = {
   },
   isNewCustomer: true,
   schedule: {
-    date: new Date(),
+    date: new Date().toString(),
     timeSlot: timeSlots[0],
   },
 }
