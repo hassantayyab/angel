@@ -201,7 +201,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
             name='zipCode'
           />
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
-          <input defaultValue={value.schedule.date} name='date' />
+          <input date='date' defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
           <button type='submit' ref={formButton} />
         </form>
@@ -244,7 +244,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
             name='zipCode'
           />
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
-          <input defaultValue={value.schedule.date} name='date' />
+          <input date='date' defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
           <button type='submit' ref={formButton} />
         </form>
