@@ -28,7 +28,12 @@ function formatValues(obj, res = {}) {
     if (typeof obj[key] == 'object' && key !== 'date') {
       formatValues(obj[key], res)
     } else if (key === 'date') {
-      formatValues(obj[key], res.toString())
+      res[key] = obj[key].toLocaleDateString(undefined, {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
     } else {
       res[key] = obj[key]
     }
@@ -126,6 +131,8 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    console.log('value', formatValues(value))
+
     try {
       if (type === 'service') {
         await submitServiceForm(e, formatValues(value))
@@ -203,7 +210,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
             name='zipCode'
           />
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
-          <input type='date' defaultValue={value.schedule.date} name='date' />
+          <input defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
           <button type='submit' ref={formButton} />
         </form>
@@ -246,7 +253,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
             name='zipCode'
           />
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
-          <input type='date' defaultValue={value.schedule.date} name='date' />
+          <input defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
           <button type='submit' ref={formButton} />
         </form>
