@@ -220,7 +220,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
       <div className='hidden'>
         <form
           method='post'
-          name='same day services'
+          name='virtual estimates'
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={(e) => handleSubmit(e)}
