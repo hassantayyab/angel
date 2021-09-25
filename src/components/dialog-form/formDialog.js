@@ -25,8 +25,17 @@ import { submitServiceForm, submitEstimateForm } from '../utils/form-utils'
 
 function formatValues(obj, res = {}) {
   for (let key in obj) {
-    if (typeof obj[key] == 'object' && key !== 'images') {
+    if (typeof obj[key] == 'object' && key !== 'images' && key !== 'date') {
       formatValues(obj[key], res)
+    } else if (typeof obj[key] == 'object' && key === 'images') {
+      formatValues(obj[key], res)
+    } else if (key === 'date') {
+      res[key] = obj[key].toLocaleDateString(undefined, {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
     } else {
       res[key] = obj[key]
     }
@@ -124,6 +133,8 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    console.log('value', formatValues(value))
+
     try {
       if (type === 'service') {
         await submitServiceForm(e, formatValues(value))
@@ -215,7 +226,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
       <div className='hidden'>
         <form
           method='post'
-          name='same day services'
+          name='virtual estimates'
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={(e) => handleSubmit(e)}

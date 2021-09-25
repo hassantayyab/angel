@@ -68,7 +68,7 @@ export const initialState = {
       firstName: 'test',
       lastName: 'test',
       mobile: '123456',
-      email: 'test@test.test',
+      email: 'test@gmail.com',
     },
     addressInfo: {
       street: 'test',

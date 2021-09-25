@@ -139,14 +139,7 @@ const Contact = () => {
 
                   <div className='flex flex-col items-end justify-between my-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
                     <FormInput name='phone' label='Phone' />
-                    <FormInput name='city' label='City' component='select'>
-                      <option disabled value=''>
-                        City
-                      </option>
-                      <option value='islamabad'>Islamabad</option>
-                      <option value='lahore'>Lahore</option>
-                      <option value='karachi'>Karachi</option>
-                    </FormInput>
+                    <FormInput name='city' label='City' />
                   </div>
 
                   <div className='flex flex-col items-end justify-between mb-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
