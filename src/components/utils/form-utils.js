@@ -89,7 +89,7 @@ export function submitForm(values) {
   })
 }
 
-export function submitServiceForm(event, values) {
+export function submitServiceForm(values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
@@ -107,7 +107,7 @@ export function submitServiceForm(event, values) {
   })
 }
 
-export function submitEstimateForm(event, values) {
+export function submitEstimateForm(values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
