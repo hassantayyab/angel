@@ -20,7 +20,10 @@ export const Schema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
   services: Yup.string().required('Required'),
-  city: Yup.string().required('Required'),
+  city: Yup.string()
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
   phone: Yup.string().matches(phoneRegExp, 'Invalid').required('Required'),
   message: Yup.string().required('Required'),
