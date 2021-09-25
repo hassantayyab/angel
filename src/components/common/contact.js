@@ -16,8 +16,12 @@ import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
 import Button from '../utils/button'
+import { useHeaderMenuQuery } from '../../hooks/useMenuQuery'
 
 const Contact = () => {
+  const services = useHeaderMenuQuery()
+    .filter((m) => m.label === 'Services')[0]
+    .childItems.nodes.map((i) => i.label)
   const data = useContactQuery()
   const [submit, setSubmit] = useState({
     sent: false,
@@ -28,7 +32,6 @@ const Contact = () => {
   const handleSubmit = async (values, setSubmitting, resetForm) => {
     try {
       await submitForm(values)
-      // navigate('/your-form-was-submitted/')
       setSubmit({
         sent: true,
         error: false,
@@ -139,14 +142,7 @@ const Contact = () => {
 
                   <div className='flex flex-col items-end justify-between my-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
                     <FormInput name='phone' label='Phone' />
-                    <FormInput name='city' label='City' component='select'>
-                      <option disabled value=''>
-                        City
-                      </option>
-                      <option value='islamabad'>Islamabad</option>
-                      <option value='lahore'>Lahore</option>
-                      <option value='karachi'>Karachi</option>
-                    </FormInput>
+                    <FormInput name='city' label='City' />
                   </div>
 
                   <div className='flex flex-col items-end justify-between mb-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
@@ -159,8 +155,12 @@ const Contact = () => {
                       <option disabled value=''>
                         Services
                       </option>
-                      <option value='heating'>Heating</option>
-                      <option value='installation'>Installation</option>
+                      {services.length > 0 &&
+                        services.map((s, i) => (
+                          <option value={s} key={i}>
+                            {s}
+                          </option>
+                        ))}
                     </FormInput>
                   </div>
 
