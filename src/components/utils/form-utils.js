@@ -65,7 +65,7 @@ export function submitForm(values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { 'Content-Type': 'multipart/form-data' },
       body: encode({
         'form-name': 'contact',
         ...values,
@@ -84,7 +84,7 @@ export function submitServiceForm(event, values) {
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { 'Content-Type': 'multipart/form-data' },
       body: encode({
         'form-name': 'same day services',
         ...values,
