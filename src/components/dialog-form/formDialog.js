@@ -93,7 +93,9 @@ const FormDialog = ({
     return false
   }, [subStep, value])
 
-  const changeNextSteps = async () => {
+  const changeNextSteps = () => {
+    console.log('NEXT STEP =', subStep)
+
     if (subStep === 9) {
       setIsOpen(false)
     } else {
@@ -152,15 +154,16 @@ const FormDialog = ({
     try {
       if (type === 'service') {
         await submitServiceForm(e, formatValues(value))
+        setSubStep(subStep + 1)
       } else {
         await submitEstimateForm(e, formatValues(value))
+        setSubStep(subStep + 1)
       }
       setSubmit({
         sent: false,
         error: false,
         message: '',
       })
-      setSubStep(subStep + 1)
     } catch (error) {
       setSubmit({
         sent: true,
