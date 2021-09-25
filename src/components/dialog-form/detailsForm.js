@@ -10,7 +10,6 @@ import { hoverScale, scale } from '../../animations'
 import { estimateOptions, services, serviceOptions } from './constants'
 
 const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
-  const [files, setFiles] = useState(['', '', '', ''])
   const [fileSizeError, setFileSizeError] = useState(false)
 
   const options = type === 'service' ? serviceOptions : estimateOptions
@@ -24,12 +23,6 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     setValue({
       ...value,
       addressInfo: values,
-      images: {
-        img1: files[0],
-        img2: files[1],
-        img3: files[2],
-        img4: files[3],
-      },
     })
     nextStep()
   }
@@ -43,13 +36,13 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     }
     setFileSizeError(false)
 
-    if (files[0] === '') {
-      setFiles((oldFiles) => [
-        ...newFiles,
-        ...oldFiles.slice(newFiles.length, 4),
-      ])
+    if (value.images[0] === '') {
+      setValue({
+        ...value,
+        images: [...newFiles, ...value.images.slice(newFiles.length, 4)],
+      })
     } else {
-      const filesWithContent = files.filter((f) => f)
+      const filesWithContent = value.images.filter((f) => f)
 
       if (filesWithContent.length >= 4) {
         return
@@ -60,15 +53,21 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
         ...newFiles.slice(0, 4 - filesWithContent.length),
       ]
 
-      setFiles((oldFiles) => [
-        ...totalFilesWithContent,
-        ...oldFiles.slice(totalFilesWithContent.length, 4),
-      ])
+      setValue({
+        ...value,
+        images: [
+          ...totalFilesWithContent,
+          ...value.images.slice(totalFilesWithContent.length, 4),
+        ],
+      })
     }
   }
 
   const removeFile = (index) => {
-    setFiles((oldfiles) => [...oldfiles.map((f, i) => (i === index ? '' : f))])
+    setValue({
+      ...value,
+      images: [...value.images.map((f, i) => (i === index ? '' : f))],
+    })
   }
 
   const issueSelection = () => (
@@ -140,7 +139,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
           />
           <div className='absolute inset-0 w-full h-full px-6'>
             <div className='items-center justify-center h-full py-4 grid grid-rows-2 grid-cols-2 gap-4'>
-              {files.map((file, i) => {
+              {value.images.map((file, i) => {
                 let elem = []
                 if (file) {
                   elem = (

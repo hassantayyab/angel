@@ -25,7 +25,7 @@ import { submitServiceForm, submitEstimateForm } from '../utils/form-utils'
 
 function formatValues(obj, res = {}) {
   for (let key in obj) {
-    if (typeof obj[key] == 'object') {
+    if (typeof obj[key] == 'object' && key !== 'images') {
       formatValues(obj[key], res)
     } else {
       res[key] = obj[key]

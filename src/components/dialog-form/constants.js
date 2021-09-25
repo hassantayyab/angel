@@ -62,12 +62,7 @@ export const initialState = {
   request: '',
   details: {
     issue: '',
-    images: {
-      img1: '',
-      img2: '',
-      img3: '',
-      img4: '',
-    },
+    images: ['', '', '', ''],
     message: 'test',
     personalInfo: {
       firstName: 'test',
