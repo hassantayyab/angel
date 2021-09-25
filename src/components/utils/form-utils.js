@@ -82,13 +82,13 @@ export function submitForm(values) {
 
 export function submitServiceForm(event, values) {
   return new Promise((resolve, reject) => {
+    let myForm = document.getElementById('service')
+    let formData = new FormData(myForm)
+
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'multipart/form-data' },
-      body: encode({
-        'form-name': 'same day services',
-        ...values,
-      }),
+      body: new URLSearchParams(formData).toString(),
     })
       .then(() => {
         resolve(true)
@@ -101,13 +101,13 @@ export function submitServiceForm(event, values) {
 
 export function submitEstimateForm(event, values) {
   return new Promise((resolve, reject) => {
+    let myForm = document.getElementById('estimate')
+    let formData = new FormData(myForm)
+
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': 'virtual estimates',
-        ...values,
-      }),
+      body: new URLSearchParams(formData).toString(),
     })
       .then(() => {
         resolve(true)
