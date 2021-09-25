@@ -9,7 +9,12 @@ import { motion, useAnimation } from 'framer-motion'
 import Button from '../utils/button'
 import FormDialog from '../dialog-form/formDialog'
 
-const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
+const ContactCard = ({
+  contactNumber,
+  carImage,
+  isCarAtBottom = false,
+  logo,
+}) => {
   let [isOpen, setIsOpen] = useState(false)
   let [type, setType] = useState(null)
 
@@ -116,6 +121,7 @@ const ContactCard = ({ carImage, isCarAtBottom = false, logo }) => {
 
       {/* VideoDialog */}
       <FormDialog
+        contactNumber={contactNumber}
         type={type}
         isOpen={isOpen}
         setIsOpen={setIsOpen}

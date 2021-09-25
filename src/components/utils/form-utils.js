@@ -71,8 +71,6 @@ export const AddressInfoSchema = Yup.object().shape({
 })
 
 export function submitForm(values) {
-  console.log('values', values)
-
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',

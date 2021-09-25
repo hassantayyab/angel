@@ -46,7 +46,14 @@ function formatValues(obj, res = {}) {
   return res
 }
 
-const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
+const FormDialog = ({
+  contactNumber,
+  type,
+  isOpen,
+  setIsOpen,
+  logo,
+  carImage,
+}) => {
   const formButton = useRef(null)
 
   const [mainStep, setMainStep] = useState(1)
@@ -135,8 +142,6 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    console.log('value', formatValues(value))
 
     setSubmit({
       sent: false,
@@ -471,6 +476,7 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                     {/* Main Step 4 */}
                     {mainStep === 4 && (
                       <ScheduleForm
+                        contactNumber={contactNumber}
                         timeSlots={timeSlots}
                         value={value.schedule}
                         setValue={(v) => setValue({ ...value, schedule: v })}
