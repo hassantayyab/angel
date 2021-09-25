@@ -54,8 +54,6 @@ const FormDialog = ({
   logo,
   carImage,
 }) => {
-  const formButton = useRef(null)
-
   const [mainStep, setMainStep] = useState(1)
   const [subStep, setSubStep] = useState(1)
   const [value, setValue] = useState({ ...initialState })
@@ -127,27 +125,26 @@ const FormDialog = ({
       }
 
       if (subStep === 8) {
-        formButton.current.click()
+        setSubmit({
+          sent: false,
+          error: true,
+          message: 'sending',
+        })
+        console.log('form submit')
+
+        handleSubmit()
       } else {
         setSubStep(subStep + 1)
       }
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    setSubmit({
-      sent: false,
-      error: true,
-      message: 'sending',
-    })
-
+  const handleSubmit = async () => {
     try {
       if (type === 'service') {
-        await submitServiceForm(e, formatValues(value))
+        await submitServiceForm(formatValues(value))
       } else {
-        await submitEstimateForm(e, formatValues(value))
+        await submitEstimateForm(formatValues(value))
       }
       setSubmit({
         sent: true,
@@ -197,7 +194,6 @@ const FormDialog = ({
           name='same day services'
           data-netlify='true'
           data-netlify-honeypot='bot-field'
-          onSubmit={(e) => handleSubmit(e)}
           id='service'
         >
           <input defaultValue={value.request} name='request' />
@@ -250,7 +246,6 @@ const FormDialog = ({
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
           <input defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
-          <button type='submit' ref={formButton} />
         </form>
       </div>
 
@@ -261,7 +256,6 @@ const FormDialog = ({
           name='virtual estimates'
           data-netlify='true'
           data-netlify-honeypot='bot-field'
-          onSubmit={(e) => handleSubmit(e)}
           id='estimate'
         >
           <input defaultValue={value.request} name='request' />
@@ -314,7 +308,6 @@ const FormDialog = ({
           <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
           <input defaultValue={value.schedule.date} name='date' />
           <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
-          <button type='submit' ref={formButton} />
         </form>
       </div>
       <Transition appear show={isOpen} as={Fragment}>
