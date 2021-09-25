@@ -28,7 +28,6 @@ function formatValues(obj, res = {}) {
     if (typeof obj[key] == 'object' && key !== 'images' && key !== 'date') {
       formatValues(obj[key], res)
     } else if (key === 'images') {
-      console.log('images', obj[key])
       res['img1'] = obj[key][0]
       res['img2'] = obj[key][1]
       res['img3'] = obj[key][2]
