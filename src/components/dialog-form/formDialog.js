@@ -138,12 +138,23 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
 
     console.log('value', formatValues(value))
 
+    setSubmit({
+      sent: false,
+      error: true,
+      message: 'sending',
+    })
+
     try {
       if (type === 'service') {
         await submitServiceForm(e, formatValues(value))
       } else {
         await submitEstimateForm(e, formatValues(value))
       }
+      setSubmit({
+        sent: false,
+        error: false,
+        message: '',
+      })
       setSubStep(subStep + 1)
     } catch (error) {
       setSubmit({
@@ -476,7 +487,9 @@ const FormDialog = ({ type, isOpen, setIsOpen, logo, carImage }) => {
                     <div className='inline-block mx-auto mt-6 text-center'>
                       <StepperFormButton
                         step={mainStep}
-                        isDisabled={checkIfDisabled()}
+                        isDisabled={
+                          checkIfDisabled() || submit.message === 'loading'
+                        }
                         nextStep={changeNextSteps}
                       >
                         {mainStep > 4 ? 'Close' : 'Continue'}
