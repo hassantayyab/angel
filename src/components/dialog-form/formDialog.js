@@ -93,7 +93,7 @@ const FormDialog = ({
     return false
   }, [subStep, value])
 
-  const changeNextSteps = () => {
+  const changeNextSteps = async () => {
     console.log('NEXT STEP =', subStep)
 
     if (subStep === 9) {
@@ -127,15 +127,7 @@ const FormDialog = ({
       }
 
       if (subStep === 8) {
-        try {
-          formButton.current.click()
-        } catch (error) {
-          setSubmit({
-            sent: true,
-            error: true,
-            message: 'Something went wrong! Please try again.',
-          })
-        }
+        formButton.current.click()
       } else {
         setSubStep(subStep + 1)
       }
@@ -154,16 +146,17 @@ const FormDialog = ({
     try {
       if (type === 'service') {
         await submitServiceForm(e, formatValues(value))
-        setSubStep(subStep + 1)
       } else {
         await submitEstimateForm(e, formatValues(value))
-        setSubStep(subStep + 1)
       }
       setSubmit({
-        sent: false,
+        sent: true,
         error: false,
         message: '',
       })
+      setSubStep(subStep + 1)
+      setMainStep(mainStep + 1)
+      console.log('2')
     } catch (error) {
       setSubmit({
         sent: true,
