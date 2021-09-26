@@ -86,8 +86,6 @@ const FormDialog = ({
   }, [subStep, value])
 
   const changeNextSteps = () => {
-    console.log('NEXT STEP =', subStep)
-
     if (subStep === 9) {
       setIsOpen(false)
     } else {
@@ -124,7 +122,6 @@ const FormDialog = ({
           error: true,
           message: 'sending',
         })
-        console.log('form submit')
 
         handleSubmit()
       } else {
@@ -145,7 +142,6 @@ const FormDialog = ({
         error: false,
         message: '',
       })
-      console.log('2')
       setSubStep(subStep + 1)
       setMainStep(mainStep + 1)
     } catch (error) {
@@ -163,6 +159,16 @@ const FormDialog = ({
     }
 
     setSubStep(subStep - 1)
+  }
+
+  const getButtonName = () => {
+    if (mainStep > 4) {
+      return 'Close'
+    } else if (mainStep === 4) {
+      return 'Request Now'
+    } else {
+      return 'Continue'
+    }
   }
 
   useEffect(() => {
@@ -481,7 +487,7 @@ const FormDialog = ({
                         }
                         nextStep={changeNextSteps}
                       >
-                        {mainStep > 4 ? 'Close' : 'Continue'}
+                        {getButtonName()}
                       </StepperFormButton>
                     </div>
                   )}
