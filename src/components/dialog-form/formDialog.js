@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import StepperFormButton from './stepperFormButton'
@@ -91,7 +85,7 @@ const FormDialog = ({
     return false
   }, [subStep, value])
 
-  const changeNextSteps = async () => {
+  const changeNextSteps = () => {
     console.log('NEXT STEP =', subStep)
 
     if (subStep === 9) {
@@ -151,9 +145,9 @@ const FormDialog = ({
         error: false,
         message: '',
       })
+      console.log('2')
       setSubStep(subStep + 1)
       setMainStep(mainStep + 1)
-      console.log('2')
     } catch (error) {
       setSubmit({
         sent: true,
@@ -483,7 +477,7 @@ const FormDialog = ({
                       <StepperFormButton
                         step={mainStep}
                         isDisabled={
-                          checkIfDisabled() || submit.message === 'loading'
+                          checkIfDisabled() || submit.message === 'sending'
                         }
                         nextStep={changeNextSteps}
                       >
