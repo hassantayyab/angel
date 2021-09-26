@@ -139,6 +139,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
             accept='image/*'
             multiple
             onChange={(e) => handleFiles(e)}
+            onClick={(e) => (e.target.value = null)}
           />
           <div className='absolute inset-0 w-full h-full px-6'>
             <div className='items-center justify-center h-full py-4 grid grid-rows-2 grid-cols-2 gap-4'>

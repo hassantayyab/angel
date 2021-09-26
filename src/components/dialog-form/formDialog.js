@@ -86,8 +86,6 @@ const FormDialog = ({
   }, [subStep, value])
 
   const changeNextSteps = () => {
-    console.log('NEXT STEP =', subStep)
-
     if (subStep === 9) {
       setIsOpen(false)
     } else {
@@ -124,7 +122,6 @@ const FormDialog = ({
           error: true,
           message: 'sending',
         })
-        console.log('form submit')
 
         handleSubmit()
       } else {
@@ -145,7 +142,6 @@ const FormDialog = ({
         error: false,
         message: '',
       })
-      console.log('2')
       setSubStep(subStep + 1)
       setMainStep(mainStep + 1)
     } catch (error) {
