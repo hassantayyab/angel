@@ -161,6 +161,16 @@ const FormDialog = ({
     setSubStep(subStep - 1)
   }
 
+  const getButtonName = () => {
+    if (mainStep > 4) {
+      return 'Close'
+    } else if (mainStep === 4) {
+      return 'Request Now'
+    } else {
+      return 'Continue'
+    }
+  }
+
   useEffect(() => {
     if (value) {
       checkIfDisabled()
@@ -477,7 +487,7 @@ const FormDialog = ({
                         }
                         nextStep={changeNextSteps}
                       >
-                        {mainStep > 4 ? 'Close' : 'Continue'}
+                        {getButtonName()}
                       </StepperFormButton>
                     </div>
                   )}
