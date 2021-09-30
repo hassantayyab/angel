@@ -213,7 +213,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   const message = () => (
     <>
       <h3 className='mb-4 text-left text-black-light font-graphikMedium'>
-        Tell Us more about your request
+        Tell us more about your request
       </h3>
       <textarea
         className='w-full p-3 bg-transparent border border-blue'

@@ -22,7 +22,7 @@ function useOutsideAlerter(ref, setOpen) {
   }, [ref, setOpen])
 }
 
-const SelectionInput = ({ options, value, setValue }) => {
+const SelectionInput = ({ label, options, value, setValue }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState(value)
   const wrapperRef = useRef(null)
@@ -42,7 +42,7 @@ const SelectionInput = ({ options, value, setValue }) => {
         onClick={() => setOpen(!open)}
       >
         <div className='text-sm text-black text-opacity-75 font-graphikMedium'>
-          {selection !== '' ? selection : 'Select Your Issue'}
+          {selection !== '' ? selection : label}
         </div>
         <div className='py-3 px-2.5 bg-orange'>
           <Triangle />

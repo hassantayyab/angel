@@ -15,9 +15,9 @@ export const services = [
 ]
 
 export const estimates = [
-  'Schedule Service',
-  'Emergency Repair',
-  'Schedule Maintenance',
+  'New Heating System',
+  'New Cooling System',
+  'New Heating & Cooling System',
 ]
 
 export const serviceOptions = {
@@ -53,8 +53,8 @@ export const serviceOptions = {
 }
 
 export const estimateOptions = [
-  'zoom',
-  'facebook',
+  'Zoom',
+  'Facetime',
   'Other - we will contact you to discuss options',
 ]
 
