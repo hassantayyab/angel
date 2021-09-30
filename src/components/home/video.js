@@ -19,10 +19,17 @@ import {
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
-import scrollTo from 'gatsby-plugin-smoothscroll'
+import FormDialog from '../dialog-form/formDialog'
 
-const Video = ({ data, contactFormRef }) => {
-  let [isOpen, setIsOpen] = useState(false)
+const Video = ({ data, contactNumber, carImage, logo }) => {
+  let [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+  let [isFormModalOpen, setIsFormModalOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openFormDialog = (v) => {
+    setType(v)
+    setIsFormModalOpen(true)
+  }
 
   const [ref, inView] = useInView(View)
   const animateTitle = useAnimation()
@@ -73,14 +80,14 @@ const Video = ({ data, contactFormRef }) => {
                     <Button
                       type='button'
                       className='px-0 w-60 md:w-64 btn btn-primary'
-                      onClick={() => scrollTo(contactFormRef, 'end')}
+                      onClick={() => openFormDialog('service')}
                     >
-                      Schedule Service Now
+                      Same Day Services
                     </Button>
                     <Button
                       type='button'
                       className='w-60 md:w-64 btn btn-secondary'
-                      onClick={() => scrollTo(contactFormRef, 'end')}
+                      onClick={() => openFormDialog('estimate')}
                     >
                       Virtual Estimate
                     </Button>
@@ -106,7 +113,7 @@ const Video = ({ data, contactFormRef }) => {
                       </div>
                       <div
                         className='z-40 absolute-center'
-                        onClick={() => setIsOpen(true)}
+                        onClick={() => setIsVideoModalOpen(true)}
                       >
                         <PlayButton />
                       </div>
@@ -134,9 +141,19 @@ const Video = ({ data, contactFormRef }) => {
 
       {/* VideoDialog */}
       <VideoDialog
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        isOpen={isVideoModalOpen}
+        setIsOpen={setIsVideoModalOpen}
         videoUrl={data.videoEmbed}
+      />
+
+      {/* VideoDialog */}
+      <FormDialog
+        contactNumber={contactNumber}
+        type={type}
+        isOpen={isFormModalOpen}
+        setIsOpen={setIsFormModalOpen}
+        logo={logo}
+        carImage={carImage}
       />
     </section>
   )

@@ -2,7 +2,13 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import Chip from './chip'
 
-const ScheduleForm = ({ contactNumber, timeSlots, value, setValue }) => {
+const ScheduleForm = ({
+  contactNumber,
+  timeSlots,
+  value,
+  setValue,
+  nextStep,
+}) => {
   return (
     <div id='scheduleForm'>
       <div className='flex flex-col justify-between'>

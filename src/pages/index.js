@@ -61,8 +61,8 @@ const IndexPage = ({ data }) => {
       <div className='-mt-24'>
         <Container>
           <ContactCard
-            contactNumber={generalData._generalData.contactNumbers[0].number}
             isCarAtBottom='true'
+            contactNumber={generalData._generalData.contactNumbers[0].number}
             carImage={generalData._generalData.carImage}
             logo={generalData._generalData.logo}
           />
@@ -79,11 +79,20 @@ const IndexPage = ({ data }) => {
       </div>
 
       <div className='mt-16 sm:mt-24'>
-        <Video data={data.wpPage._videoSection} contactFormRef='#scrollEl' />
+        <Video
+          data={data.wpPage._videoSection}
+          contactNumber={generalData._generalData.contactNumbers[0].number}
+          carImage={generalData._generalData.carImage}
+          logo={generalData._generalData.logo}
+        />
       </div>
 
       <div className='mt-40 sm:mt-64 md:mt-56 lg:mt-20'>
-        <WhyChoose contactFormRef='#scrollEl' />
+        <WhyChoose
+          contactNumber={generalData._generalData.contactNumbers[0].number}
+          carImage={generalData._generalData.carImage}
+          logo={generalData._generalData.logo}
+        />
       </div>
 
       <CardContact data={data.wpPage._cardContact} contactFormRef='#scrollEl' />
@@ -91,8 +100,9 @@ const IndexPage = ({ data }) => {
       <div>
         <Specialties
           data={data.wpPage._specialtiesSection}
+          contactNumber={generalData._generalData.contactNumbers[0].number}
+          carImage={generalData._generalData.carImage}
           logo={generalData._generalData.logo}
-          contactFormRef='#scrollEl'
         />
       </div>
 

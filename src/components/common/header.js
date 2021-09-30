@@ -26,6 +26,11 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
         window.scrollY > 10 ? setScroll(true) : setScroll(false)
       })
     }
+
+    return function cleanup() {
+      setOpenContactMenu(false)
+      return false
+    }
   }, [openContactMenu, scroll])
 
   const handleClick = () => {

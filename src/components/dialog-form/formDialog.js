@@ -9,13 +9,9 @@ import Detailsform from './detailsForm'
 import CustomerForm from './customerForm'
 import ScheduleForm from './scheduleForm'
 import Confirmation from './confirmation'
-import {
-  estimateOptions,
-  initialState,
-  serviceOptions,
-  timeSlots,
-} from './constants'
+import { initialState, timeSlots } from './constants'
 import { submitServiceForm, submitEstimateForm } from '../utils/form-utils'
+import NetlifyHiddenForm from './netlifyHiddenForm'
 
 function formatValues(obj, res = {}) {
   for (let key in obj) {
@@ -85,35 +81,12 @@ const FormDialog = ({
     return false
   }, [subStep, value])
 
-  const changeNextSteps = () => {
+  const handleNextStep = () => {
     if (subStep === 9) {
       setIsOpen(false)
     } else {
       if (subStep !== 2 && subStep !== 3 && subStep !== 4 && subStep !== 5) {
         setMainStep(mainStep + 1)
-      }
-
-      if (subStep === 1) {
-        if (type === 'service') {
-          setValue({
-            ...value,
-            details: {
-              ...value.details,
-              issue:
-                serviceOptions[value.request][
-                  Object.keys(serviceOptions[value.request])[0]
-                ][0],
-            },
-          })
-        } else {
-          setValue({
-            ...value,
-            details: {
-              ...value.details,
-              issue: estimateOptions[0],
-            },
-          })
-        }
       }
 
       if (subStep === 8) {
@@ -185,131 +158,16 @@ const FormDialog = ({
     }
   }, [isOpen])
 
+  useEffect(() => {
+    if (value.schedule.timeSlot && mainStep === 4) {
+      handleNextStep()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value.schedule.timeSlot, mainStep])
+
   return (
     <>
-      {/* Input Fields */}
-      <div className='hidden'>
-        <form
-          method='post'
-          name='same day services'
-          data-netlify='true'
-          data-netlify-honeypot='bot-field'
-          id='service'
-        >
-          <input defaultValue={value.request} name='request' />
-          <input defaultValue={value.details.issue} name='issue' />
-          <input
-            type='file'
-            defaultValue={value.details.images[0]}
-            name='img1'
-          />
-          <input
-            type='file'
-            defaultValue={value.details.images[1]}
-            name='img2'
-          />
-          <input
-            type='file'
-            defaultValue={value.details.images[2]}
-            name='img3'
-          />
-          <input
-            type='file'
-            defaultValue={value.details.images[3]}
-            name='img4'
-          />
-          <input defaultValue={value.details.message} name='message' />
-          <input defaultValue={value.details.personalInfo.email} name='email' />
-          <input
-            defaultValue={value.details.personalInfo.firstName}
-            name='firstName'
-          />
-          <input
-            defaultValue={value.details.personalInfo.lastName}
-            name='lastName'
-          />
-          <input
-            defaultValue={value.details.personalInfo.mobile}
-            name='mobile'
-          />
-          <input defaultValue={value.details.addressInfo.city} name='city' />
-          <input defaultValue={value.details.addressInfo.state} name='state' />
-          <input
-            defaultValue={value.details.addressInfo.street}
-            name='street'
-          />
-          <input defaultValue={value.details.addressInfo.suite} name='suite' />
-          <input
-            defaultValue={value.details.addressInfo.zipCode}
-            name='zipCode'
-          />
-          <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
-          <input defaultValue={value.schedule.date} name='date' />
-          <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
-        </form>
-      </div>
-
-      {/* Input Fields */}
-      <div className='hidden'>
-        <form
-          method='post'
-          name='virtual estimates'
-          data-netlify='true'
-          data-netlify-honeypot='bot-field'
-          id='estimate'
-        >
-          <input defaultValue={value.request} name='request' />
-          <input defaultValue={value.details.issue} name='issue' />
-          <input
-            type='file'
-            defaultValue={value.details.images[0]}
-            name='img1'
-          />
-          <input
-            type='file'
-            defaultValue={value.details.images[1]}
-            name='img2'
-          />
-          <input
-            type='file'
-            defaultValue={value.details.images[2]}
-            name='img3'
-          />
-          <input
-            type='file'
-            defaultValue={value.details.images[3]}
-            name='img4'
-          />
-          <input defaultValue={value.details.message} name='message' />
-          <input defaultValue={value.details.personalInfo.email} name='email' />
-          <input
-            defaultValue={value.details.personalInfo.firstName}
-            name='firstName'
-          />
-          <input
-            defaultValue={value.details.personalInfo.lastName}
-            name='lastName'
-          />
-          <input
-            defaultValue={value.details.personalInfo.mobile}
-            name='mobile'
-          />
-          <input defaultValue={value.details.addressInfo.city} name='city' />
-          <input defaultValue={value.details.addressInfo.state} name='state' />
-          <input
-            defaultValue={value.details.addressInfo.street}
-            name='street'
-          />
-          <input defaultValue={value.details.addressInfo.suite} name='suite' />
-          <input
-            defaultValue={value.details.addressInfo.zipCode}
-            name='zipCode'
-          />
-          <input defaultValue={value.isNewCustomer} name='isNewCustomer' />
-          <input defaultValue={value.schedule.date} name='date' />
-          <input defaultValue={value.schedule.timeSlot} name='timeSlot' />
-        </form>
-      </div>
+      <NetlifyHiddenForm value={value} />
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as='div'
@@ -436,7 +294,10 @@ const FormDialog = ({
                       <IssueForm
                         type={type}
                         value={value.request}
-                        setValue={(v) => setValue({ ...value, request: v })}
+                        setValue={(v) => {
+                          setValue({ ...value, request: v })
+                          handleNextStep()
+                        }}
                       />
                     )}
 
@@ -448,7 +309,7 @@ const FormDialog = ({
                         issue={value.request}
                         value={value.details}
                         setValue={(v) => setValue({ ...value, details: v })}
-                        nextStep={changeNextSteps}
+                        nextStep={handleNextStep}
                       />
                     )}
 
@@ -456,9 +317,10 @@ const FormDialog = ({
                     {mainStep === 3 && (
                       <CustomerForm
                         value={value.isNewCustomer}
-                        setValue={(v) =>
+                        setValue={(v) => {
                           setValue({ ...value, isNewCustomer: v })
-                        }
+                          handleNextStep()
+                        }}
                       />
                     )}
 
@@ -469,6 +331,7 @@ const FormDialog = ({
                         timeSlots={timeSlots}
                         value={value.schedule}
                         setValue={(v) => setValue({ ...value, schedule: v })}
+                        nextStep={handleNextStep}
                       />
                     )}
 
@@ -485,7 +348,7 @@ const FormDialog = ({
                         isDisabled={
                           checkIfDisabled() || submit.message === 'sending'
                         }
-                        nextStep={changeNextSteps}
+                        nextStep={handleNextStep}
                       >
                         {getButtonName()}
                       </StepperFormButton>

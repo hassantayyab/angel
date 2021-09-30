@@ -11,10 +11,18 @@ import { useAnimation } from 'framer-motion'
 import Button from '../utils/button'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
-import scrollTo from 'gatsby-plugin-smoothscroll'
 import { useReasonCategoriesQuery } from '../../hooks/reasonCategoriesQuery'
+import FormDialog from '../dialog-form/formDialog'
 
-const WhyChoose = ({ contactFormRef }) => {
+const WhyChoose = ({ contactNumber, carImage, logo }) => {
+  let [isOpen, setIsOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openDialog = (v) => {
+    setType(v)
+    setIsOpen(true)
+  }
+
   const data = useWhyChooseQuery()
   const reasonsData = useReasonsQuery()
   const reasonCategories = useReasonCategoriesQuery()
@@ -25,6 +33,7 @@ const WhyChoose = ({ contactFormRef }) => {
   const [ref, inView] = useInView(View)
   const animateTitle = useAnimation()
   const animateSubtitle = useAnimation()
+
   useEffect(() => {
     if (inView) {
       animateTitle.start({
@@ -118,19 +127,29 @@ const WhyChoose = ({ contactFormRef }) => {
           <Button
             type='button'
             className='w-4/5 sm:w-72 btn btn-primary'
-            onClick={() => scrollTo(contactFormRef, 'end')}
+            onClick={() => openDialog('service')}
           >
-            Schedule Service Now
+            Same Day Services
           </Button>
           <Button
             type='button'
             className='w-4/5 sm:w-72 btn btn-secondary'
-            onClick={() => scrollTo(contactFormRef, 'end')}
+            onClick={() => openDialog('estimate')}
           >
             Virtual Estimate
           </Button>
         </div>
       </div>
+
+      {/* VideoDialog */}
+      <FormDialog
+        contactNumber={contactNumber}
+        type={type}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        logo={logo}
+        carImage={carImage}
+      />
     </section>
   )
 }

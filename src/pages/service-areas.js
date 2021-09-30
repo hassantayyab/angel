@@ -75,7 +75,11 @@ const ServiceAreas = ({ data }) => {
       </Container>
 
       <div className='mt-6'>
-        <WhyChoose contactFormRef='#scrollEl' />
+        <WhyChoose
+          contactNumber={generalData._generalData.contactNumbers[0].number}
+          carImage={generalData._generalData.carImage}
+          logo={generalData._generalData.logo}
+        />
       </div>
 
       <div id='scrollEl'>
