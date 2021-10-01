@@ -54,7 +54,7 @@ module.exports = {
             h2:{
               fontFamily: ['Graphik', 'sans-serif'], 
               fontWeight: 400,
-              fontSize: '1.2em',
+              fontSize: '1.2em'
             },
           },
         },
