@@ -24,16 +24,12 @@
   h1 {
     @apply tracking-wide md:text-5xl text-3xl;
   }
-<<<<<<< HEAD
 .title{
   @apply tracking-wide md:text-5xl text-3xl;
   letter-spacing: .025em;
   font-family: Graphik Bold,serif;
   font-weight: 700;
 }
-=======
-
->>>>>>> 1ccd08cc4286e928bee1317d153d44212e61dd5f
   h2 {
     @apply tracking-wide md:text-4xl text-2xl;
   }
