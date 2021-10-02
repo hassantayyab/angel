@@ -18,10 +18,24 @@ import {
 import Subtitle from '../../utils/subititle'
 import Title from '../../utils/title'
 import Button from '../../utils/button'
-import scrollTo from 'gatsby-plugin-smoothscroll'
+import FormDialog from '../../../components/dialog-form/formDialog'
 
-const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
+const SpecialtiesDesktop = ({
+  data,
+  contactNumber,
+  carImage,
+  logo,
+  contactFormRef,
+}) => {
   const [selected, setSelected] = useState(0)
+  let [isOpen, setIsOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openDialog = (v) => {
+    setType(v)
+    setIsOpen(true)
+  }
+
   const [ref, inView] = useInView(View)
 
   const animateHeading = useAnimation()
@@ -168,14 +182,14 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
                   <Button
                     type='button'
                     className='flex-1 px-0 btn btn-primary'
-                    onClick={() => scrollTo(contactFormRef, 'end')}
+                    onClick={() => openDialog('service')}
                   >
-                    Schedule Service Now
+                    Same Day Service
                   </Button>
                   <Button
                     type='button'
                     className='flex-1 px-0 btn btn-secondary'
-                    onClick={() => scrollTo(contactFormRef, 'end')}
+                    onClick={() => openDialog('estimate')}
                   >
                     Virtual Estimate
                   </Button>
@@ -185,6 +199,16 @@ const SpecialtiesDesktop = ({ data, logo, contactFormRef }) => {
           </div>
         </div>
       </ContainerSecondary>
+
+      {/* VideoDialog */}
+      <FormDialog
+        contactNumber={contactNumber}
+        type={type}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        logo={logo}
+        carImage={carImage}
+      />
     </section>
   )
 }

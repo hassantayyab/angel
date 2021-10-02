@@ -10,7 +10,7 @@ const CustomerForm = ({ value, setValue }) => (
     <div className='py-16 space-x-8'>
       <Chip
         className='px-7'
-        selected={!value}
+        selected={value === false}
         value={value}
         setValue={() => setValue(false)}
       >
@@ -18,7 +18,7 @@ const CustomerForm = ({ value, setValue }) => (
       </Chip>
       <Chip
         className='px-7'
-        selected={value}
+        selected={value === true}
         value={value}
         setValue={() => setValue(true)}
       >

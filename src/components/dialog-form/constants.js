@@ -78,9 +78,9 @@ export const initialState = {
       zipCode: '',
     },
   },
-  isNewCustomer: true,
+  isNewCustomer: null,
   schedule: {
     date: new Date(),
-    timeSlot: timeSlots[0],
+    timeSlot: '',
   },
 }

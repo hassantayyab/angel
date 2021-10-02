@@ -10,9 +10,9 @@ import Button from '../utils/button'
 import FormDialog from '../dialog-form/formDialog'
 
 const ContactCard = ({
+  isCarAtBottom = false,
   contactNumber,
   carImage,
-  isCarAtBottom = false,
   logo,
 }) => {
   let [isOpen, setIsOpen] = useState(false)

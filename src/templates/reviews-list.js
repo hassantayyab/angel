@@ -53,14 +53,14 @@ const ReviewsList = ({ data, location }) => {
             width='100%'
             height='600'
             scrolling='auto'
-            frameborder='0'
+            frameBorder='0'
             title='Customer reviews'
           ></iframe>
-          <div class='mt-4 text-xs bf-spn text-gray'>
+          <div className='mt-4 text-xs bf-spn text-gray'>
             {' '}
             powered by{' '}
             <a
-              class='underline text-blue'
+              className='underline text-blue'
               href='http://www.localreviews.buzz'
               target='_blank'
               rel='noopener noreferrer'
