@@ -28,6 +28,10 @@ const Hero = ({ data, heightClassName = 'h-subpage-hero' }) => {
         ...defaultTransition,
       })
     }
+
+    return function cleanup() {
+      return false
+    }
   }, [inView, animateTitle, animateSubtitle])
 
   return (

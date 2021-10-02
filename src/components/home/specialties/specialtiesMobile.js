@@ -5,15 +5,22 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useInView } from 'react-intersection-observer'
 import { scale, springTransition, View } from '../../../animations'
 import { motion, useAnimation } from 'framer-motion'
-import scrollTo from 'gatsby-plugin-smoothscroll'
+import FormDialog from '../../../components/dialog-form/formDialog'
 
-const SpecialtiesMobile = ({ data, contactFormRef }) => {
+const SpecialtiesMobile = ({ data, contactNumber, carImage, logo }) => {
   const [openItems, setOpenItems] = useState([])
+  let [isOpen, setIsOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openDialog = (v) => {
+    setType(v)
+    setIsOpen(true)
+  }
 
   const handleOpenItem = (item) => {
     setOpenItems(
       openItems.includes(item)
-        ? openItems.filter((i) => i != item)
+        ? openItems.filter((i) => i !== item)
         : [...openItems, item]
     )
   }
@@ -120,18 +127,28 @@ const SpecialtiesMobile = ({ data, contactFormRef }) => {
         <button
           type='button'
           className='w-full px-0 btn btn-primary'
-          onClick={() => scrollTo(contactFormRef, 'end')}
+          onClick={() => openDialog('service')}
         >
-          Schedule Service Now
+          Same Day Services
         </button>
         <button
           type='button'
           className='w-full px-0 btn btn-secondary'
-          onClick={() => scrollTo(contactFormRef, 'end')}
+          onClick={() => openDialog('estimate')}
         >
           Virtual Estimate
         </button>
       </div>
+
+      {/* VideoDialog */}
+      <FormDialog
+        contactNumber={contactNumber}
+        type={type}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        logo={logo}
+        carImage={carImage}
+      />
     </section>
   )
 }

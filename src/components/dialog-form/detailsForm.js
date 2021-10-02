@@ -87,7 +87,10 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
                 key={i}
                 selected={option === value?.issue}
                 value={value}
-                setValue={() => setValue({ ...value, issue: option })}
+                setValue={() => {
+                  setValue({ ...value, issue: option })
+                  nextStep()
+                }}
               >
                 {option}
               </Chip>
@@ -213,7 +216,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   const message = () => (
     <>
       <h3 className='mb-4 text-left text-black-light font-graphikMedium'>
-        Tell Us more about your request
+        Tell us more about your request
       </h3>
       <textarea
         className='w-full p-3 bg-transparent border border-blue'
