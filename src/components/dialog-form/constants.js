@@ -28,10 +28,10 @@ export const serviceOptions = {
       'Water Leak',
       'Other Heating or Cooling Issue',
     ],
-    'Ventilation and DuctWork': [
+    'Ventilation and Ductwork': [
       'Broken Ventilation',
       'Ductwork repair',
-      'Other Ventilation and DuctWork Issue',
+      'Other Ventilation and Ductwork Issue',
     ],
   },
   [services[1]]: {

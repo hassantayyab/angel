@@ -20,12 +20,6 @@ const Confirmation = ({ carImage, value }) => {
         <div className='text-sm text-black-light font-graphikMedium'>
           Request Details:
           <div className='text-black text-opacity-60 font-graphik leading-6'>
-            {`${value.details.personalInfo.firstName} ${value.details.personalInfo.lastName}`}
-            <br />
-            {value.request}
-            <br />
-            {value.details.issue}
-            <br />
             {value.schedule.date.toLocaleDateString(undefined, {
               weekday: 'long',
               year: 'numeric',
