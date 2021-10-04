@@ -22,13 +22,12 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      subpage: allWpPage(
-        filter: { template: { templateName: { eq: "Subpage" } } }
-      ) {
+      subpage: allWpPage {
         edges {
           node {
             id
             uri
+            title
           }
         }
       }
@@ -82,13 +81,17 @@ exports.createPages = async ({ graphql, actions }) => {
     result.data
 
   const subpageTemplate = require.resolve(`./src/templates/sub-page.js`)
-  subpage.edges.forEach(({ node }) => {
-    createPage({
-      path: node.uri,
-      component: subpageTemplate,
-      context: { id: node.id },
+  {if ((subpage.title !== "Home") || (subpage.title !== "Deals") || (subpage.title !== "Reviews")){
+    subpage.edges.forEach(({ node }) => {
+      createPage({
+        path: node.uri,
+        component: subpageTemplate,
+        context: { id: node.id },
+      })
     })
-  })
+  }
+}
+  
 
   const blogListPageTemplate = require.resolve('./src/templates/blog-list.js')
   Array.from({
