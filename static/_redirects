@@ -1,3 +1,3 @@
 /air-conditioning-repair-service-* /hvac-services-philadelphia/hvac-repair-company-near-:splat
 /heater-repair-service-* /hvac-services-philadelphia/hvac-company-near-:splat
-/*-heating-repair-services-installation/ /hvac-services-philadelphia/heaters-philadelphia/:splat-heating-repair-services-installation/
+/:slug-heating-repair-services-installation/ /hvac-services-philadelphia/heaters-philadelphia/:slug-heating-repair-services-installation/
