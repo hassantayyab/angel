@@ -21,5 +21,5 @@
 /hvac-repair-company-near-*/ /hvac-services-philadelphia/hvac-repair-company-near-:splat
 /air-conditioning-repair-service-* /hvac-services-philadelphia/hvac-repair-company-near-:splat
 /heater-repair-service-* /hvac-services-philadelphia/hvac-repair-company-near-:splat
-/:slug-heating-repair-services-installation/ /hvac-services-philadelphia/heaters-philadelphia/:slug-heating-repair-services-installation/
 /:slug-hvac-repair-services/ /hvac-services-philadelphia/:slug-hvac-repair-services/
+/:slug-heating-repair-services-installation/ /hvac-services-philadelphia/heaters-philadelphia/:slug-heating-repair-services-installation/
