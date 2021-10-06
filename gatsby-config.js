@@ -5,7 +5,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Angel',
-    siteUrl: `https://angelhvac.netlify.app`,
+    siteUrl: `http://localhost:8000`,
   },
   plugins: [
     {
