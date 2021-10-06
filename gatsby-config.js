@@ -5,9 +5,72 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Angel',
-    siteUrl: `http://localhost:8000`,
+    siteUrl: `https://angelhvac.netlify.app`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-advanced-sitemap`,
+      options: {
+        query: `{
+          allSitePage(filter: {isCreatedByStatefulCreatePages: {eq: true}}) {
+            edges {
+              node {
+                id
+                slug: path
+              }
+            }
+          }
+          allWpPage {
+            edges {
+              node {
+                id
+                slug: uri
+                updated_at:modified
+              }
+            }
+          }
+          allWpPost {
+            edges {
+              node {
+                id
+                slug: uri
+                updated_at:modified
+              }
+            }
+          }
+        }
+        
+        `,
+       mapping: {
+        allSitePage: {
+          sitemap: `pages`
+        },
+         allWpPage: {
+           sitemap: `pages`
+         },
+         allWpPost: {
+          sitemap: `posts`,
+          prefix: 'blog'
+        },
+       }
+      },
+    },
+     /*This resolves IE 11 white screen of death*/
+     {
+      resolve: `gatsby-plugin-polyfill-io`,
+      options: {
+         features: [`IntersectionObserver`, `Symbol`, `viewport`, `~viewport` ]
+      },
+   },
+   {
+    resolve: `gatsby-plugin-google-gtag`,
+  options: {
+    // You can add multiple tracking ids and a pageview event will be fired for all of them.
+    trackingIds: [
+      "UA-101715984-1"
+    ]
+  }
+  },
     {
       resolve: 'gatsby-source-wordpress',
       options: {
