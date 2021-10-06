@@ -113,7 +113,10 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
             key={i}
             selected={option === value?.issue}
             value={value}
-            setValue={() => setValue({ ...value, issue: option })}
+            setValue={() => {
+              setValue({ ...value, issue: option })
+              nextStep()
+            }}
           >
             {option}
           </Chip>
