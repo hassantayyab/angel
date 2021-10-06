@@ -13,6 +13,8 @@ import ContainerSecondary from '../components/utils/containerSecondary'
 import Hero from '../components/subpage/hero'
 import { useBlogs } from '../hooks/blogsQuery'
 import Pagination from '../components/utils/pagination'
+import GeneralSchema from '../components/GeneralSchema'
+import PageSpecificSchema from '../components/PageSpecificSchema'
 
 const BlogList = ({ data, location }) => {
   const heroData = useBlogs()
@@ -34,6 +36,25 @@ const BlogList = ({ data, location }) => {
 
   return (
     <>
+    <GeneralSchema siteUrl={data.site.siteMetadata.siteUrl}/>
+<PageSpecificSchema 
+      siteUrl={data.site.siteMetadata.siteUrl}
+      uri="/blog/" 
+      title={null} 
+      datePublished={null}
+      dateModified={null}
+      image={null} 
+      author={null}
+      categories={null} 
+      tags={null} 
+      articleBody={null}
+      post={null} 
+      videos={null}
+      questionsAndAnswers={null}
+      maps={null}
+      digitalDocuments={null}
+      images={null}
+      hasSchema={null}/>
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
         <Header headerData={generalData._generalData} menuData={menuData} />
@@ -82,6 +103,11 @@ export const blogListQuery = graphql`
         excerpt
         date(formatString: "D MMM, Y")
         uri
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }
