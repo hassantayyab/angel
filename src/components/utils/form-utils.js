@@ -58,7 +58,7 @@ export const AddressInfoSchema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  suite: Yup.string().required('Required'),
+  suite: Yup.string(),
   city: Yup.string()
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')

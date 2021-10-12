@@ -30,7 +30,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   const handleFiles = (event) => {
     const newFiles = Array.from(event.target.files).slice(0, 4)
 
-    if (newFiles.find((f) => f.size > 1020000)) {
+    if (newFiles.find((f) => f.size > 10240000)) {
       setFileSizeError(true)
       return
     }
@@ -70,6 +70,7 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
     })
   }
 
+  // Component Functions
   const issueSelection = () => (
     <>
       <h3 className='mb-6 text-black text-opacity-70 font-graphikMedium'>
@@ -195,13 +196,13 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
           !fileSizeError && 'opacity-0'
         }`}
       >
-        One or more file size is greater than 1000 kb.
+        One or more file size is greater than 10 MB.
       </div>
       <small className='mt-3 text-left text-black text-opacity-50'>
         <div>
           You can upload each file of maximum
           <span className='font-graphikMedium text-black-light ml-0.5'>
-            1000 kb
+            10 MB
           </span>
           .
         </div>

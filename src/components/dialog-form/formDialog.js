@@ -8,7 +8,7 @@ import IssueForm from './issueForm'
 import Detailsform from './detailsForm'
 import CustomerForm from './customerForm'
 import ScheduleForm from './scheduleForm'
-import Confirmation from './confirmation'
+import Summary from './summary'
 import { initialState, timeSlots } from './constants'
 import { submitServiceForm, submitEstimateForm } from '../utils/form-utils'
 import NetlifyHiddenForm from './netlifyHiddenForm'
@@ -231,7 +231,7 @@ const FormDialog = ({
                         'details',
                         'customer',
                         'schedule',
-                        'confirm',
+                        'submitted',
                       ]}
                       stepNumber={mainStep}
                     />
@@ -337,7 +337,7 @@ const FormDialog = ({
 
                     {/* Main Step 5 */}
                     {mainStep === 5 && (
-                      <Confirmation carImage={carImage} value={value} />
+                      <Summary carImage={carImage} value={value} />
                     )}
                   </div>
 

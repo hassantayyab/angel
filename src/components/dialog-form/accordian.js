@@ -16,7 +16,9 @@ const Accordian = ({ children, defaultOpen = false }) => (
             height='auto'
             src={ImgDownArrow}
             alt='expansion arrow'
-            className={`w-3 inline-flex`}
+            className={`default-transition w-3 inline-flex transform ${
+              !open && '-rotate-90'
+            }`}
           />
         </Disclosure.Button>
         <Transition
