@@ -24,12 +24,12 @@
   h1 {
     @apply tracking-wide md:text-5xl text-3xl;
   }
-.title{
-  @apply tracking-wide md:text-5xl text-3xl;
-  letter-spacing: .025em;
-  font-family: Graphik Bold,serif;
-  font-weight: 700;
-}
+  .title {
+    @apply tracking-wide md:text-5xl text-3xl;
+    letter-spacing: 0.025em;
+    font-family: Graphik Bold, serif;
+    font-weight: 700;
+  }
   h2 {
     @apply tracking-wide md:text-4xl text-2xl;
   }
@@ -98,6 +98,10 @@
 
   .car-lg-w {
     width: 45%;
+  }
+
+  #industry-leading li {
+    list-style: disc inside;
   }
 }
 
@@ -194,6 +198,14 @@
   }
 }
 
+::-webkit-file-upload-button {
+  background: transparent;
+  border: 1px solid #0959a4;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
 @media (min-width: 640px) {
   .polygon-right {
     clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
@@ -265,8 +277,22 @@
 }
 
 @media (min-width: 2138px) {
+  body {
+    zoom: 1.2;
+  }
+
   .container-secondary {
     max-width: calc(2138px + ((100% - 2138px) / 2));
+  }
+}
+
+@media (min-width: 2800px) {
+  body {
+    zoom: 1.6;
+  }
+
+  .container {
+    max-width: 1400px;
   }
 }
 

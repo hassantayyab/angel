@@ -2,9 +2,8 @@ import { ImgSubmit } from '../../images'
 import React, { useEffect, useState } from 'react'
 import Container from '../utils/container'
 import Frame from '../utils/frame'
-import FormInput from './form-input'
 import { Form, Formik } from 'formik'
-import { Schema, submitForm } from '../utils/form-utils'
+import { CareenSchema, submitCareerForm } from '../utils/form-utils'
 import Separator from '../utils/separator'
 import { useContactQuery } from '../../hooks/contactQuery'
 import BackgroundImage from '../utils/backgroundImage'
@@ -15,13 +14,13 @@ import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
 import Button from '../utils/button'
-import { useHeaderMenuQuery } from '../../hooks/useMenuQuery'
+import FormInput from '../common/form-input'
 
-const Contact = () => {
-  const services = useHeaderMenuQuery()
-    .filter((m) => m.label === 'Services')[0]
-    .childItems.nodes.map((i) => i.label)
+const CareerForm = () => {
   const data = useContactQuery()
+  const [fileSizeError, setFileSizeError] = useState(false)
+  const [file, setFile] = useState(false)
+  const [submitButtonClicked, setSubmitButtonClicked] = useState(false)
   const [submit, setSubmit] = useState({
     sent: false,
     error: false,
@@ -29,15 +28,19 @@ const Contact = () => {
   })
 
   const handleSubmit = async (values, setSubmitting, resetForm) => {
+    const valuesWithFile = { ...values, resume: file }
+
     try {
-      await submitForm(values)
+      await submitCareerForm(valuesWithFile)
+      setFile(null)
       setSubmit({
         sent: true,
         error: false,
         message: 'Submitted Successfully!',
       })
-
       setTimeout(() => {
+        setSubmitButtonClicked(false)
+        setFile(false)
         setSubmit({
           sent: false,
           error: false,
@@ -46,6 +49,7 @@ const Contact = () => {
       }, 5000)
       resetForm()
     } catch (error) {
+      setFile(null)
       setSubmit({
         sent: true,
         error: true,
@@ -73,8 +77,20 @@ const Contact = () => {
     }
   }, [inView, animateTitle, animateSubtitle])
 
+  const handleFiles = (event) => {
+    const newFile = Array.from(event.target.files)[0]
+
+    if (newFile.size > 10240000) {
+      setFileSizeError(true)
+      return
+    }
+    setFileSizeError(false)
+    setFile(newFile)
+    setSubmitButtonClicked(false)
+  }
+
   return (
-    <section className='relative py-20 xl:mb-20' id='contactForm' ref={ref}>
+    <section className='relative py-12 xl:mb-20' id='contactForm' ref={ref}>
       <BackgroundImage
         image={getImage(data.formBgImage?.localFile)}
         alt={data.formBgImage?.altText}
@@ -82,7 +98,7 @@ const Contact = () => {
       <div className='absolute inset-0'></div>
       <Container>
         <section className='relative md:grid grid-cols-2 gap-12'>
-          <div className='relative mb-0 xl:-mb-40 mw-sub-page'>
+          <div className='relative mb-0 lg:-mb-20 mw-sub-page'>
             <div className='relative z-10 object-cover w-full h-64 pl-6 mr-6 -ml-6 overflow-hidden -top-6 md:top-8 md:w-auto md:pr-0 md:h-auto'>
               <GatsbyImage
                 image={getImage(data.formImage?.localFile)}
@@ -103,7 +119,7 @@ const Contact = () => {
               >
                 Contact
               </Subtitle>
-              <Title animate={animateTitle}>{data.formHeading}</Title>
+              <Title animate={animateTitle}>Apply Now</Title>
             </div>
 
             {/* Separator */}
@@ -117,12 +133,9 @@ const Contact = () => {
                 fullName: '',
                 email: '',
                 phone: '',
-                city: '',
-                state: '',
-                services: '',
-                message: '',
+                position: '',
               }}
-              validationSchema={Schema}
+              validationSchema={CareenSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 handleSubmit(values, setSubmitting, resetForm)
               }}
@@ -141,40 +154,56 @@ const Contact = () => {
 
                   <div className='flex flex-col items-end justify-between my-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
                     <FormInput name='phone' label='Phone' />
-                    <FormInput name='city' label='City' />
-                  </div>
-
-                  <div className='flex flex-col items-end justify-between mb-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
-                    <FormInput name='state' label='State' />
                     <FormInput
-                      name='services'
-                      label='Services'
+                      name='position'
+                      label='Interested position'
                       component='select'
                     >
-                      <option disabled value=''>
-                        Services
+                      <option value='' disabled>
+                        Interested position
                       </option>
-                      {services.length > 0 &&
-                        services.map((s, i) => (
-                          <option value={s} key={i}>
-                            {s}
-                          </option>
-                        ))}
+                      <option value='hvac technician'>HVAC Technician</option>
+                      <option value='hvac installer'>HVAC Installer</option>
+                      <option value='sales'>Sales</option>
                     </FormInput>
                   </div>
 
                   <div className='relative'>
-                    <FormInput
-                      name='message'
-                      label='Describe Your Case'
-                      className='textarea'
-                      component='textarea'
-                      rows='2'
-                    />
+                    {/* File upload */}
+                    <div className='w-1/3'>
+                      <input
+                        id='career-file'
+                        className='text-white bg-transparent cursor-pointer'
+                        type='file'
+                        accept='.pdf,.txt,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                        multiple
+                        onChange={(e) => handleFiles(e)}
+                        onClick={(e) => (e.target.value = null)}
+                      />
+                    </div>
+                    <small className='mt-4 text-left text-white text-opacity-70'>
+                      You can upload a file of maximum 10 MB.
+                    </small>
+                    {fileSizeError && (
+                      <div
+                        className={`mt-2 text-sm text-left text-orange-dark h-4`}
+                      >
+                        File size is greater than 10 MB.
+                      </div>
+                    )}
+
+                    {submitButtonClicked && file === false && (
+                      <div
+                        className={`mt-2 text-sm text-left text-orange-dark h-4`}
+                      >
+                        File is required.
+                      </div>
+                    )}
 
                     <Button
                       className='absolute right-0 p-2 rounded-full -bottom-4 sm:-bottom-6 bg-yellow hover:bg-yellow-dark default-transition'
                       disabled={isSubmitting}
+                      onClick={() => setSubmitButtonClicked(true)}
                     >
                       <img
                         width='auto'
@@ -202,4 +231,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default CareerForm

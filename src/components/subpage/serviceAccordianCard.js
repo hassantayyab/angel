@@ -9,7 +9,7 @@ const ServiceAccordianCard = ({ category, servicesData }) => {
     <Accordian btnIcon={ImgChevron} defaultOpen={true}>
       <Link
         className='text-white uppercase font-graphikMedium'
-        to={'/' + category.slug}
+        to={category.serviceCategoryLink}
       >
         {category.name}
       </Link>
@@ -31,9 +31,7 @@ const ServiceAccordianCard = ({ category, servicesData }) => {
               )}
               <Link
                 className='font-graphikMedium'
-                to={
-                  '/' + category.slug + service._servicePost.servicePageLink.url
-                }
+                to={service._servicePost.servicePageLink.url}
               >
                 {service.title}
               </Link>

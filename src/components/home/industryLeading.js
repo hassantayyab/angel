@@ -55,7 +55,7 @@ const IndustryLeading = ({ data, carImage, contactFormRef }) => {
         // }}
       ></div>
       <Container>
-        <div className='relative z-10 flex flex-col items-center text-center lg:text-left lg:flex-row'>
+        <div className='relative z-10 flex flex-col text-center lg:text-left lg:flex-row'>
           <div className='px-0 text-black sm:w-3/5 lg:w-1/2 xl:px-20 lg:pr-20'>
             <Subtitle
               className='mb-2 tracking-wider uppercase font-graphikBold'
@@ -72,7 +72,10 @@ const IndustryLeading = ({ data, carImage, contactFormRef }) => {
               initial='hidden'
               animate={animateContent}
             >
-              {data.industryLeadingText}
+              <div
+                id='industry-leading'
+                dangerouslySetInnerHTML={{ __html: data.industryLeadingText }}
+              />
             </motion.p>
 
             <Button
@@ -82,7 +85,7 @@ const IndustryLeading = ({ data, carImage, contactFormRef }) => {
               Request Service Today
             </Button>
           </div>
-          <div className='w-full mx-auto mt-16 2xl:-mr-12 lg:4/5 lg:w-1/2 lg:ml-auto lg:mt-0'>
+          <div className='w-full mx-auto mt-16 2xl:-mr-12 lg:4/5 lg:w-1/2 lg:ml-auto lg:mt-16'>
             <GatsbyImage
               image={getImage(carImage?.localFile)}
               alt={carImage?.altText}

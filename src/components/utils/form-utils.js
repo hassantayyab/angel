@@ -40,6 +40,16 @@ export const Schema = Yup.object().shape({
   message: Yup.string().required('Required'),
 })
 
+export const CareenSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  position: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  phone: Yup.string().matches(phoneRegExp, 'Invalid').required('Required'),
+})
+
 export const PersonalInfoSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(3, 'Too Short!')
@@ -113,6 +123,24 @@ export function submitEstimateForm(values) {
       method: 'POST',
       body: encodeForm({
         'form-name': 'virtual estimates',
+        ...values,
+      }),
+    })
+      .then(() => {
+        resolve(true)
+      })
+      .catch(() => {
+        reject(false)
+      })
+  })
+}
+
+export function submitCareerForm(values) {
+  return new Promise((resolve, reject) => {
+    fetch('/', {
+      method: 'POST',
+      body: encodeForm({
+        'form-name': 'career',
         ...values,
       }),
     })

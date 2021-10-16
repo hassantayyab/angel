@@ -7,6 +7,11 @@ export const useServiceCategoriesQuery = () => {
         nodes {
           name
           slug
+          serviceCategoryLink {
+            link {
+              url
+            }
+          }
         }
       }
     }
@@ -15,6 +20,7 @@ export const useServiceCategoriesQuery = () => {
   return data.allWpServiceCategory.nodes
     .map((n) => ({
       ...n,
+      serviceCategoryLink: n.serviceCategoryLink.link.url,
       slug: n.slug.replace('_', '-'),
     }))
     .sort((a, b) => (a.slug > b.slug ? 1 : -1))

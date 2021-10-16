@@ -7,10 +7,18 @@ import Accordian from './accordian'
 import Button from '../utils/button'
 import { useMenuDropdownImageQuery } from '../../hooks/useMenuDropdownImageQuery'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import FormDialog from '../dialog-form/formDialog'
 
-const DesktopMenu = ({ list = [] }) => {
+const DesktopMenu = ({ list = [], contactNumber, carImage, logo }) => {
   const [expanded, setExpanded] = useState(false)
   const menuImage = useMenuDropdownImageQuery()
+  let [isFormModalOpen, setIsFormModalOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openFormDialog = (v) => {
+    setType(v)
+    setIsFormModalOpen(true)
+  }
 
   function getChildren(index) {
     return list[index].childItems.nodes
@@ -96,10 +104,16 @@ const DesktopMenu = ({ list = [] }) => {
                           ))}
                         </div>
                         <div className='flex flex-col justify-end pb-12 pl-12 border-l border-white border-opacity-10 transform scale-90'>
-                          <Button className='px-2 mb-3 w-72 btn btn-primary transition-all'>
-                            Schedule Service Now
+                          <Button
+                            className='px-2 mb-3 w-72 btn btn-primary transition-all'
+                            onClick={() => openFormDialog('service')}
+                          >
+                            Same Day Services
                           </Button>
-                          <Button className='px-2 w-72 btn btn-secondary transition-all'>
+                          <Button
+                            className='px-2 w-72 btn btn-secondary transition-all'
+                            onClick={() => openFormDialog('estimate')}
+                          >
                             Virtual Estimate
                           </Button>
                         </div>
@@ -112,6 +126,16 @@ const DesktopMenu = ({ list = [] }) => {
           </div>
         </div>
       </Container>
+
+      {/* VideoDialog */}
+      <FormDialog
+        contactNumber={contactNumber}
+        type={type}
+        isOpen={isFormModalOpen}
+        setIsOpen={setIsFormModalOpen}
+        logo={logo}
+        carImage={carImage}
+      />
     </nav>
   )
 }

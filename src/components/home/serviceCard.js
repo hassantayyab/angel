@@ -8,7 +8,7 @@ import { Link } from 'gatsby'
 const ServiceCard = ({ data }) => {
   return (
     <motion.div
-      className='relative max-w-md transition-all'
+      className='relative max-w-sm transition-all'
       variants={scale}
       whileHover={hoverScale}
     >

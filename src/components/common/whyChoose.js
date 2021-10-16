@@ -110,7 +110,7 @@ const WhyChoose = ({ contactNumber, carImage, logo }) => {
 
         {/* Step Cards */}
         <Container>
-          <div className='flex flex-wrap items-center justify-center mx-auto mt-8 xl:flex-nowrap space-x-5 space-y-20'>
+          <div className='flex flex-wrap items-center justify-center mx-auto mt-8 xl:flex-nowrap space-x-1 xs:space-x-3 sm:space-x-5 space-y-20'>
             {reasonsData
               .filter((r) =>
                 r.reasonCategories.nodes

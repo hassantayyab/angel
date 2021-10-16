@@ -13,13 +13,35 @@ import {
 import Button from '../utils/button'
 import Badge from '../utils/badge'
 import { useState } from 'react'
-import scrollTo from 'gatsby-plugin-smoothscroll'
+import FormDialog from '../dialog-form/formDialog'
+import { navigate } from 'gatsby-link'
 
 const isBrowser = typeof window !== 'undefined'
 
-const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
+const Hero = ({
+  data,
+  isMain = false,
+  showBadge = true,
+  buttonLabel = 'Schedule Service Now',
+  contactNumber,
+  carImage,
+  logo,
+}) => {
   const [ref, inView] = useInView(View)
   const [scroll, setScroll] = useState(false)
+  let [isFormModalOpen, setIsFormModalOpen] = useState(false)
+  let [type, setType] = useState(null)
+
+  const openFormDialog = (v) => {
+    // For financing Learn more
+    if (!isMain && !showBadge) {
+      navigate('/financing')
+      return
+    }
+
+    setType(v)
+    setIsFormModalOpen(true)
+  }
 
   const animateTitle = useAnimation()
   const animateSubtitle = useAnimation()
@@ -44,7 +66,12 @@ const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
   }, [inView, animateTitle, animateSubtitle])
 
   return (
-    <section className='relative bg-black mt-28 h-home-hero md:mt-0' ref={ref}>
+    <section
+      className={`relative bg-black mt-28 h-home-hero ${
+        isMain ? 'md:mt-40' : 'md:mt-0'
+      }`}
+      ref={ref}
+    >
       <div
         className={`absolute z-20 w-full text-center sm:w-auto sm:right-20 lg:right-32 bottom-28 sm:bottom-auto ${
           scroll ? 'lg:z-20' : 'lg:z-50'
@@ -87,12 +114,22 @@ const Hero = ({ data, isMain = false, contactFormRef, showBadge = true }) => {
           <Button
             type='button'
             className='mt-3 sm:mt-6 btn btn-primary'
-            onClick={() => scrollTo(contactFormRef, 'end')}
+            onClick={() => openFormDialog('service')}
           >
-            Schedule Service Now
+            {buttonLabel}
           </Button>
         </div>
       </div>
+
+      {/* VideoDialog */}
+      <FormDialog
+        contactNumber={contactNumber}
+        type={type}
+        isOpen={isFormModalOpen}
+        setIsOpen={setIsFormModalOpen}
+        logo={logo}
+        carImage={carImage}
+      />
     </section>
   )
 }

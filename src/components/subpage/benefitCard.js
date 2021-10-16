@@ -5,12 +5,12 @@ import { motion } from 'framer-motion'
 
 const BenefitCard = ({ data }) => (
   <motion.div
-    className='px-4 py-8 mt-12 text-center bg-white shadow-xl w-52 transition-all'
+    className='w-5/6 px-4 py-8 mt-12 text-center bg-white shadow-xl sm:w-44 md:w-52 transition-all'
     variants={scale}
     whileHover={hoverScale}
   >
-    <div className='relative w-24 h-24 mx-auto -mt-20 rounded-full bg-blue'>
-      <div className='absolute w-4/7 absolute-center'>
+    <div className='relative w-20 h-20 mx-auto -mt-20 rounded-full sm:w-24 sm:h-24 bg-blue'>
+      <div className='absolute mx-auto w-4/7 absolute-center'>
         <GatsbyImage
           image={getImage(data._reasonPost.reasonImage?.localFile)}
           alt={data._reasonPost.reasonImage?.altText}
