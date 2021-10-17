@@ -16,6 +16,7 @@ import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
 import Button from '../utils/button'
 import { useHeaderMenuQuery } from '../../hooks/useMenuQuery'
+import { states } from './us-states'
 
 const Contact = () => {
   const services = useHeaderMenuQuery()
@@ -145,7 +146,17 @@ const Contact = () => {
                   </div>
 
                   <div className='flex flex-col items-end justify-between mb-8 sm:space-x-8 sm:space-y-0 space-y-8 sm:flex-row'>
-                    <FormInput name='state' label='State' />
+                    <FormInput name='state' label='State' component='select'>
+                      <option disabled value=''>
+                        State
+                      </option>
+                      {states.length > 0 &&
+                        states.map((s, i) => (
+                          <option value={s.abbreviation} key={i}>
+                            {s.name}
+                          </option>
+                        ))}
+                    </FormInput>
                     <FormInput
                       name='services'
                       label='Services'

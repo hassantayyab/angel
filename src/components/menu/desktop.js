@@ -74,34 +74,7 @@ const DesktopMenu = ({ list = [], contactNumber, carImage, logo }) => {
                           </div>
                         </div>
                         <div>
-                          {getChildren(expanded).map((item) => (
-                            <Accordian
-                              key={item.id}
-                              btnText={
-                                item.childItems.nodes.length > 0 ? '+' : ''
-                              }
-                            >
-                              <Link
-                                className='mr-6 text-sm uppercase font-graphikMedium'
-                                to={item.path}
-                              >
-                                {item.label}
-                              </Link>
-                              {item.childItems.nodes.length > 0 && (
-                                <ul className='pb-2'>
-                                  {item.childItems.nodes.map((item) => (
-                                    <li
-                                      className='flex items-center px-6 py-2 text-sm text-white cursor-pointer text-opacity-80 font-graphik space-x-3 default-transition'
-                                      key={item.id}
-                                    >
-                                      <span className='bg-white rounded-full bg-opacity-80 w-1.5 h-1.5'></span>
-                                      <Link to={item.path}>{item.label}</Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </Accordian>
-                          ))}
+                          <Accordian data={getChildren(expanded)} />
                         </div>
                         <div className='flex flex-col justify-end pb-12 pl-12 border-l border-white border-opacity-10 transform scale-90'>
                           <Button

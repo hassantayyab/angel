@@ -83,6 +83,12 @@
 }
 
 @layer components {
+  #accordian #content {
+    margin-top: -1px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
   /* Buttons */
   .btn {
     @apply text-xl uppercase transition-all duration-200 font-barlowCondensed tracking-wider;
@@ -341,23 +347,23 @@
 
 /* Scrollbar Styles */
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-}
+} */
 
 /* Track */
-::-webkit-scrollbar-track {
+/* ::-webkit-scrollbar-track {
   background: #f1f1f1;
-}
+} */
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background: #c1c1c1;
   border-radius: 4px;
-}
+} */
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+/* ::-webkit-scrollbar-thumb:hover {
   background: #999;
-}
+} */

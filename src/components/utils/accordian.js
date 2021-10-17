@@ -1,71 +1,106 @@
-import { Disclosure, Transition } from '@headlessui/react'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { ImgAddress } from '../../images'
 
-// This accordian accepts two children templates.
-// First as the toggle button text
-// Second as the hidden content
-const Accordian = ({
-  children,
-  btnIcon,
-  btnText = '+',
-  buttonIdx,
-  defaultOpen = false,
-  setClicked,
-  close,
-}) => {
-  const buttonRef = useRef(null)
+const Accordian = ({ data, btnIcon, btnText = '+' }) => {
+  const [active, setActive] = useState([])
+  const [height, setHeight] = useState([])
+  const [icon, setIcon] = useState([])
+  const contentRefs = useRef([])
+
+  const toggleAccordion = (i) => {
+    setActive(
+      active.map((el, idx) => {
+        if (idx === i) {
+          return el === 'active' ? '' : 'active'
+        } else {
+          return ''
+        }
+      })
+    )
+
+    setHeight(
+      height.map((el, idx) =>
+        idx === i
+          ? active[idx] === 'active'
+            ? '0px'
+            : `${contentRefs.current[i].scrollHeight}px`
+          : '0px'
+      )
+    )
+
+    setIcon(
+      icon.map((el, idx) =>
+        idx === i ? (active[idx] === 'active' ? '+' : '_') : '+'
+      )
+    )
+  }
 
   useEffect(() => {
-    if (close) {
-      buttonRef.current.click()
+    if (data?.length) {
+      contentRefs.current = contentRefs.current.slice(0, data.length)
+      setActive(['active', ...new Array(data.length - 1).fill('')])
+      setHeight([
+        `${contentRefs.current[0].scrollHeight}px`,
+        ...new Array(data.length - 1).fill('0px'),
+      ])
+      setIcon(['_', ...new Array(data.length - 1).fill('+')])
+      return function cleanup() {}
     }
-  }, [close])
+  }, [data?.length])
 
   return (
-    <Disclosure defaultOpen={defaultOpen}>
-      {({ open }) => (
-        <>
-          <Disclosure.Button
-            className='flex items-center justify-between w-full px-6 py-4 outline-none bg-blue'
-            id={`toggler-${buttonIdx}`}
-            onClick={() => setClicked(buttonIdx)}
-            ref={buttonRef}
-          >
-            {children[0]}
-            {btnIcon ? (
-              <img
-                width='auto'
-                height='auto'
-                src={btnIcon}
-                alt='expansion arrow'
-                className={`w-2.5 ml-4 inline-flex transform ${
-                  open ? '' : '-rotate-90'
-                }`}
-              />
-            ) : (
-              <span
-                className={`text-4xl text-white ${open && '-mt-8 w-5'}`}
-                style={{ lineHeight: 0 }}
-              >
-                {open ? '_' : btnText}
-              </span>
-            )}
-          </Disclosure.Button>
-          <Transition
-            enter='transition duration-100 ease-out'
-            enterFrom='transform scale-95 opacity-0'
-            enterTo='transform scale-100 opacity-100'
-            leave='transition duration-75 ease-out'
-            leaveFrom='transform scale-100 opacity-100'
-            leaveTo='transform scale-95 opacity-0'
-          >
-            <Disclosure.Panel className='text-gray-500 border-2 border-gray-200'>
-              {children[1]}
-            </Disclosure.Panel>
-          </Transition>
-        </>
+    <>
+      {data?.length > 0 && (
+        <section id='accordian'>
+          {data.map(({ title, places }, i) => (
+            <div key={i} className='flex flex-col mb-2'>
+              <div>
+                <button
+                  className={`outline-none bg-blue opener flex items-center justify-between w-full px-6 py-4`}
+                  onClick={() => toggleAccordion(i)}
+                >
+                  <span className='text-white'>{title}</span>
+
+                  <span
+                    className={`text-4xl text-white ${
+                      active[i] && '-mt-8 w-5'
+                    }`}
+                    style={{ lineHeight: 0 }}
+                  >
+                    {active[i] ? '_' : btnText}
+                  </span>
+                </button>
+                <div
+                  id='content'
+                  ref={(el) => (contentRefs.current[i] = el)}
+                  style={{ maxHeight: `${height[i]}` }}
+                >
+                  <ul className='py-2'>
+                    {places.length > 0 &&
+                      places.map(({ name }, j) => (
+                        <li
+                          className='flex justify-center px-4 py-3 cursor-pointer space-x-3 default-transition'
+                          key={j}
+                        >
+                          <img
+                            width='auto'
+                            height='auto'
+                            src={ImgAddress}
+                            alt='address icon'
+                          />
+                          <span className='text-gray font-graphikMedium'>
+                            {name}
+                          </span>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </section>
       )}
-    </Disclosure>
+    </>
   )
 }
 

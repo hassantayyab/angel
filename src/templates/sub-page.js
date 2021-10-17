@@ -28,7 +28,6 @@ import PageSpecificSchema from '../components/PageSpecificSchema'
 import CareerForm from '../components/subpage/careerForm'
 
 const SubPage = ({ data, location }) => {
-  console.log('location', location)
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
   const coupon = useCouponsListQuery()[0]
@@ -148,9 +147,11 @@ const SubPage = ({ data, location }) => {
         </div>
       </Container>
 
-      <div className='mt-32'>
-        <CareerForm />
-      </div>
+      {location.pathname === '/careers/' && (
+        <div className='mt-32'>
+          <CareerForm />
+        </div>
+      )}
 
       <div className='mt-32'>
         <WhyChoose

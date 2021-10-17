@@ -26,10 +26,7 @@ export const Schema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  state: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+  state: Yup.string().required('Required'),
   services: Yup.string().required('Required'),
   city: Yup.string()
     .min(3, 'Too Short!')
@@ -73,10 +70,7 @@ export const AddressInfoSchema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  state: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+  state: Yup.string().required('Required'),
   zipCode: Yup.string().max(7, 'Too Long!').required('Required!'),
 })
 

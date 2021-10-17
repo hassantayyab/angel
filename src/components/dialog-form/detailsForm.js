@@ -8,6 +8,7 @@ import FormInput from './form-input'
 import { motion } from 'framer-motion'
 import { hoverScale, scale } from '../../animations'
 import { estimateOptions, services, serviceOptions } from './constants'
+import { states } from '../common/us-states'
 
 const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
   const [fileSizeError, setFileSizeError] = useState(false)
@@ -76,29 +77,16 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
       <h3 className='mb-6 text-black text-opacity-70 font-graphikMedium'>
         Select Your {services.indexOf(issue) > 1 ? 'Service' : 'Issue'}
       </h3>
-      {Object.keys(options[issue]).map((title, i) => (
-        <Accordian key={i} defaultOpen={i === 0}>
-          <h5 className='text-blue font-graphik'>{title}</h5>
-
-          {/* Hidden Content */}
-          <div className='flex flex-wrap pb-3'>
-            {options[issue][title].map((option, i) => (
-              <Chip
-                className='mb-3 mr-3'
-                key={i}
-                selected={option === value?.issue}
-                value={value}
-                setValue={() => {
-                  setValue({ ...value, issue: option })
-                  nextStep()
-                }}
-              >
-                {option}
-              </Chip>
-            ))}
-          </div>
-        </Accordian>
-      ))}
+      <Accordian
+        data={Object.keys(options[issue])}
+        issue={issue}
+        options={options}
+        value={value}
+        setValue={(opt) => {
+          setValue({ ...value, issue: opt })
+          nextStep()
+        }}
+      />
     </>
   )
 
@@ -315,7 +303,17 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
                 <FormInput name='city' label='CITY' />
               </div>
               <div>
-                <FormInput name='state' label='STATE' />
+                <FormInput name='state' label='STATE' component='select'>
+                  <option disabled value=''>
+                    STATE
+                  </option>
+                  {states.length > 0 &&
+                    states.map((s, i) => (
+                      <option value={s.abbreviation} key={i}>
+                        {s.name}
+                      </option>
+                    ))}
+                </FormInput>
               </div>
             </div>
             <FormInput name='zipCode' label='ZIPCODE' />
