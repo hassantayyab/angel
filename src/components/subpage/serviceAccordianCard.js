@@ -2,7 +2,7 @@ import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import { ImgChevron } from '../../images'
-import Accordian from '../utils/accordian'
+import Accordian from './accordian'
 
 const ServiceAccordianCard = ({ category, servicesData }) => {
   return (

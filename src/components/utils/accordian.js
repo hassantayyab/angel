@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { ImgAddress } from '../../images'
 
-const Accordian = ({ data, btnIcon, btnText = '+' }) => {
+const Accordian = ({ data, btnText = '+' }) => {
   const [active, setActive] = useState([])
   const [height, setHeight] = useState([])
   const [icon, setIcon] = useState([])
