@@ -7,10 +7,18 @@
 @layer base {
   @import url('./_typography.css');
 
+  html {
+    min-height: -webkit-fill-available;
+  }
+
   /* Normalize CSS */
   body {
     font-family: 'Graphik', serif;
     line-height: 1.5;
+    min-height: 100vh;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
   }
 
   h1,
