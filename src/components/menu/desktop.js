@@ -43,7 +43,7 @@ const DesktopMenu = ({ list = [], contactNumber, carImage, logo }) => {
     <nav onMouseLeave={() => setExpanded(false)}>
       <Container>
         <div className='relative z-30 hidden py-5 lg:block'>
-          <div className='flex content-center justify-between py-2 font-graphikBold'>
+          <div className='flex items-center justify-between py-2 font-graphikBold'>
             {list.map((item, index) => (
               <Popover key={item.id} className='relative'>
                 <Popover.Button onMouseEnter={() => initSetExpand(index)}>

@@ -53,7 +53,7 @@ const Accordian = ({ data, btnIcon, btnText = '+' }) => {
               onClick={() => toggleAccordion(i)}
             >
               <Link
-                className='mr-6 text-sm uppercase font-graphikMedium'
+                className='mr-6 text-sm text-left uppercase font-graphikMedium'
                 to={item.path}
               >
                 {item.label}
