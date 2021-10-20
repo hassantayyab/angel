@@ -26,7 +26,21 @@ export const useGeneralInfoQuery = () => {
             email
             topInfoText
             websiteName
-            infoLink
+            infoLink {
+              url
+            }
+            imagePlaceholder {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    quality: 100
+                    placeholder: BLURRED
+                    formats: [WEBP]
+                  )
+                }
+              }
+            }
             contactNumbers {
               number
               location
@@ -59,6 +73,7 @@ export const useGeneralInfoQuery = () => {
               }
             }
             footerImages {
+              link
               image {
                 altText
                 localFile {

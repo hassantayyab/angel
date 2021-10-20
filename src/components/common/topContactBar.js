@@ -13,6 +13,8 @@ const TopContactBar = ({
   openMenu,
   setOpenMenu,
   setOpenContactMenu,
+  carImage,
+  logo,
 }) => {
   useEffect(() => {
     if (openMenu) {
@@ -45,23 +47,30 @@ const TopContactBar = ({
       <div className='relative z-50 flex justify-center md:justify-between'>
         <div className='items-center hidden px-6 py-3 text-base font-medium text-white xl:px-12 xl:py-4 lg:flex btn font-graphikMedium bg-blue transform -skew-x-12'>
           {data.length > 0 &&
-            data.map(({ number }, i) => (
+            data.map(({ number, location }, i) => (
               <div key={i}>
-                <a
-                  href={`tel:${number}`}
-                  className={`flex content-center border-gray-400 hover:text-yellow default-transition transform skew-x-12 ${
-                    i < data.length - 1 && 'border-r pr-3 xl:pr-5'
-                  } ${i > 0 && 'pl-3 xl:pl-5'}`}
-                >
-                  <img
-                    width='auto'
-                    height='auto'
-                    src={ImgCall}
-                    alt='call'
-                    className='w-6 mr-3'
-                  />
-                  <span>{number}</span>
-                </a>
+                <div>
+                  <a
+                    href={`tel:${number}`}
+                    className={`flex items-center border-gray-400 hover:text-yellow default-transition transform skew-x-12 ${
+                      i < data.length - 1 && 'border-r pr-3 xl:pr-5'
+                    } ${i > 0 && 'pl-3 xl:pl-5'}`}
+                  >
+                    <img
+                      width='auto'
+                      height='auto'
+                      src={ImgCall}
+                      alt='call'
+                      className='w-6 mr-3'
+                    />
+                    <div className='flex flex-col'>
+                      <span>{number}</span>
+                      <small className='text-xs normal-case font-graphik'>
+                        {location}
+                      </small>
+                    </div>
+                  </a>
+                </div>
               </div>
             ))}
         </div>
@@ -96,7 +105,14 @@ const TopContactBar = ({
           </div>
         </div>
       </div>
-      {openMenu && <MobileMenu list={menuData} />}
+      {openMenu && (
+        <MobileMenu
+          list={menuData}
+          contactNumber={data[0].number}
+          carImage={carImage}
+          logo={logo}
+        />
+      )}
     </>
   )
 }

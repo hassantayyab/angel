@@ -36,7 +36,7 @@ const Hero = ({ data, heightClassName = 'h-subpage-hero' }) => {
 
   return (
     <section
-      className={`relative bg-black mt-28 md:mt-0 ${heightClassName}`}
+      className={`relative bg-black mt-28 md:mt-40 ${heightClassName}`}
       ref={ref}
     >
       <BackgroundImage

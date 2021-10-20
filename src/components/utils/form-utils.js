@@ -26,10 +26,7 @@ export const Schema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  state: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+  state: Yup.string().required('Required'),
   services: Yup.string().required('Required'),
   city: Yup.string()
     .min(3, 'Too Short!')
@@ -38,6 +35,16 @@ export const Schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   phone: Yup.string().matches(phoneRegExp, 'Invalid').required('Required'),
   message: Yup.string().required('Required'),
+})
+
+export const CareenSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  position: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  phone: Yup.string().matches(phoneRegExp, 'Invalid').required('Required'),
 })
 
 export const PersonalInfoSchema = Yup.object().shape({
@@ -58,15 +65,12 @@ export const AddressInfoSchema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  suite: Yup.string().required('Required'),
+  suite: Yup.string(),
   city: Yup.string()
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  state: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+  state: Yup.string().required('Required'),
   zipCode: Yup.string().max(7, 'Too Long!').required('Required!'),
 })
 
@@ -113,6 +117,24 @@ export function submitEstimateForm(values) {
       method: 'POST',
       body: encodeForm({
         'form-name': 'virtual estimates',
+        ...values,
+      }),
+    })
+      .then(() => {
+        resolve(true)
+      })
+      .catch(() => {
+        reject(false)
+      })
+  })
+}
+
+export function submitCareerForm(values) {
+  return new Promise((resolve, reject) => {
+    fetch('/', {
+      method: 'POST',
+      body: encodeForm({
+        'form-name': 'career',
         ...values,
       }),
     })

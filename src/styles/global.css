@@ -7,10 +7,18 @@
 @layer base {
   @import url('./_typography.css');
 
+  html {
+    min-height: -webkit-fill-available;
+  }
+
   /* Normalize CSS */
   body {
     font-family: 'Graphik', serif;
     line-height: 1.5;
+    min-height: 100vh;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
   }
 
   h1,
@@ -24,12 +32,12 @@
   h1 {
     @apply tracking-wide md:text-5xl text-3xl;
   }
-.title{
-  @apply tracking-wide md:text-5xl text-3xl;
-  letter-spacing: .025em;
-  font-family: Graphik Bold,serif;
-  font-weight: 700;
-}
+  .title {
+    @apply tracking-wide md:text-5xl text-3xl;
+    letter-spacing: 0.025em;
+    font-family: Graphik Bold, serif;
+    font-weight: 700;
+  }
   h2 {
     @apply tracking-wide md:text-4xl text-2xl;
   }
@@ -83,6 +91,12 @@
 }
 
 @layer components {
+  #accordian #content {
+    margin-top: -1px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
   /* Buttons */
   .btn {
     @apply text-xl uppercase transition-all duration-200 font-barlowCondensed tracking-wider;
@@ -98,6 +112,10 @@
 
   .car-lg-w {
     width: 45%;
+  }
+
+  #industry-leading li {
+    list-style: disc inside;
   }
 }
 
@@ -194,6 +212,14 @@
   }
 }
 
+::-webkit-file-upload-button {
+  background: transparent;
+  border: 1px solid #0959a4;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
 @media (min-width: 640px) {
   .polygon-right {
     clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
@@ -265,8 +291,22 @@
 }
 
 @media (min-width: 2138px) {
+  body {
+    zoom: 1.2;
+  }
+
   .container-secondary {
     max-width: calc(2138px + ((100% - 2138px) / 2));
+  }
+}
+
+@media (min-width: 2800px) {
+  body {
+    zoom: 1.6;
+  }
+
+  .container {
+    max-width: 1400px;
   }
 }
 
@@ -315,23 +355,23 @@
 
 /* Scrollbar Styles */
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-}
+} */
 
 /* Track */
-::-webkit-scrollbar-track {
+/* ::-webkit-scrollbar-track {
   background: #f1f1f1;
-}
+} */
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background: #c1c1c1;
   border-radius: 4px;
-}
+} */
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+/* ::-webkit-scrollbar-thumb:hover {
   background: #999;
-}
+} */

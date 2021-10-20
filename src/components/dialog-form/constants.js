@@ -38,11 +38,7 @@ export const serviceOptions = {
     'Emergency Repair': ['No Cooling', 'No Heat', 'Uncontrollable Leak'],
   },
   [services[2]]: {
-    'Schedule Maintenance': [
-      'Annual Maintenance Plan',
-      'One Time Tune-Up',
-      'Due Dillidence',
-    ],
+    'Schedule Maintenance': ['Annual Maintenance Plan', 'One Time Tune-Up'],
   },
   [services[3]]: {
     'In-Home Estimates': [

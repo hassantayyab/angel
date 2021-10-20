@@ -55,10 +55,10 @@ const Coupon = ({ data, logo }) => {
             <ReactToPrint
               trigger={() => (
                 <Button
-                  className='w-5/6 btn btn-primary'
+                  className='w-5/6 px-3 btn btn-primary'
                   onClick={() => window.print()}
                 >
-                  Get Started
+                  Print Coupon
                 </Button>
               )}
               content={() => componentRef.current}

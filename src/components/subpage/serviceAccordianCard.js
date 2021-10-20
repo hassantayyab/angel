@@ -2,14 +2,14 @@ import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import { ImgChevron } from '../../images'
-import Accordian from '../utils/accordian'
+import Accordian from './accordian'
 
 const ServiceAccordianCard = ({ category, servicesData }) => {
   return (
     <Accordian btnIcon={ImgChevron} defaultOpen={true}>
       <Link
         className='text-white uppercase font-graphikMedium'
-        to={'/' + category.slug}
+        to={category.serviceCategoryLink}
       >
         {category.name}
       </Link>
@@ -31,9 +31,7 @@ const ServiceAccordianCard = ({ category, servicesData }) => {
               )}
               <Link
                 className='font-graphikMedium'
-                to={
-                  '/' + category.slug + service._servicePost.servicePageLink.url
-                }
+                to={service._servicePost.servicePageLink.url}
               >
                 {service.title}
               </Link>

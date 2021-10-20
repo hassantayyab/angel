@@ -11,11 +11,13 @@ function formatDataIntoServices(data, categories) {
   let services = []
 
   for (const key in data) {
+    const category = categories.filter((e) => e.slug === key)[0]
+
     services = [
       ...services,
       {
-        title: categories.filter((e) => e.slug === key)[0].name,
-        link: '/' + key,
+        title: category.name,
+        link: category.serviceCategoryLink,
       },
     ]
 
@@ -25,7 +27,7 @@ function formatDataIntoServices(data, categories) {
         ...services,
         {
           title: elem.title,
-          link: '/' + key + elem._servicePost.servicePageLink.url,
+          link: elem._servicePost.servicePageLink.url,
         },
       ]
     }
@@ -209,14 +211,20 @@ const Footer = ({ generalInfoData, servicesData, menuData }) => {
           </div>
           <div className='mt-6 lg:mt-0'>
             {generalInfoData._generalData.footerImages.length > 0 &&
-              generalInfoData._generalData.footerImages.map(({ image }, i) => (
-                <div key={i} className='mx-auto text-center lg:ml-auto'>
-                  <GatsbyImage
-                    image={getImage(image?.localFile)}
-                    alt={image?.altText}
-                  />
-                </div>
-              ))}
+              generalInfoData._generalData.footerImages.map(
+                ({ image, link }, i) => (
+                  <a
+                    key={i}
+                    className='mx-auto text-center lg:ml-auto'
+                    href={link}
+                  >
+                    <GatsbyImage
+                      image={getImage(image?.localFile)}
+                      alt={image?.altText}
+                    />
+                  </a>
+                )
+              )}
           </div>
         </div>
       </Container>
