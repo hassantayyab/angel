@@ -111,7 +111,7 @@ const ReviewsSchema = (props) => {
       "@type": "Brand",
       "name": "${wp.nexvelSchemaMarkup.nexvelschema.businessName}"
     },
-    "image": "${site.siteMetadata.siteUrl+props.image}",
+    "image": "${props.image}",
     "name": "${wp.nexvelSchemaMarkup.nexvelschema.businessName}",
    "review":[${reviews}]
   }
