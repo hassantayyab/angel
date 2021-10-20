@@ -233,7 +233,9 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
         {({ isValid }) => (
           <Form
             method='post'
-            name='contact'
+            name={
+              type === 'service' ? 'same day services' : 'virtual estimates'
+            }
             data-netlify='true'
             data-netlify-honeypot='bot-field'
           >
@@ -292,7 +294,9 @@ const Detailsform = ({ type, step, issue, value, setValue, nextStep }) => {
           <Form
             className='flex flex-col h-full'
             method='post'
-            name='contact'
+            name={
+              type === 'service' ? 'same day services' : 'virtual estimates'
+            }
             data-netlify='true'
             data-netlify-honeypot='bot-field'
           >
