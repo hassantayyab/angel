@@ -26,11 +26,6 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
         window.scrollY > 10 ? setScroll(true) : setScroll(false)
       })
     }
-
-    return function cleanup() {
-      setOpenContactMenu(false)
-      return false
-    }
   }, [openContactMenu, scroll])
 
   const handleClick = () => {
@@ -44,7 +39,7 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
         scroll ? 'bg-blue top-0 lg:shadow-lg' : 'top-14 sm:top-10 md:top-14'
       }`}
     >
-      <header className='relative z-50 flex flex-col items-center justify-between pl-0 mb-3 md:flex-row md:mb-5 xl:container md:pl-6 lg:pl-0 xl:mx-auto xl:px-6'>
+      <header className='relative z-50 flex flex-col items-center justify-between pl-0 mb-2 md:flex-row xl:container md:pl-6 lg:pl-0 xl:mx-auto xl:px-6'>
         <div className='relative z-50 flex items-center justify-center order-2 w-full px-5 py-0 -mb-12 sm:px-0 md:justify-start md:w-2/5 lg:w-auto md:order-1 md:mb-0 md:space-x-2 lg:py-0 md:py-4'>
           {openContactMenu && (
             <motion.button
@@ -91,9 +86,16 @@ const Header = ({ headerData, menuData, contactFormRef }) => {
             openMenu={openMenu}
             setOpenMenu={setOpenMenu}
             setOpenContactMenu={setOpenContactMenu}
+            carImage={headerData.carImage}
+            logo={headerData.logo}
           />
           <div className={`hidden md:block ${scroll && 'text-white'}`}>
-            <DesktopMenu list={menuData} />
+            <DesktopMenu
+              list={menuData}
+              contactNumber={headerData.contactNumbers[0].number}
+              carImage={headerData.carImage}
+              logo={headerData.logo}
+            />
           </div>
         </div>
       </header>

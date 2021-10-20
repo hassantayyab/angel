@@ -69,7 +69,7 @@ const ReviewsList = ({ data, location }) => {
             </a>
           </div>
         </section>
-        <section className='justify-between my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10'>
+        {/* <section className='justify-between my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10'>
           {reviews.slice(0, pageSize).map((review, i) => (
             <div className='flex justify-center' key={i}>
               <Review data={review} />
@@ -82,7 +82,7 @@ const ReviewsList = ({ data, location }) => {
           totalData={totalData}
           perPageData={pageSize}
           pageChange={handlePageChange}
-        />
+        /> */}
       </Container>
 
       <Footer

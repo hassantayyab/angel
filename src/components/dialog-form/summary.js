@@ -1,7 +1,7 @@
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 
-const Confirmation = ({ carImage, value }) => {
+const Summary = ({ carImage, value }) => {
   return (
     <>
       <div className='pb-4 bg-blue'>
@@ -41,4 +41,4 @@ const Confirmation = ({ carImage, value }) => {
   )
 }
 
-export default Confirmation
+export default Summary

@@ -44,37 +44,69 @@ const IndexPage = ({ data }) => {
     bgImage: data.wpPage._financing.financingBgImage,
   }
 
-  const image = data.wpPage.seo !== null && data.wpPage.seo.opengraphImage !== null ? data.site.siteMetadata.siteUrl+data.wpPage.seo.opengraphImage.localFile.publicURL : "/blank.jpg"
-    const title = data.wpPage.title
-    const { wp } = useReviewsSchemaQuery()
-    const other = wp.nexvelSchemaMarkup.nexvelschema.whichPages
-    const something = other.find( function( ele ) { 
-      if( ele.title === title ) {
-        return true;
-      }
-      return false;
-    } );
+  const image =
+    data.wpPage.seo !== null && data.wpPage.seo.opengraphImage !== null
+      ? data.site.siteMetadata.siteUrl +
+        data.wpPage.seo.opengraphImage.localFile.publicURL
+      : '/blank.jpg'
+  const title = data.wpPage.title
+  const { wp } = useReviewsSchemaQuery()
+  const other = wp.nexvelSchemaMarkup.nexvelschema.whichPages
+  const something = other.find(function (ele) {
+    if (ele.title === title) {
+      return true
+    }
+    return false
+  })
   return (
     <>
-    <GeneralSchema siteUrl={data.site.siteMetadata.siteUrl} />
-      <PageSpecificSchema 
-      siteUrl={data.site.siteMetadata.siteUrl}
-      uri="/" 
-      title={data.wpPage.title} 
-      articleBody={null}
-      categories={null}
-      tags={null}
-      videos={data.wpPage.nexvelschemapagesposts !== null ? data.wpPage.nexvelschemapagesposts.videos : null} 
-      questionsAndAnswers={data.wpPage.nexvelschemapagesposts !== null ? data.wpPage.nexvelschemapagesposts.questionsAndAnswers : null} 
-      maps={data.wpPage.nexvelschemapagesposts !== null ? data.wpPage.nexvelschemapagesposts.maps : null} 
-      digitalDocuments={data.wpPage.nexvelschemapagesposts !== null ? data.wpPage.nexvelschemapagesposts.digitaldocuments : null} 
-      images={data.wpPage.nexvelschemapagesposts !== null ? data.wpPage.nexvelschemapagesposts.images : null} 
-      hasSchema={data.wpPage.nexvelschemapagesposts !== null && ((data.wpPage.nexvelschemapagesposts.videos || data.wpPage.nexvelschemapagesposts.questionsAndAnswers || data.wpPage.nexvelschemapagesposts.maps || data.wpPage.nexvelschemapagesposts.digitaldocuments || data.wpPage.nexvelschemapagesposts.images) !== null) ? true : false
-      } />
-       {something !== undefined &&
-       something.title === title &&
-      <ReviewsSchema image={image} />
-      }
+      <GeneralSchema siteUrl={data.site.siteMetadata.siteUrl} />
+      <PageSpecificSchema
+        siteUrl={data.site.siteMetadata.siteUrl}
+        uri='/'
+        title={data.wpPage.title}
+        articleBody={null}
+        categories={null}
+        tags={null}
+        videos={
+          data.wpPage.nexvelschemapagesposts !== null
+            ? data.wpPage.nexvelschemapagesposts.videos
+            : null
+        }
+        questionsAndAnswers={
+          data.wpPage.nexvelschemapagesposts !== null
+            ? data.wpPage.nexvelschemapagesposts.questionsAndAnswers
+            : null
+        }
+        maps={
+          data.wpPage.nexvelschemapagesposts !== null
+            ? data.wpPage.nexvelschemapagesposts.maps
+            : null
+        }
+        digitalDocuments={
+          data.wpPage.nexvelschemapagesposts !== null
+            ? data.wpPage.nexvelschemapagesposts.digitaldocuments
+            : null
+        }
+        images={
+          data.wpPage.nexvelschemapagesposts !== null
+            ? data.wpPage.nexvelschemapagesposts.images
+            : null
+        }
+        hasSchema={
+          data.wpPage.nexvelschemapagesposts !== null &&
+          (data.wpPage.nexvelschemapagesposts.videos ||
+            data.wpPage.nexvelschemapagesposts.questionsAndAnswers ||
+            data.wpPage.nexvelschemapagesposts.maps ||
+            data.wpPage.nexvelschemapagesposts.digitaldocuments ||
+            data.wpPage.nexvelschemapagesposts.images) !== null
+            ? true
+            : false
+        }
+      />
+      {something !== undefined && something.title === title && (
+        <ReviewsSchema image={image} />
+      )}
       <Seo data={data.wpPage.seo} />
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
@@ -87,7 +119,13 @@ const IndexPage = ({ data }) => {
 
       <div className='mt-1.5'>
         <ContainerSecondary>
-          <Hero data={heroData} isMain='true' contactFormRef='#scrollEl' />
+          <Hero
+            data={heroData}
+            isMain='true'
+            contactNumber={generalData._generalData.contactNumbers[0].number}
+            carImage={generalData._generalData.carImage}
+            logo={generalData._generalData.logo}
+          />
         </ContainerSecondary>
       </div>
 
@@ -152,6 +190,7 @@ const IndexPage = ({ data }) => {
             data={financingData}
             contactFormRef='#scrollEl'
             showBadge={false}
+            buttonLabel='Learn More'
           />
         </ContainerSecondary>
       </div>

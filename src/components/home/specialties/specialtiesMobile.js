@@ -61,64 +61,7 @@ const SpecialtiesMobile = ({ data, contactNumber, carImage, logo }) => {
           </motion.h3>
 
           <ul className='mt-4'>
-            {data.specialtiesItems.length > 0 &&
-              data.specialtiesItems.map((specialty, i) => (
-                <li
-                  key={i}
-                  className={`${
-                    i < data.specialtiesItems.length - 1 &&
-                    'border-b-2 border-gray-300 border-opacity-20'
-                  }`}
-                >
-                  <Accordian
-                    isOpen={openItems.includes(i)}
-                    isForServiceArea={false}
-                    bgColor='bg-transparent'
-                    setOpenItem={() => handleOpenItem(i)}
-                  >
-                    <div
-                      className={`flex items-center space-x-4 ${
-                        openItems.includes(i) ? 'text-black' : 'text-white'
-                      }`}
-                    >
-                      <GatsbyImage
-                        image={getImage(specialty.image?.localFile)}
-                        alt={specialty.image?.altText}
-                        className={`w-8 filter ${
-                          openItems.includes(i)
-                            ? 'brightness-0'
-                            : 'brightness-0 invert'
-                        }`}
-                      />
-                      <div
-                        className={`font-graphikMedium ${
-                          openItems.includes(i) ? 'text-black' : 'text-white'
-                        }`}
-                      >
-                        {specialty.title}
-                      </div>
-                    </div>
-                    <div className='px-6 pb-4 bg-yellow'>
-                      <div className='p-6 text-center bg-yellow-darker'>
-                        <div className='mx-auto'>
-                          <GatsbyImage
-                            image={getImage(specialty.image?.localFile)}
-                            alt={specialty.image?.altText}
-                            className='inline-block w-16 mb-4 filter brightness-0'
-                          />
-                        </div>
-
-                        <h4 className='font-graphikMedium'>
-                          {specialty.title}
-                        </h4>
-                        <p className='text-sm text-black'>
-                          {specialty.description}
-                        </p>
-                      </div>
-                    </div>
-                  </Accordian>
-                </li>
-              ))}
+            <Accordian data={data.specialtiesItems} />
           </ul>
         </div>
       </div>
