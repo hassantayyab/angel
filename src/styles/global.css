@@ -7,18 +7,10 @@
 @layer base {
   @import url('./_typography.css');
 
-  html {
-    min-height: -webkit-fill-available;
-  }
-
   /* Normalize CSS */
   body {
     font-family: 'Graphik', serif;
     line-height: 1.5;
-    min-height: 100vh;
-    /* mobile viewport bug fix */
-    min-height: -webkit-fill-available;
-    min-height: -webkit-fill-available;
   }
 
   h1,
@@ -351,6 +343,12 @@
   width: 70%;
   height: 100%;
   clip-path: polygon(100% 0, 100% 100%, 50% 85%, 0 100%, 0 0);
+}
+
+.ios-height-fix {
+  min-height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
 }
 
 /* Scrollbar Styles */
