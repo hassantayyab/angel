@@ -211,7 +211,7 @@ const FormDialog = ({
                     subStep === 6 ||
                     subStep === 8 ||
                     subStep === 9) &&
-                  'mt-16'
+                  'my-16'
                 }`}
               >
                 {logo && (

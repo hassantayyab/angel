@@ -27,6 +27,21 @@ const Article = ({ data, title, generalInfoData }) => {
             />
           </div>
         )
+      } else if (i === 1) {
+        data.push(
+          <div
+            className='relative h-48 mt-10 overflow-hidden sm:h-72 mw-sub-page'
+            key={`bannerImgDefault${i}`}
+          >
+            <GatsbyImage
+              image={getImage(
+                generalInfoData._generalData.imagePlaceholder?.localFile
+              )}
+              alt={generalInfoData._generalData.imagePlaceholder?.altText}
+              className='w-full h-full absolute-center'
+            />
+          </div>
+        )
       }
 
       if (i === 2) {
