@@ -21,6 +21,7 @@ const BlogCard = ({ data }) => {
       <div className='relative z-10 flex flex-col mb-6 mr-6 bg-white shadow-lg default-transition hover:shadow-xl'>
         <section className='relative overflow-hidden h-52'>
           <GatsbyImage
+            className='h-full'
             image={getImage(
               data._heroSection?.heroBgImage
                 ? data._heroSection?.heroBgImage?.localFile
