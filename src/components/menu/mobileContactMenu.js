@@ -29,7 +29,7 @@ const MobileContactMenu = ({ data }) => (
                     alt='call'
                     className='w-6 mr-3'
                   />
-                  <div className='flex items-center'>
+                  <div className='flex flex-wrap items-center'>
                     <span className='mr-2 text-white font-graphik text-opacity-80'>
                       {location}:
                     </span>
