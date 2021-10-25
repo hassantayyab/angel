@@ -143,7 +143,7 @@ const CareerForm = () => {
               {({ isSubmitting }) => (
                 <Form
                   method='post'
-                  name='contact'
+                  name='career'
                   data-netlify='true'
                   data-netlify-honeypot='bot-field'
                 >
