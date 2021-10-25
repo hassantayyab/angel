@@ -173,6 +173,7 @@ const CareerForm = () => {
                     <div className='w-1/3'>
                       <input
                         id='career-file'
+                        name='file'
                         className='text-white bg-transparent cursor-pointer'
                         type='file'
                         accept='.pdf,.txt,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
