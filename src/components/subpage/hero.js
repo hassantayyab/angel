@@ -52,7 +52,10 @@ const Hero = ({ data, heightClassName = 'h-subpage-hero' }) => {
       ></div>
       {data.heroTitle && (
         <div className='relative z-20 px-6 pt-20 overflow-hidden sm:px-16'>
-          <div className='w-full px-8 py-12 border-2 sm:w-4/5 md:w-3/5 lg:w-1/2 xl:w-2/5 sm:min-w-min top-20 h-3/5 border-yellow'>
+          <div
+            className='w-full px-8 py-12 border-2 sm:w-4/5 md:w-3/5 lg:w-1/2 xl:w-2/5 sm:min-w-min top-20 h-3/5 border-yellow'
+            style={{ minWidth: 'fit-content' }}
+          >
             <motion.h4
               className='mb-3 uppercase text-orange font-graphikMedium'
               variants={slideUp}

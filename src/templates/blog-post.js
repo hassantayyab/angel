@@ -26,7 +26,9 @@ const BlogPost = ({ data }) => {
 
   const heroData = {
     ...data.wpPost._heroSection,
-    heroBgImage: generalData._generalData.imagePlaceholder,
+    heroBgImage: data.wpPost._heroSection.heroBgImage
+      ? data.wpPost._heroSection.heroBgImage
+      : generalData._generalData.imagePlaceholder,
   }
 
   const image =
