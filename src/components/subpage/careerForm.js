@@ -28,7 +28,7 @@ const CareerForm = () => {
   })
 
   const handleSubmit = async (values, setSubmitting, resetForm) => {
-    const valuesWithFile = { ...values, resume: file }
+    const valuesWithFile = { ...values, file }
 
     try {
       await submitCareerForm(valuesWithFile)
