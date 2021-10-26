@@ -10,6 +10,7 @@ import { defaultTransition, slideDown, slideUp, View } from '../../animations'
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import Corousal from '../utils/corousal'
 
 const Blog = ({ data }) => {
   const blogs = useBlogsList().slice(0, 3)
@@ -65,10 +66,17 @@ const Blog = ({ data }) => {
             <Separator />
           </div>
         </div>
-        <div className='relative z-10 flex justify-start px-1 pb-6 mt-12 overflow-x-auto overflow-y-hidden lg:justify-center'>
-          <div className='flex space-x-5 lg:space-x-8'>
-            {blogs.length > 0 &&
-              blogs.map((blog, i) => <BlogCard key={i} data={blog} />)}
+        <div className='relative'>
+          <Corousal data={blogs} id='blog' />
+          <div className='relative z-10 flex justify-start px-1 pb-6 mt-12 overflow-x-hidden overflow-y-hidden sm:overflow-x-auto lg:justify-center'>
+            <div className='flex space-x-5 lg:space-x-8'>
+              {blogs.length > 0 &&
+                blogs.map((blog, i) => (
+                  <div key={i} id={`blog-${i}`}>
+                    <BlogCard data={blog} />
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       </Container>

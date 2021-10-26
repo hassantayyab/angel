@@ -29,6 +29,12 @@ const hoverScale = {
   transition: { type: 'spring' },
 }
 
+const hoverScaleCard = {
+  scale: 1.05,
+  originX: 0,
+  originY: 1,
+}
+
 const staggerList = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
@@ -46,6 +52,7 @@ export {
   fadeIn,
   scale,
   hoverScale,
+  hoverScaleCard,
   staggerList,
   staggerItem,
 }

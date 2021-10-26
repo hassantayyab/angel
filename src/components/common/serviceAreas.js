@@ -93,7 +93,7 @@ const ServiceAreas = () => {
               })}
           </ul>
 
-          <div className='hidden mt-5 mb-8 overflow-y-scroll h-44 md:grid gap-x-4'>
+          <div className='hidden mt-5 mb-8 overflow-y-auto h-44 md:grid gap-x-4'>
             <ul className='items-start grid grid-cols-3 grid-rows-3'>
               {data.areaLocations[selected].places.length > 0 &&
                 data.areaLocations[selected].places.map(({ name }, i) => (
