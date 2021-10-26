@@ -10,7 +10,7 @@ import { defaultTransition, slideDown, slideUp, View } from '../../animations'
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
-import Corousal from '../utils/corousal'
+import Carousal from '../utils/carousal'
 
 const Blog = ({ data }) => {
   const blogs = useBlogsList().slice(0, 3)
@@ -67,7 +67,7 @@ const Blog = ({ data }) => {
           </div>
         </div>
         <div className='relative'>
-          <Corousal data={blogs} id='blog' />
+          <Carousal data={blogs} id='blog' />
           <div className='relative z-10 flex justify-start px-1 pb-6 mt-12 overflow-x-hidden overflow-y-hidden sm:overflow-x-auto lg:justify-center'>
             <div className='flex space-x-5 lg:space-x-8'>
               {blogs.length > 0 &&

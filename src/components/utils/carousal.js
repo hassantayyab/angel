@@ -2,7 +2,7 @@ import { ImgArrow } from '../../images'
 import React, { useEffect, useState } from 'react'
 import Button from './button'
 
-const Corousal = ({ data, id }) => {
+const Carousal = ({ data, id }) => {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
@@ -40,4 +40,4 @@ const Corousal = ({ data, id }) => {
   )
 }
 
-export default Corousal
+export default Carousal
