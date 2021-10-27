@@ -24,41 +24,84 @@ const BlogPost = ({ data }) => {
   const generalData = useGeneralInfoQuery()
   const menuData = useHeaderMenuQuery()
 
-  const image = seo !== null && seo.opengraphImage !== null ? data.site.siteMetadata.siteUrl+seo.opengraphImage.localFile.publicURL : "/blank.jpg"
-    const { wp } = useReviewsSchemaQuery()
-    const other = wp.nexvelSchemaMarkup.nexvelschema.whichPages
-    const something = other.find( function( ele ) { 
-      if( ele.title === title ) {
-        return true;
-      }
-      return false;
-    } );
+  const heroData = {
+    ...data.wpPost._heroSection,
+    heroBgImage: data.wpPost._heroSection.heroBgImage
+      ? data.wpPost._heroSection.heroBgImage
+      : generalData._generalData.imagePlaceholder,
+  }
+
+  const image =
+    seo !== null && seo.opengraphImage !== null
+      ? data.site.siteMetadata.siteUrl + seo.opengraphImage.localFile.publicURL
+      : '/blank.jpg'
+  const { wp } = useReviewsSchemaQuery()
+  const other = wp.nexvelSchemaMarkup.nexvelschema.whichPages
+  const something = other.find(function (ele) {
+    if (ele.title === title) {
+      return true
+    }
+    return false
+  })
 
   return (
     <>
-    <GeneralSchema siteUrl={data.site.siteMetadata.siteUrl}/>
-      <PageSpecificSchema 
-      siteUrl={data.site.siteMetadata.siteUrl}
-      uri={data.wpPost.uri} 
-      title={title} 
-      datePublished={data.wpPost.date} 
-      dateModified={data.wpPost.modified} 
-      image={image} 
-      author={data.wpPost.author.node.firstName+' '+data.wpPost.author.node.lastName} 
-      categories={data.wpPost.categories} 
-      tags={data.wpPost.tags} 
-      articleBody={data.wpPost.content} 
-      post={true} 
-      videos={data.wpPost.nexvelschemapagesposts !== null ? data.wpPost.nexvelschemapagesposts.videos : null} 
-      questionsAndAnswers={data.wpPost.nexvelschemapagesposts !== null ? data.wpPost.nexvelschemapagesposts.questionsAndAnswers : null} 
-      maps={data.wpPost.nexvelschemapagesposts !== null ? data.wpPost.nexvelschemapagesposts.maps : null} 
-      digitalDocuments={data.wpPost.nexvelschemapagesposts !== null ? data.wpPost.nexvelschemapagesposts.digitaldocuments : null} 
-      images={data.wpPost.nexvelschemapagesposts !== null ? data.wpPost.nexvelschemapagesposts.images : null} 
-      hasSchema={data.wpPost.nexvelschemapagesposts !== null && ((data.wpPost.nexvelschemapagesposts.videos || data.wpPost.nexvelschemapagesposts.questionsAndAnswers || data.wpPost.nexvelschemapagesposts.maps || data.wpPost.nexvelschemapagesposts.digitaldocuments || data.wpPost.nexvelschemapagesposts.images) !== null) ? true : false } />
-       {something !== undefined &&
-       something.title === title &&
-      <ReviewsSchema image={image} />
-      }
+      <GeneralSchema siteUrl={data.site.siteMetadata.siteUrl} />
+      <PageSpecificSchema
+        siteUrl={data.site.siteMetadata.siteUrl}
+        uri={data.wpPost.uri}
+        title={title}
+        datePublished={data.wpPost.date}
+        dateModified={data.wpPost.modified}
+        image={image}
+        author={
+          data.wpPost.author.node.firstName +
+          ' ' +
+          data.wpPost.author.node.lastName
+        }
+        categories={data.wpPost.categories}
+        tags={data.wpPost.tags}
+        articleBody={data.wpPost.content}
+        post={true}
+        videos={
+          data.wpPost.nexvelschemapagesposts !== null
+            ? data.wpPost.nexvelschemapagesposts.videos
+            : null
+        }
+        questionsAndAnswers={
+          data.wpPost.nexvelschemapagesposts !== null
+            ? data.wpPost.nexvelschemapagesposts.questionsAndAnswers
+            : null
+        }
+        maps={
+          data.wpPost.nexvelschemapagesposts !== null
+            ? data.wpPost.nexvelschemapagesposts.maps
+            : null
+        }
+        digitalDocuments={
+          data.wpPost.nexvelschemapagesposts !== null
+            ? data.wpPost.nexvelschemapagesposts.digitaldocuments
+            : null
+        }
+        images={
+          data.wpPost.nexvelschemapagesposts !== null
+            ? data.wpPost.nexvelschemapagesposts.images
+            : null
+        }
+        hasSchema={
+          data.wpPost.nexvelschemapagesposts !== null &&
+          (data.wpPost.nexvelschemapagesposts.videos ||
+            data.wpPost.nexvelschemapagesposts.questionsAndAnswers ||
+            data.wpPost.nexvelschemapagesposts.maps ||
+            data.wpPost.nexvelschemapagesposts.digitaldocuments ||
+            data.wpPost.nexvelschemapagesposts.images) !== null
+            ? true
+            : false
+        }
+      />
+      {something !== undefined && something.title === title && (
+        <ReviewsSchema image={image} />
+      )}
       <Seo data={seo} />
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
@@ -68,10 +111,7 @@ const BlogPost = ({ data }) => {
       <Container>
         <div className='relative mx-auto mb-20 mt-44 md:mt-4 mw-blog-page'>
           <div className='relative z-10 mb-6 mr-6'>
-            <Hero
-              data={data.wpPost._heroSection}
-              heightClassName='h-64 sm:h-96'
-            />
+            <Hero data={heroData} heightClassName='h-64 sm:h-96' />
           </div>
           <div className='absolute right-0 -bottom-6 top-6 left-6'>
             <Frame />

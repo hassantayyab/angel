@@ -36,25 +36,26 @@ const BlogList = ({ data, location }) => {
 
   return (
     <>
-    <GeneralSchema siteUrl={data.site.siteMetadata.siteUrl}/>
-<PageSpecificSchema 
-      siteUrl={data.site.siteMetadata.siteUrl}
-      uri="/blog/" 
-      title={null} 
-      datePublished={null}
-      dateModified={null}
-      image={null} 
-      author={null}
-      categories={null} 
-      tags={null} 
-      articleBody={null}
-      post={null} 
-      videos={null}
-      questionsAndAnswers={null}
-      maps={null}
-      digitalDocuments={null}
-      images={null}
-      hasSchema={null}/>
+      <GeneralSchema siteUrl={data.site.siteMetadata.siteUrl} />
+      <PageSpecificSchema
+        siteUrl={data.site.siteMetadata.siteUrl}
+        uri='/blog/'
+        title={null}
+        datePublished={null}
+        dateModified={null}
+        image={null}
+        author={null}
+        categories={null}
+        tags={null}
+        articleBody={null}
+        post={null}
+        videos={null}
+        questionsAndAnswers={null}
+        maps={null}
+        digitalDocuments={null}
+        images={null}
+        hasSchema={null}
+      />
       <TopInfoBar data={generalData._generalData} />
       <div className='container px-0 mx-auto lg:px-6 xl:px-0 space-y-10'>
         <Header headerData={generalData._generalData} menuData={menuData} />
@@ -63,7 +64,7 @@ const BlogList = ({ data, location }) => {
       {heroData && (
         <div className='mt-1.5'>
           <ContainerSecondary>
-            <Hero data={heroData._heroSection} />
+            <Hero data={heroData._heroSection} heightClassName='h-80 md:h-96' />
           </ContainerSecondary>
         </div>
       )}

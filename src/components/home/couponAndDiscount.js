@@ -10,6 +10,7 @@ import { defaultTransition, slideDown, slideUp, View } from '../../animations'
 import { useAnimation } from 'framer-motion'
 import Subtitle from '../utils/subititle'
 import Title from '../utils/title'
+import Carousal from '../utils/carousal'
 
 const CouponAndDiscount = ({ data, logo }) => {
   const coupons = useCouponsListQuery()
@@ -57,12 +58,15 @@ const CouponAndDiscount = ({ data, logo }) => {
               <Separator />
             </div>
           </div>
-          <div className='flex-1'>
-            <div className='flex pb-6 overflow-x-auto overflow-y-hidden'>
+          <div className='relative flex-1'>
+            <Carousal data={coupons} id='coupon' />
+            <div className='flex pb-6 overflow-x-hidden overflow-y-hidden sm:overflow-x-auto'>
               <div className='flex justify-center lg:justify-start space-x-6'>
                 {coupons.length > 0 &&
                   coupons.map((coupon, i) => (
-                    <Coupon key={i} data={coupon} logo={logo} />
+                    <div id={`coupon-${i}`} key={i}>
+                      <Coupon data={coupon} logo={logo} />
+                    </div>
                   ))}
               </div>
             </div>
