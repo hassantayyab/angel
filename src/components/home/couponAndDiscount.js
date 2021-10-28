@@ -58,8 +58,7 @@ const CouponAndDiscount = ({ data, logo }) => {
               <Separator />
             </div>
           </div>
-          <div className='relative flex-1'>
-            <Carousal data={coupons} id='coupon' />
+          <div className='flex-1'>
             <div className='flex pb-6 overflow-x-hidden overflow-y-hidden sm:overflow-x-auto'>
               <div className='flex justify-center lg:justify-start space-x-6'>
                 {coupons.length > 0 &&
@@ -70,6 +69,7 @@ const CouponAndDiscount = ({ data, logo }) => {
                   ))}
               </div>
             </div>
+            <Carousal data={coupons} id='coupon' />
           </div>
         </div>
       </Container>
