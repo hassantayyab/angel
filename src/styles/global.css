@@ -375,3 +375,54 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #999;
 }
+
+/*Ashley's custom css*/
+.fbc ol{
+  list-style-type: none;
+}
+.fbc ol span .fbc ol a span, .fbc ol .fbc-separator, .prose .fbc a{
+  color: #004A8F;
+}
+.fbc ol li{
+  display: inline-block;
+  margin: 2px;
+}
+.fbc ol li a{
+  text-decoration: none;
+}
+.prose .fbc ol > li::before{
+  content: '';
+}
+.prose .fbc ol > li{
+  padding: 0;
+}
+.prose ul.page-generator-pro-related-links > li::before{
+display: none;
+}
+.prose ul.page-generator-pro-related-links > li{
+  padding: 0;
+  break-inside: avoid;
+  display: inline-block;
+}
+.weatherWidgetAndMap{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.weatherWidgetAndMap iframe{
+  margin: 0 auto;
+}
+@media(min-width:992px){
+.page-generator-pro-related-links{
+   column-count: 3;
+   column-gap: 0;
+   margin-block-start: 0;
+   margin-block-end: 0;
+   padding-inline-start: 0;
+ margin-top: 0 !important;
+  }
+  .weatherWidgetAndMap{
+    grid-template-columns: 25% 70%;
+    grid-column-gap: 5%;
+  }
+}
