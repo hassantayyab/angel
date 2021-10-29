@@ -2,10 +2,13 @@ import { ImgCallCard, ImgPerk } from '../../images'
 import React from 'react'
 import { motion } from 'framer-motion'
 import { hoverScale, scale } from '../../animations'
+import { useGeneralInfoQuery } from '../../hooks/generalInfoQuery'
 
-const CallUsCard = ({ data }) => (
+const CallUsCard = ({ data }) => {
+  const {_generalData} = useGeneralInfoQuery()
+  return(
   <motion.a
-    href='tel:610.379.3993'
+    href={`tel:`+_generalData.contactNumbers[1].number}
     className='relative block w-full sm:grid grid-cols-5 hover:shadow-xl default-transition'
     variants={scale}
     whileHover={hoverScale}
@@ -50,10 +53,10 @@ const CallUsCard = ({ data }) => (
         <h6 className='w-full mx-auto mb-1 sm:w-3/4'>
           {data._cardCall.cardCallSubheading}
         </h6>
-        <h2>{data._generalData.contactNumbers.slice(-1)[0].number}</h2>
+        <h2>{_generalData.contactNumbers[1].number}</h2>
       </div>
     </div>
   </motion.a>
 )
-
+      }
 export default CallUsCard
