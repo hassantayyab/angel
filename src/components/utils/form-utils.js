@@ -112,7 +112,6 @@ export function submitServiceForm(values) {
 }
 
 export function submitEstimateForm(values) {
-  console.log(values)
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',
@@ -131,7 +130,6 @@ export function submitEstimateForm(values) {
 }
 
 export function submitCareerForm(values) {
-  console.log(values)
   return new Promise((resolve, reject) => {
     fetch('/', {
       method: 'POST',

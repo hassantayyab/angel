@@ -66,18 +66,18 @@ const Blog = ({ data }) => {
             <Separator />
           </div>
         </div>
+        <div className='flex justify-start px-1 pb-6 mt-12 overflow-x-hidden overflow-y-hidden sm:overflow-x-auto lg:justify-center'>
+          <div className='flex space-x-5 lg:space-x-8'>
+            {blogs.length > 0 &&
+              blogs.map((blog, i) => (
+                <div key={i} id={`blog-${i}`}>
+                  <BlogCard data={blog} />
+                </div>
+              ))}
+          </div>
+        </div>
         <div className='relative'>
           <Carousal data={blogs} id='blog' />
-          <div className='relative z-10 flex justify-start px-1 pb-6 mt-12 overflow-x-hidden overflow-y-hidden sm:overflow-x-auto lg:justify-center'>
-            <div className='flex space-x-5 lg:space-x-8'>
-              {blogs.length > 0 &&
-                blogs.map((blog, i) => (
-                  <div key={i} id={`blog-${i}`}>
-                    <BlogCard data={blog} />
-                  </div>
-                ))}
-            </div>
-          </div>
         </div>
       </Container>
     </section>
